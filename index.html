@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="求职工具、实用资料与全路径求职陪跑，能自己解决的先交给工具，需要有人陪的就一起跑到上岸。">
 <meta name="theme-color" content="#151611">
+<link rel="preload" as="image" href="https://2899959170-hue.github.io/AI-Job/assets/img51.jpg?v=20260730-2">
 <title>阿涵求职资料军火库 · 工具资料与全路径陪跑</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
@@ -16,7 +17,7 @@
   --clay:#c0562f;--clay-deep:#8f3d1e;--clay-bg:rgba(192,86,47,.09);
   --moss:#56663f;--moss-deep:#3a4628;
   --gold:#b0812f;--slate:#3c4a58;
-  --mascot:url("assets/img51.jpg");
+  --mascot:url("https://2899959170-hue.github.io/AI-Job/assets/img51.jpg?v=20260730-2");
   --serif:'Noto Serif SC','Songti SC','STSong',serif;
   --sans:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif;
   --mono:'Space Grotesk',ui-monospace,'SF Mono','Menlo',monospace;
@@ -41,7 +42,8 @@ h1,h2,h3,h4{font-family:var(--serif);letter-spacing:.01em;text-wrap:balance}
 /* ——— 发报头 ——— */
 .masthead{display:flex;justify-content:space-between;align-items:center;padding-top:26px;padding-bottom:13px;border-bottom:1.5px solid var(--ink);gap:16px;flex-wrap:wrap}
 .mh-brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-weight:700;font-size:17px}
-.mascot{width:38px;height:38px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 42% 34%,#f3ad82,#c0562f);background-image:var(--mascot);background-size:cover;background-position:center 28%;border:2px solid #fff;box-shadow:0 2px 8px rgba(21,20,15,.18);display:inline-flex;align-items:center;justify-content:center;flex:none;line-height:1}
+.mascot{width:38px;height:38px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 42% 34%,#f3ad82,#c0562f);border:2px solid #fff;box-shadow:0 2px 8px rgba(21,20,15,.18);display:inline-flex;align-items:center;justify-content:center;flex:none;line-height:1}
+.mascot img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 28%}
 .mh-brand b span{color:var(--clay)}
 .mh-nav{display:flex;gap:22px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 .mh-nav a{color:var(--ink-soft);text-decoration:none}
@@ -1690,7 +1692,7 @@ footer b{color:#f29275}
   <!-- 发报头 -->
   <div class="pad">
     <div class="masthead">
-      <div class="mh-brand"><span class="mascot" role="img" aria-label="狐狸 IP"></span><b>阿涵求职<span>资料军火库</span></b></div>
+      <div class="mh-brand"><span class="mascot"><img src="https://2899959170-hue.github.io/AI-Job/assets/img51.jpg?v=20260730-2" alt="狐狸 IP" fetchpriority="high"></span><b>阿涵求职<span>资料军火库</span></b></div>
       <div class="mh-nav">
         <a href="#library">工具资料</a><a href="#quick-services">单项服务</a><a href="#hero">陪跑方案</a><a href="#deliver">七项交付</a><a href="#ai">AI 作品</a><a href="#faq">答疑</a>
       </div>
@@ -1753,6 +1755,7 @@ footer b{color:#f29275}
           <button id="tab-resources" type="button" role="tab" aria-selected="false" aria-controls="panel-resources" data-library-target="resources">资料区</button>
         </div>
       </div>
+      <p class="download-device-tip"><b>下载提示</b><span>Markdown、Skill、ZIP、PPTX 等文件建议使用电脑下载，体验更佳；手机若显示 0B，可换电脑打开同一链接。</span></p>
 
       <div id="panel-tools" class="library-panel is-active" role="tabpanel" aria-labelledby="tab-tools" data-library-panel="tools">
         <article class="supply-card featured has-actions">
@@ -1769,33 +1772,33 @@ footer b{color:#f29275}
         <article class="supply-card has-actions">
           <span class="supply-no">TOOL · 02</span><i class="supply-icon">库</i>
           <h3>供应链库存健康看板</h3><p>看周转、现货、长库龄和不动销，再用净利测算盘验证清仓动作。</p>
-          <span class="supply-meta"><b>HTML 看板</b><em>文件已收录</em></span>
+          <span class="supply-meta"><b>HTML 看板</b><em>电脑体验更佳</em></span>
           <span class="supply-actions">
-            <a href="downloads/tools/inventory-dashboard-2026.html" download>直接下载 ↓</a><button type="button" data-guide="inventory">使用教程</button>
+            <a href="downloads/tools/inventory-dashboard-2026.html?v=20260730-2" download>直接下载 ↓</a><button type="button" data-guide="inventory">使用教程</button>
           </span>
         </article>
         <article class="supply-card has-actions">
           <span class="supply-no">SKILL · 03</span><i class="supply-icon">.S</i>
           <h3>运营 SQL 学习 Skill</h3><p>五阶段学习路径、运营场景教学和大厂真题，适合支持 Skill 的 AI 工具。</p>
-          <span class="supply-meta"><b>.skill 安装包</b><em>完整版本</em></span>
+          <span class="supply-meta"><b>.skill 安装包</b><em>建议电脑下载</em></span>
           <span class="supply-actions">
-            <a href="downloads/tools/ops-sql-learner.skill" download>下载 .skill ↓</a><button type="button" data-guide="sql-skill">安装教程</button>
+            <a href="downloads/tools/ops-sql-learner.skill?v=20260730-2" download>下载 .skill ↓</a><button type="button" data-guide="sql-skill">安装教程</button>
           </span>
         </article>
         <article class="supply-card has-actions">
           <span class="supply-no">PROMPT · 04</span><i class="supply-icon">MD</i>
           <h3>运营 SQL 国内 AI 版</h3><p>单独保留 SKILL.md，并拆出学习路径、真题库和速查表供国内同学使用。</p>
-          <span class="supply-meta"><b>ZIP 工具包</b><em>DeepSeek / Kimi 等</em></span>
+          <span class="supply-meta"><b>ZIP 工具包</b><em>建议电脑下载</em></span>
           <span class="supply-actions">
-            <a href="downloads/tools/ops-sql-cn-bundle.zip" download>整包下载 ↓</a><button type="button" data-guide="sql-cn">使用教程</button>
+            <a href="downloads/tools/ops-sql-cn-bundle.zip?v=20260730-2" download>整包下载 ↓</a><button type="button" data-guide="sql-cn">使用教程</button>
           </span>
         </article>
         <article class="supply-card has-actions">
           <span class="supply-no">PROMPT · 05</span><i class="supply-icon">答</i>
           <h3>简历面试逐字稿生成器</h3><p>把简历里的每个数据点拆成狠追问、回答顺序和可填写的面试作业本。</p>
-          <span class="supply-meta"><b>国内 AI 通用提示词</b><em>无需安装</em></span>
+          <span class="supply-meta"><b>Markdown 提示词</b><em>建议电脑下载</em></span>
           <span class="supply-actions">
-            <a href="downloads/tools/resume-interview-script-prompt.md" download>下载提示词 ↓</a><button type="button" data-guide="script-prompt">使用教程</button>
+            <a href="downloads/tools/resume-interview-script-prompt.md?v=20260730-2" download>下载提示词 ↓</a><button type="button" data-guide="script-prompt">使用教程</button>
           </span>
         </article>
       </div>
@@ -1804,17 +1807,17 @@ footer b{color:#f29275}
         <article class="supply-card resource-card featured has-actions">
           <span class="supply-no">GUIDE · 01</span><i class="supply-icon">京</i>
           <h3>27 届京东采销准备指南</h3><p>价值观演变、刘强东关键讲话与采销必背 50 题，一份完成公司与岗位准备。</p>
-          <span class="supply-meta"><b>HTML 指南</b><em>文件已收录</em></span>
+          <span class="supply-meta"><b>HTML 指南</b><em>电脑体验更佳</em></span>
           <span class="supply-actions">
-            <a href="downloads/resources/jd-category-prep-guide-2027.html" download>直接下载 ↓</a><button type="button" data-guide="jd-guide">使用教程</button>
+            <a href="downloads/resources/jd-category-prep-guide-2027.html?v=20260730-2" download>直接下载 ↓</a><button type="button" data-guide="jd-guide">使用教程</button>
           </span>
         </article>
         <article class="supply-card resource-card has-actions">
           <span class="supply-no">DECK · 02</span><i class="supply-icon">链</i>
           <h3>供应链全链路课件</h3><p>从供应链概念到京东全链路，再用匹配题和排序题完成自测。</p>
-          <span class="supply-meta"><b>PPTX · 5 页</b><em>文件已收录</em></span>
+          <span class="supply-meta"><b>PPTX · 5 页</b><em>建议电脑下载</em></span>
           <span class="supply-actions">
-            <a href="downloads/resources/supply-chain-full-process.pptx" download>下载课件 ↓</a><button type="button" data-guide="supply-chain">学习教程</button>
+            <a href="downloads/resources/supply-chain-full-process.pptx?v=20260730-2" download>下载课件 ↓</a><button type="button" data-guide="supply-chain">学习教程</button>
           </span>
         </article>
         <article class="supply-card resource-card has-actions">
@@ -1848,8 +1851,8 @@ footer b{color:#f29275}
       <p class="library-swipe-tip">左右滑动查看全部 <span>→</span></p>
     </div>
 
-    <details class="community-details reveal">
-      <summary><span><b>一起把军火库造出来</b><small>未来工具投票 · 匿名留言</small></span><i>＋</i></summary>
+    <section class="community-details reveal" aria-label="未来工具投票和匿名留言">
+      <div class="community-summary"><span><b>一起把军火库造出来</b><small>未来工具投票 · 匿名留言长期开放</small></span><i>OPEN · 随时参与</i></div>
       <div class="community-grid">
         <section class="future-poll" aria-labelledby="futurePollTitle">
           <span class="community-label">COMMUNITY VOTE · 未来工具</span>
@@ -1876,7 +1879,7 @@ footer b{color:#f29275}
           </div>
         </section>
       </div>
-    </details>
+    </section>
   </section>
 
   <dialog id="guideDialog" class="guide-dialog" aria-labelledby="guideTitle">
@@ -1977,7 +1980,7 @@ footer b{color:#f29275}
         <div class="route-node node-5"><span>05</span><b>面试</b><small>练表达</small></div>
         <div class="route-node node-6"><span>06</span><b>复盘</b><small>再迭代</small></div>
         <div class="route-destination"><span>07 · DESTINATION</span><b>OFFER</b><em>岸</em></div>
-        <div class="route-guide"><span class="mascot" role="img" aria-label="披着狼皮的狐狸"></span><div><small>YOUR COACH</small><b>有人盯着路线，也盯着你</b></div></div>
+        <div class="route-guide"><span class="mascot"><img src="https://2899959170-hue.github.io/AI-Job/assets/img51.jpg?v=20260730-2" alt="披着狼皮的狐狸" loading="lazy" decoding="async"></span><div><small>YOUR COACH</small><b>有人盯着路线，也盯着你</b></div></div>
         <div class="route-legend"><span>● 当前动作</span><span>○ 复盘回流</span><span>× 不走弯路</span></div>
       </div>
     </div>
@@ -2103,7 +2106,7 @@ footer b{color:#f29275}
     </div>
     <p class="prose">陪你这一路,我是真的把东西全教给你。以后你再换工作,这套东西你信手就来。<strong>你学到的,是一门能吃一辈子的手艺。</strong></p>
     <div class="signature">
-      <span class="mascot" role="img" aria-label="狐狸 IP"></span>
+      <span class="mascot"><img src="https://2899959170-hue.github.io/AI-Job/assets/img51.jpg?v=20260730-2" alt="狐狸 IP" loading="lazy" decoding="async"></span>
       <div><b>你的陪跑总教练</b><span>披着狼皮的狐狸 · 从专员到百人公司 VP</span></div>
     </div>
   </section>
@@ -2186,19 +2189,19 @@ footer b{color:#f29275}
       </div>
       <div class="dcard"><div class="dn">01</div><h3>背景深挖</h3><span class="force">贯穿全程 · 起点</span>
         <p>很多同学从第一步就错了——<span class="mark">压根不知道自己适合干嘛</span>。先把你干过、学过、擅长和不擅长的全捋一遍,从你真有的本事出发,把方向定死。方向对了,后面每步才不白使劲。</p>
-        <div class="dcard-media"><figure class="gitem"><img src="assets/img01.jpg" alt=""></figure><figure class="gitem"><img src="assets/img02.jpg" alt=""></figure><figure class="gitem"><img src="assets/img03.jpg" alt=""></figure><span class="media-hint">背景深挖样张 · 点击放大</span></div>
+        <div class="dcard-media"><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img01.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img02.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img03.jpg?v=20260730-2" alt=""></figure><span class="media-hint">背景深挖样张 · 点击放大</span></div>
       </div>
       <div class="dcard"><div class="dn">02</div><h3>简历润色 / 代写</h3><span class="force">一岗一版 · 改到满意不限次</span>
         <p>别拿一份"通用简历"到处碰运气。投产品用产品版、投运营用运营版。我们把经历改写成<span class="mark">"HR 一看就想追着问下去"</span>的那种,不是润色改错字。改到你满意,不限次、不额外收钱。</p>
-        <div class="dcard-media"><figure class="gitem"><img src="assets/img04.jpg" alt=""></figure><span class="media-hint">简历样张 · 点击放大</span></div>
+        <div class="dcard-media"><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img04.jpg?v=20260730-2" alt=""></figure><span class="media-hint">简历样张 · 点击放大</span></div>
       </div>
       <div class="dcard"><div class="dn">03</div><h3>投递清单</h3><span class="force">按城市定制 · 每月推送</span>
         <p>你说城市,我给你能<span class="mark">直接开投的岗位清单</span>——按"你的本事 → 能做的岗 → 对的行业"筛,不是盲冲大厂 title。校招社招都覆盖,动态补齐不让你有空窗。</p>
-        <div class="dcard-media"><figure class="gitem"><img src="assets/img05.jpg" alt=""></figure><span class="media-hint">清单样张 · 点击放大</span></div>
+        <div class="dcard-media"><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img05.jpg?v=20260730-2" alt=""></figure><span class="media-hint">清单样张 · 点击放大</span></div>
       </div>
       <div class="dcard"><div class="dn">04</div><h3>模拟面试</h3><span class="force">真人陪练 · 不限场次</span>
         <p>光在脑子里想一百遍,不如真开口练一次。真人一场一场陪你过,<span class="mark">面几次陪你练几次</span>,每次不少于 1 小时,连着三场能干到俩小时。</p>
-        <div class="dcard-media"><figure class="gitem"><img src="assets/img06.jpg" alt=""></figure><span class="media-hint">Mock 现场 · 点击放大</span></div>
+        <div class="dcard-media"><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img06.jpg?v=20260730-2" alt=""></figure><span class="media-hint">Mock 现场 · 点击放大</span></div>
       </div>
       <div class="dcard" style="background:var(--clay-bg);justify-content:center;align-items:flex-start">
         <div class="dn" style="color:var(--gold)">06</div><h3>AI 作品集</h3>
@@ -2213,10 +2216,10 @@ footer b{color:#f29275}
         <span class="force">一对一匹配 · 点状爆破 · 当天复盘不限次</span>
         <p class="mf-p">不是甩你几百页合集自己捞。你明天面哪家、哪个岗,就给你那家那个岗对应的面经,<span class="mark">完全按你 Mock 表现点状爆破</span>。题型无非四类,每类都有真材料(缩略图点击放大):</p>
         <div class="mj-cats">
-          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">企业调研</span><span class="ce">Company Research</span></div><p class="mj-desc">这家做什么、怎么赚钱、你对它怎么看——开口就像自己人。</p><div class="gal-row"><figure class="gitem"><img src="assets/img07.jpg" alt=""></figure><figure class="gitem"><img src="assets/img08.jpg" alt=""></figure><figure class="gitem"><img src="assets/img09.jpg" alt=""></figure></div></div>
-          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">简历深挖题</span><span class="ce">Resume Deep-Dive</span></div><p class="mj-desc">每条经历都可能被追问到底,提前把逐字稿备好。</p><div class="gal-row"><figure class="gitem"><img src="assets/img07.jpg" alt=""></figure><figure class="gitem"><img src="assets/img10.jpg" alt=""></figure><figure class="gitem"><img src="assets/img11.jpg" alt=""></figure><figure class="gitem"><img src="assets/img12.jpg" alt=""></figure></div></div>
-          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">业务理解 / 场景题</span><span class="ce">Business / Case</span></div><p class="mj-desc">给你个真实业务难题,看你怎么拆、怎么落地。</p><div class="gal-row"><figure class="gitem"><img src="assets/img13.jpg" alt=""></figure><figure class="gitem"><img src="assets/img14.jpg" alt=""></figure></div></div>
-          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">其他意向 / 抽象类</span><span class="ce">Intent / Abstract</span></div><p class="mj-desc">职业规划、优缺点、为什么选这行这种"软"问题。</p><div class="gal-row"><figure class="gitem"><img src="assets/img15.jpg" alt=""></figure></div></div>
+          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">企业调研</span><span class="ce">Company Research</span></div><p class="mj-desc">这家做什么、怎么赚钱、你对它怎么看——开口就像自己人。</p><div class="gal-row"><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img07.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img08.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img09.jpg?v=20260730-2" alt=""></figure></div></div>
+          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">简历深挖题</span><span class="ce">Resume Deep-Dive</span></div><p class="mj-desc">每条经历都可能被追问到底,提前把逐字稿备好。</p><div class="gal-row"><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img07.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img10.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img11.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img12.jpg?v=20260730-2" alt=""></figure></div></div>
+          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">业务理解 / 场景题</span><span class="ce">Business / Case</span></div><p class="mj-desc">给你个真实业务难题,看你怎么拆、怎么落地。</p><div class="gal-row"><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img13.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img14.jpg?v=20260730-2" alt=""></figure></div></div>
+          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">其他意向 / 抽象类</span><span class="ce">Intent / Abstract</span></div><p class="mj-desc">职业规划、优缺点、为什么选这行这种"软"问题。</p><div class="gal-row"><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img15.jpg?v=20260730-2" alt=""></figure></div></div>
         </div>
         <div class="note" style="margin-top:14px">面完当天就带你复盘:哪句说崩了、哪个追问没接住、下次该怎么说——细到句子层面。不是背标准答案,是越面越会讲。</div>
       </div>
@@ -2338,7 +2341,7 @@ footer b{color:#f29275}
 
     <div class="proof-case">
       <div class="proof-phone">
-        <img src="assets/img16.jpg" alt="阿里巴巴千问 HR 主动联系学员并通话的聊天记录">
+        <img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img16.jpg?v=20260730-2" alt="阿里巴巴千问 HR 主动联系学员并通话的聊天记录">
       </div>
       <div class="proof-copy">
         <div class="proof-kicker">CASE STUDY · 0 实习 → 主动邀约</div>
@@ -2421,7 +2424,7 @@ footer b{color:#f29275}
     </div>
     <h3 style="font-family:var(--serif);font-size:20px;margin-top:26px">结果没用!咱们再来看看<span style="color:var(--clay)">过程好评</span></h3>
     <p class="lede" style="margin-top:8px">下面是学员真实反馈与陪跑过程的一部分(隐私已打码),点开看大图。</p>
-    <div class="wall reveal" data-wall="proc"><div class="wall-row" style="--dur:77s"><figure class="gitem"><img src="assets/img17.jpg" alt=""></figure><figure class="gitem"><img src="assets/img18.jpg" alt=""></figure><figure class="gitem"><img src="assets/img19.jpg" alt=""></figure><figure class="gitem"><img src="assets/img20.jpg" alt=""></figure><figure class="gitem"><img src="assets/img21.jpg" alt=""></figure><figure class="gitem"><img src="assets/img22.jpg" alt=""></figure><figure class="gitem"><img src="assets/img23.jpg" alt=""></figure><figure class="gitem"><img src="assets/img24.jpg" alt=""></figure><figure class="gitem"><img src="assets/img25.jpg" alt=""></figure><figure class="gitem"><img src="assets/img26.jpg" alt=""></figure><figure class="gitem"><img src="assets/img27.jpg" alt=""></figure></div><div class="wall-row rev" style="--dur:70s"><figure class="gitem"><img src="assets/img28.jpg" alt=""></figure><figure class="gitem"><img src="assets/img29.jpg" alt=""></figure><figure class="gitem"><img src="assets/img30.jpg" alt=""></figure><figure class="gitem"><img src="assets/img31.jpg" alt=""></figure><figure class="gitem"><img src="assets/img32.jpg" alt=""></figure><figure class="gitem"><img src="assets/img33.jpg" alt=""></figure><figure class="gitem"><img src="assets/img34.jpg" alt=""></figure><figure class="gitem"><img src="assets/img35.jpg" alt=""></figure><figure class="gitem"><img src="assets/img36.jpg" alt=""></figure><figure class="gitem"><img src="assets/img37.jpg" alt=""></figure></div></div>
+    <div class="wall reveal" data-wall="proc"><div class="wall-row" style="--dur:77s"><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img17.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img18.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img19.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img20.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img21.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img22.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img23.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img24.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img25.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img26.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img27.jpg?v=20260730-2" alt=""></figure></div><div class="wall-row rev" style="--dur:70s"><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img28.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img29.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img30.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img31.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img32.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img33.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img34.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img35.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img36.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img37.jpg?v=20260730-2" alt=""></figure></div></div>
   </section>
 
   <!-- 结果好评 · OFFER 捷报墙 -->
@@ -2429,7 +2432,7 @@ footer b{color:#f29275}
     <div class="block-head"><span class="block-idx">捷报</span><span class="block-en">Offers · Wall of Wins</span></div>
     <h2>结果好评 · <span class="clay">上岸捷报墙</span></h2>
     <p class="lede">一批学员真实 offer / 好评(隐私已打码)。自动滑动,悬停暂停,点开看大图。</p>
-    <div class="wall reveal" data-wall="offer"><div class="wall-row" style="--dur:42s"><figure class="gitem"><img src="assets/img38.jpg" alt=""></figure><figure class="gitem"><img src="assets/img39.jpg" alt=""></figure><figure class="gitem"><img src="assets/img40.jpg" alt=""></figure><figure class="gitem"><img src="assets/img41.jpg" alt=""></figure><figure class="gitem"><img src="assets/img42.jpg" alt=""></figure><figure class="gitem"><img src="assets/img43.jpg" alt=""></figure></div><div class="wall-row rev" style="--dur:42s"><figure class="gitem"><img src="assets/img44.jpg" alt=""></figure><figure class="gitem"><img src="assets/img45.jpg" alt=""></figure><figure class="gitem"><img src="assets/img46.jpg" alt=""></figure><figure class="gitem"><img src="assets/img47.jpg" alt=""></figure><figure class="gitem"><img src="assets/img48.jpg" alt=""></figure><figure class="gitem"><img src="assets/img49.jpg" alt=""></figure></div></div>
+    <div class="wall reveal" data-wall="offer"><div class="wall-row" style="--dur:42s"><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img38.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img39.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img40.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img41.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img42.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img43.jpg?v=20260730-2" alt=""></figure></div><div class="wall-row rev" style="--dur:42s"><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img44.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img45.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img46.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img47.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img48.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img49.jpg?v=20260730-2" alt=""></figure></div></div>
   </section>
 
   <!-- 上岸为止 -->
@@ -2532,7 +2535,7 @@ footer b{color:#f29275}
     <h2 style="margin-top:12px">微信找我聊聊吧</h2>
     <p>先把你的情况、你手里有什么、你现在卡在哪儿跟我说清楚,咱们再决定要不要开始。从你决定的那一刻起,你就不是一个人在找工作了。</p>
     <div class="qr">
-      <img decoding="async" src="assets/img50.jpg" alt="企业微信二维码">
+      <img loading="lazy" decoding="async" src="https://2899959170-hue.github.io/AI-Job/assets/img50.jpg?v=20260730-2" alt="企业微信二维码">
       <span class="qr-note">扫码添加企微老师<br><small>先聊情况，不急着报名</small></span>
     </div>
     <a class="btn btn-clay" href="#signup" style="position:relative">加企微老师 · 对公转账,钱有保障</a>
@@ -2561,6 +2564,21 @@ footer b{color:#f29275}
 <a class="mobile-cta" href="#signup" aria-label="微信咨询全路径求职陪跑">微信咨询 · 先聊聊你的情况 ↗</a>
 
 <script>
+/* 手机内置浏览器偶发缓存破图时，仅换地址重试一次 */
+(function(){
+  document.addEventListener('error',function(e){
+    var image=e.target;
+    if(!image||image.tagName!=='IMG'||image.getAttribute('data-image-retried')==='true')return;
+    var source=image.currentSrc||image.src;
+    if(!source||source.indexOf('/AI-Job/assets/')===-1)return;
+    image.setAttribute('data-image-retried','true');
+    try{
+      var retryUrl=new URL(source,location.href);
+      retryUrl.searchParams.set('retry',Date.now().toString());
+      window.setTimeout(function(){image.src=retryUrl.toString();},250);
+    }catch(error){}
+  },true);
+})();
 /* reveal */
 (function(){
   var els=document.querySelectorAll('.reveal');
@@ -2735,6 +2753,14 @@ footer b{color:#f29275}
   font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer
 }
 .library-tabs button.is-active{background:var(--ink);color:#fff;box-shadow:0 4px 12px rgba(21,20,15,.16)}
+.download-device-tip{
+  display:flex;align-items:center;gap:8px;margin:-5px 0 16px;padding:9px 11px;border-radius:10px;
+  background:#f3eadc;font-size:9px;line-height:1.5;color:var(--ink-soft)
+}
+.download-device-tip b{
+  flex:0 0 auto;padding:3px 6px;border-radius:999px;background:var(--clay);color:#fff;
+  font-family:var(--mono);font-size:7px;letter-spacing:.06em
+}
 .library-panel{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
 .library-panel[hidden]{display:none}
 .supply-card{
@@ -2799,16 +2825,14 @@ footer b{color:#f29275}
 .resource-library .supply-card{flex:0 0 min(25%,260px);scroll-snap-align:start}
 
 .community-details{margin:0 clamp(24px,6.6vw,76px) 64px}
-.community-details>summary{
+.community-details>.community-summary{
   display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;
-  border:1px solid var(--line);border-radius:18px;background:#fff;list-style:none;cursor:pointer
+  border:1px solid var(--line);border-radius:18px;background:#fff
 }
-.community-details>summary::-webkit-details-marker{display:none}
-.community-details>summary span{display:grid;gap:2px}
-.community-details>summary b{font-family:var(--serif);font-size:17px}
-.community-details>summary small{font-size:9px;color:var(--ink-faint)}
-.community-details>summary i{font-size:23px;font-style:normal;color:var(--clay);transition:transform .2s}
-.community-details[open]>summary i{transform:rotate(45deg)}
+.community-details>.community-summary span{display:grid;gap:2px}
+.community-details>.community-summary b{font-family:var(--serif);font-size:17px}
+.community-details>.community-summary small{font-size:9px;color:var(--ink-faint)}
+.community-details>.community-summary i{font-family:var(--mono);font-size:8px;font-style:normal;letter-spacing:.08em;color:var(--clay)}
 .community-grid{
   display:grid;grid-template-columns:1.08fr .92fr;gap:14px;margin-top:12px;padding:15px;border:1px solid var(--line-strong);
   border-radius:24px;background:rgba(255,255,255,.63);box-shadow:0 18px 50px rgba(41,34,25,.07)
@@ -2992,6 +3016,7 @@ footer b{color:#f29275}
   .library-console-head strong{font-size:14px}
   .library-tabs{justify-self:start}
   .library-tabs button{min-width:68px;padding:7px 11px;font-size:10px}
+  .download-device-tip{margin:0 14px 14px 0;padding:9px 10px;font-size:8.5px}
   .library-panel{
     display:flex;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;
     scroll-snap-type:x mandatory;padding-right:14px;scrollbar-width:none
@@ -3006,16 +3031,14 @@ footer b{color:#f29275}
   .resource-library{padding-bottom:3px}
   .resource-library .supply-card{flex-basis:min(76vw,265px)}
   .community-details{margin:0 14px 35px}
-  .community-details>summary{
+  .community-details>.community-summary{
     display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px;
-    border:1px solid var(--line);border-radius:17px;background:#fff;list-style:none;cursor:pointer
+    border:1px solid var(--line);border-radius:17px;background:#fff
   }
-  .community-details>summary::-webkit-details-marker{display:none}
-  .community-details>summary span{display:grid;gap:2px}
-  .community-details>summary b{font-family:var(--serif);font-size:15px}
-  .community-details>summary small{font-size:9px;color:var(--ink-faint)}
-  .community-details>summary i{font-size:22px;font-style:normal;color:var(--clay);transition:transform .2s}
-  .community-details[open]>summary i{transform:rotate(45deg)}
+  .community-details>.community-summary span{display:grid;gap:2px}
+  .community-details>.community-summary b{font-family:var(--serif);font-size:15px}
+  .community-details>.community-summary small{font-size:9px;color:var(--ink-faint)}
+  .community-details>.community-summary i{font-size:7px}
   .community-grid{grid-template-columns:1fr;gap:9px;margin-top:10px;padding:8px;border-radius:18px}
   .future-poll,.comment-preview{padding:19px;border-radius:15px}
   .community-grid h2{font-size:25px}
@@ -3426,31 +3449,31 @@ document.addEventListener('click',close);})();
       title:'库存健康看板 · 阅读顺序',
       intro:'这份 HTML 看板适合采销、供应链、电商运营同学用来建立库存诊断框架。',
       steps:['先看库存周转率、现货率、长库龄、不动销四个指标，记住每个指标回答什么问题。','再看“异常库存痛点”，练习把断货和积压分别归因。','按生命周期库存管控五步 SOP，把动作放回正确阶段。','看标杆对比和场景连带策略，理解“以爆带滞”和场景大包装。','最后用净利测算盘验证活动、清仓或组合销售是否真的赚钱。'],
-      tip:'建议边看边拿一个真实商品练习，不要只背指标定义。'
+      tip:'HTML 文件建议用电脑下载并打开，图表和交互体验更完整。边看边拿一个真实商品练习，不要只背指标定义。'
     },
     'sql-skill':{
       title:'运营 SQL Skill · 安装版',
       intro:'适合支持 .skill 文件的 AI 工具，安装后会按运营场景带你定级、学习和刷真题。',
       steps:['下载 ops-sql-learner.skill 文件。','在支持 Skill 的 AI 工具中上传并安装这个文件。','第一句话写：“我目前完全 0 基础，目标用户运营，请先给我定级并安排 7 天计划。”','按它给出的题目先自己想，再要解题思路，最后才看完整答案。','把写错的 SQL 直接贴回去，让它按问题定位、原因、正确写法和举一反三四步讲解。'],
-      tip:'如果你的 AI 不支持 .skill，请使用旁边的“国内 AI 通用版”。'
+      tip:'.skill 文件建议使用电脑下载和安装。如果你的 AI 不支持 .skill，请使用旁边的“国内 AI 通用版”。'
     },
     'sql-cn':{
       title:'运营 SQL · 国内 AI 通用版',
       intro:'给 DeepSeek、Kimi、豆包、通义等不支持 .skill 的同学，主文件和三份配套资料会分别提供。',
       steps:['上传 SKILL.md，并同时上传学习路径、真题库、SQL 速查表。','第一句话说明基础和目标，例如：“我 0 基础，准备电商运营笔试，剩 14 天。”','让 AI 先做三级定级，再从对应阶段开始，不要一上来就刷压轴题。','每道题坚持“读题—中文拆逻辑—写 SQL—验证结果”四步。','考前用速查表回忆模板，再从真题库抽题限时练习。'],
-      tip:'国内版会重复展示，这是有意的：不依赖 Skill 机制，下载文件就能学。'
+      tip:'ZIP 工具包建议使用电脑下载并解压。国内版会重复展示，这是有意的：不依赖 Skill 机制，下载文件就能学。'
     },
     'jd-guide':{
       title:'京东采销指南 · 备考顺序',
       intro:'内容很多，不建议从第一页一路背到最后。用“公司—岗位—题目”三层顺序效率更高。',
       steps:['先看目录，用 20 分钟了解京东 15 年价值观演变。','从刘强东 12 段关键讲话里提炼你认可的 3 个观点。','进入采销必背 50 题，先刷自我认知和岗位理解。','再刷行业公司、价值观文化、业务场景和压力题。','每题只写关键词，录音回答 90 秒，再根据卡壳处补材料。'],
-      tip:'重点不是背京东，而是让每个回答都能落回你自己的经历。'
+      tip:'HTML 指南建议使用电脑下载并打开。重点不是背京东，而是让每个回答都能落回你自己的经历。'
     },
     'supply-chain':{
       title:'供应链全链路课件 · 10 分钟',
       intro:'5 页内容已经组成一个小练习：先建总图，再匹配动作，最后排序复盘。',
       steps:['第 1 页先理解供应链不是单一物流，而是计划、采购、生产、销售和服务协同。','第 2 页重点看京东全链路：采购入库前、采购入库后、销售出库三段。','第 3 页做动作与模块匹配，不要先看答案。','第 4 页把九个动作放入三个阶段，并说出排序原因。','最后看第 5 页答案，再用“成本—效率—体验”复述整条链路。'],
-      tip:'能把第 2 页总图讲清楚，比背九个动作更重要。'
+      tip:'PPTX 课件建议使用电脑下载和查看。能把第 2 页总图讲清楚，比背九个动作更重要。'
     },
     'question-bank':{
       title:'运营 100 问 · 正确刷法',
@@ -3462,7 +3485,7 @@ document.addEventListener('click',close);})();
       title:'简历面试逐字稿 · 使用教程',
       intro:'这是一段国内 AI 通用提示词，会把简历里的每个数字拆成面试追问和填空作业本。',
       steps:['把整段提示词复制到 DeepSeek、Kimi、豆包、通义等任意 AI。','在同一条消息里粘贴简历，最好再附上目标岗位 JD。','让 AI 输出 20—35 个作业块，不要接受空泛分析报告。','沿着每条答题顺序，在横线上写自己的真实逐字稿。','写完大声念：结论 10 秒内出，整段 90 秒内结束。'],
-      tip:'AI 负责把问题问狠，你负责填真实细节；不要让 AI 替你编数字。'
+      tip:'Markdown 提示词建议使用电脑下载，再复制到 AI。AI 负责把问题问狠，你负责填真实细节；不要让 AI 替你编数字。'
     }
   };
   var title=document.getElementById('guideTitle'),intro=document.getElementById('guideIntro');
