@@ -2341,8 +2341,8 @@ footer b{color:#f29275}
 })();
 </script>
 
-<button id="tocFab" aria-label="目录">☰</button>
-<nav id="tocPanel">
+<button id="tocFab" type="button" aria-label="打开页面目录" aria-expanded="false" aria-controls="tocPanel">☰</button>
+<nav id="tocPanel" aria-label="页面目录">
  <a href="#why">不是你的错</a><a href="#pits">两个坑</a><a href="#why-me">我为什么做</a>
  <a href="#flow">全路径</a><a href="#deliver">七项交付</a><a href="#ai">AI 作品集</a>
  <a href="#city">城市投递</a><a href="#offers">上岸捷报</a><a href="#team">导师</a>
@@ -2355,11 +2355,159 @@ footer b{color:#f29275}
 #tocPanel a{display:block;padding:9px 16px;color:#15140f;text-decoration:none;font-size:14px;border-radius:8px;white-space:nowrap;font-family:'Noto Serif SC',serif}
 #tocPanel a:active{background:#ece6d9}
 @media(min-width:900px){#tocFab{bottom:24px}#tocPanel{bottom:84px}}
+
+/* Mobile reading system — one column, shorter rhythm, one compact action dock */
+@media(max-width:720px){
+  html{scroll-padding-top:68px}
+  body{padding-bottom:calc(84px + env(safe-area-inset-bottom));background:#f7f4ed}
+  .sheet>.pad:first-of-type{
+    box-shadow:0 8px 24px rgba(23,23,19,.08);
+    background:rgba(247,244,237,.94)
+  }
+  .masthead{min-height:64px;padding:9px 0}
+  .mh-brand b{max-width:210px;font-size:12.5px;overflow:hidden;text-overflow:ellipsis}
+  .mh-cta{min-width:84px;min-height:42px;padding:8px 12px;font-size:0}
+  .mh-cta::before{content:"微信咨询";font-size:12px;letter-spacing:.02em}
+  .ticker{display:none}
+
+  .pad{padding-left:18px;padding-right:18px}
+  .block{padding-top:52px;padding-bottom:12px}
+  .block + .block{border-top:1px solid rgba(201,192,178,.72)}
+  .block-head{align-items:center;gap:10px;margin-bottom:14px}
+  .block-idx{min-width:38px;height:26px;padding:0 9px}
+  .block-en{margin-left:0;font-size:9px;letter-spacing:.16em}
+  .block h2{
+    max-width:none;margin-top:0;
+    font-size:clamp(28px,8.2vw,34px);line-height:1.22;letter-spacing:-.03em;
+    text-wrap:pretty
+  }
+  .block h2::after{width:44px;height:3px;margin-top:15px}
+  .lede,.prose p{font-size:14px;line-height:1.85}
+
+  /* The late desktop grid rules used to override mobile and create the split shown in screenshots. */
+  #why{display:block!important}
+  #why>.block-head,
+  #why>h2,
+  #why>details.intro-fold,
+  #why>details.market-fold,
+  #why>.prose{
+    grid-column:auto!important;grid-row:auto!important;width:100%
+  }
+  #why>h2{position:static!important}
+  #why>details.intro-fold{margin-top:18px!important}
+  #why>details.market-fold{margin-top:12px!important}
+  #why details.fold .body{display:block!important}
+  #why .market-fold summary{display:grid;grid-template-columns:1fr auto;gap:7px 12px}
+  #why .market-fold .fold-kicker{grid-column:1/-1;width:auto;order:-1}
+  #why .market-fold .chev{grid-column:2;grid-row:2}
+
+  details.fold{margin-top:12px;border-radius:15px;box-shadow:0 9px 22px rgba(33,29,23,.055)}
+  details.fold>summary{min-height:0;padding:16px;font-size:15px;line-height:1.5}
+  details.fold .body{padding:0 16px 18px}
+
+  .pit{padding:23px 18px;border-radius:16px}
+  .pit .ghostn{font-size:76px}
+  .pit h3{font-size:22px}
+  .principle{padding:19px 0}
+  .pullquote{padding:21px 18px;border-radius:16px}
+
+  /* Service stages become clear chapter cards instead of one endless white sheet. */
+  .stage{display:block;margin-top:20px;padding:0;border:0;border-radius:18px;background:transparent;box-shadow:none;overflow:hidden}
+  .stage-label{
+    padding:18px!important;margin:0!important;border:0!important;border-radius:18px 18px 0 0;
+    text-align:left!important;background:linear-gradient(135deg,#171713,#2a2a23);color:#fff
+  }
+  .stage-num{font-size:34px;color:#f49375}
+  .stage-title{margin-top:6px;font-size:18px;color:#fff}
+  .stage-when{color:rgba(255,255,255,.55)}
+  .stage-when b{color:#f49375}
+  .stage-body{
+    padding:0 17px!important;border:1px solid var(--line);border-top:0;
+    border-radius:0 0 18px 18px;background:#fff
+  }
+  .step{grid-template-columns:30px minmax(0,1fr);gap:11px;padding:17px 0}
+  .step-h{font-size:16px;line-height:1.45}
+  .step-pay{font-size:12.5px;line-height:1.65}
+  .step .support{grid-column:1/-1;margin:4px 0 0 41px;padding:11px 12px}
+
+  /* Four-step loops are swipeable cards on a phone, avoiding a very long vertical stack. */
+  .loop-row{
+    display:flex!important;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;margin-right:-18px;padding:3px 18px 14px 0;
+    scrollbar-width:none
+  }
+  .loop-row::-webkit-scrollbar{display:none}
+  .loop-row .lc{
+    flex:0 0 min(82vw,300px);min-height:176px;padding:20px;
+    scroll-snap-align:start;border-radius:17px;box-shadow:0 8px 22px rgba(33,29,23,.05)
+  }
+  .loop-return{display:none}
+
+  #deliver .deliv-grid{gap:12px}
+  #deliver .dcard,#deliver .dcard:has(.dcard-media){border-radius:17px}
+  #deliver .dcard:has(.dcard-media)>.dn,
+  #deliver .dcard:has(.dcard-media)>h3,
+  #deliver .dcard:has(.dcard-media)>.force,
+  #deliver .dcard:has(.dcard-media)>p{margin-left:18px;margin-right:18px}
+
+  /* Restore the intended stacked comparison cards; an older hotfix forced three tiny columns. */
+  #why-me .vs{display:grid!important;grid-template-columns:1fr!important;gap:10px!important}
+  #why-me .vs-head{grid-template-columns:1fr 1fr!important}
+  #why-me .vs-row{grid-template-columns:1fr!important;padding:0!important}
+  #why-me .vs-row>div{
+    padding:11px 16px!important;border-left:0!important;
+    justify-content:flex-start!important;text-align:left!important;font-size:12px!important
+  }
+  #why-me .vs-row .k{font-size:9px!important}
+  #why-me .vs-row .them,#why-me .vs-row .us{padding-left:38px!important}
+
+  .work-lab{padding:22px 14px}
+  .work-card{box-shadow:0 10px 26px rgba(0,0,0,.16)}
+  .proof-phone{padding:18px 14px}
+  .city-grid{gap:8px}
+  .ct-cell{border-radius:12px}
+  .mentor-grid{grid-template-columns:1fr!important;gap:10px!important}
+  .mentor{padding:18px!important}
+  .mentor .top{flex-direction:row!important;align-items:center!important}
+  .mentor .story{display:block!important}
+  .mentor .quote{font-size:12px!important;line-height:1.55!important}
+
+  #offers{margin-top:52px;padding:50px 14px 58px;border-radius:22px}
+  .promise{padding:34px 19px}
+  .price-grid{gap:12px}
+  .plan{padding:24px 19px}
+  .cta-final{padding:54px 18px 98px}
+
+  /* One bottom dock: menu on the left, consultation on the right. */
+  #tocFab{
+    left:14px;right:auto;bottom:max(12px,env(safe-area-inset-bottom));
+    width:52px;height:52px;border-radius:16px;background:var(--ink);
+    box-shadow:0 12px 30px rgba(23,23,19,.25);font-size:18px
+  }
+  .mobile-cta{
+    left:76px;right:14px;bottom:max(12px,env(safe-area-inset-bottom));
+    min-width:0;min-height:52px;border-radius:16px;padding:0 18px;
+    box-shadow:0 12px 30px rgba(159,53,27,.28)
+  }
+  #tocPanel{
+    left:14px;right:14px;bottom:calc(76px + env(safe-area-inset-bottom));
+    max-height:min(58vh,470px);padding:10px;border-radius:18px;
+    background:rgba(251,249,243,.97);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)
+  }
+  #tocPanel.open{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+  #tocPanel a{padding:11px 12px;border-radius:10px;font-family:var(--sans);font-size:12.5px}
+}
+
+@media(max-width:380px){
+  .mh-brand b{max-width:178px;font-size:11.5px}
+  .mh-cta{min-width:76px;padding-left:10px;padding-right:10px}
+  .block h2{font-size:28px}
+}
 </style>
 <script>
 (function(){var f=document.getElementById('tocFab'),p=document.getElementById('tocPanel');
-function close(){p.classList.remove('open');f.textContent='\u2630';}
-f.addEventListener('click',function(e){e.stopPropagation();var o=p.classList.toggle('open');f.textContent=o?'\u2715':'\u2630';});
+function close(){p.classList.remove('open');f.textContent='\u2630';f.setAttribute('aria-expanded','false');f.setAttribute('aria-label','打开页面目录');}
+f.addEventListener('click',function(e){e.stopPropagation();var o=p.classList.toggle('open');f.textContent=o?'\u2715':'\u2630';f.setAttribute('aria-expanded',o?'true':'false');f.setAttribute('aria-label',o?'关闭页面目录':'打开页面目录');});
 p.addEventListener('click',function(e){if(e.target.tagName==='A')close();});
 document.addEventListener('click',close);})();
 </script>
