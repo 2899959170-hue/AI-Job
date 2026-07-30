@@ -1,0 +1,15 @@
+{
+  "$schema": "https://static.cloudbase.net/cli/cloudbaserc.schema.json",
+  "envId": "projecy-d7gbho4c9b0ab5614",
+  "functionRoot": "cloudfunctions",
+  "functions": [
+    {
+      "name": "twikoo",
+      "timeout": 10,
+      "memorySize": 128,
+      "runtime": "Nodejs16.13",
+      "handler": "index.main",
+      "description": "阿涵求职资料军火库匿名留言"
+    }
+  ]
+}

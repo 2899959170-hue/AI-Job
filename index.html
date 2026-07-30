@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="从方向、简历、AI 作品、投递、面试到谈薪，全路径求职陪跑，上岸为止。">
+<meta name="description" content="求职工具、实用资料与全路径求职陪跑，能自己解决的先交给工具，需要有人陪的就一起跑到上岸。">
 <meta name="theme-color" content="#151611">
-<title>全路径求职陪跑 · 上岸为止</title>
+<title>阿涵求职资料军火库 · 工具资料与全路径陪跑</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
@@ -1671,7 +1671,9 @@ footer b{color:#f29275}
 
 <!-- 侧栏索引 -->
 <nav class="sideindex" aria-label="章节索引">
-  <a href="#hero" data-t="hero" class="active">00 · 开篇</a>
+  <a href="#library" data-t="library" class="active">LIB · 工具资料</a>
+  <a href="#quick-services" data-t="quick-services">SVC · 单项服务</a>
+  <a href="#hero" data-t="hero">00 · 陪跑方案</a>
   <a href="#why" data-t="why">01 · 不是你的错</a>
   <a href="#pits" data-t="pits">02 · 两个坑</a>
   <a href="#why-me" data-t="why-me">03 · 我为什么做</a>
@@ -1688,9 +1690,9 @@ footer b{color:#f29275}
   <!-- 发报头 -->
   <div class="pad">
     <div class="masthead">
-      <div class="mh-brand"><span class="mascot" role="img" aria-label="狐狸 IP"></span><b>上岸<span>为止</span> · 全路径求职陪跑</b></div>
+      <div class="mh-brand"><span class="mascot" role="img" aria-label="狐狸 IP"></span><b>阿涵求职<span>资料军火库</span></b></div>
       <div class="mh-nav">
-        <a href="#flow">全路径</a><a href="#deliver">七项交付</a><a href="#ai">AI 作品</a><a href="#team">导师</a><a href="#price">价格</a><a href="#faq">答疑</a>
+        <a href="#library">工具资料</a><a href="#quick-services">单项服务</a><a href="#hero">陪跑方案</a><a href="#deliver">七项交付</a><a href="#ai">AI 作品</a><a href="#faq">答疑</a>
       </div>
       <a class="mh-cta" href="#signup">加企微聊聊</a>
     </div>
@@ -1703,6 +1705,248 @@ footer b{color:#f29275}
       <span>上岸为止</span><span>不设期限</span><span>不额外收费</span><span>60+ 全职导师</span><span>大厂系二面辅导</span><span>AI 作品手把手</span><span>简历改到满意不限次</span><span>模拟面试不限场</span>
     </div>
   </div>
+
+  <!-- 求职工具与资料库 -->
+  <section id="library" class="library-hub">
+    <div class="library-intro">
+      <div class="library-copy reveal">
+        <div class="library-kicker"><span>AHAN CAREER ARSENAL</span><b>持续更新中</b></div>
+        <h1>阿涵求职<br><em>资料军火库</em></h1>
+        <p>能自己解决的，先交给工具和资料。方向、简历、投递、面试，每到一个卡点，都能在这里找到下一步。</p>
+        <div class="library-shortcuts" aria-label="工具库概览">
+          <span><b>05</b> 个实用工具</span>
+          <span><b>05</b> 份岗位资料</span>
+          <span><b>FREE</b> 免费开放</span>
+        </div>
+      </div>
+
+      <div class="library-gates reveal" aria-label="工具区和资料区入口">
+        <button class="library-gate gate-tool is-active" type="button" data-library-target="tools" aria-pressed="true">
+          <span class="gate-top"><i>01</i><small>TOOL LAB</small></span>
+          <strong>工具区</strong>
+          <p>看板、Skill 和提示词，都归在这里。</p>
+          <span class="gate-preview" aria-hidden="true">
+            <i>实习翻译机</i><i>SQL 工具包</i><i>面试逐字稿</i>
+          </span>
+          <b class="gate-go">打开工具台 ↗</b>
+        </button>
+        <button class="library-gate gate-resource" type="button" data-library-target="resources" aria-pressed="false">
+          <span class="gate-top"><i>02</i><small>RESOURCE ROOM</small></span>
+          <strong>资料区</strong>
+          <p>只放岗位准备资料，按目标岗位直接拿。</p>
+          <span class="gate-docs" aria-hidden="true">
+            <i>京东采销指南</i><i>运营 100 问</i><i>供应链课件</i>
+          </span>
+          <b class="gate-go">进入资料室 ↗</b>
+        </button>
+      </div>
+    </div>
+
+    <div class="library-console reveal">
+      <div class="library-console-head">
+        <div>
+          <span>NOW IN THE LIBRARY</span>
+          <strong id="libraryPanelTitle">5 个现有工具 · 先解决眼前这一关</strong>
+        </div>
+        <div class="library-tabs" role="tablist" aria-label="切换工具区和资料区">
+          <button id="tab-tools" class="is-active" type="button" role="tab" aria-selected="true" aria-controls="panel-tools" data-library-target="tools">工具区</button>
+          <button id="tab-resources" type="button" role="tab" aria-selected="false" aria-controls="panel-resources" data-library-target="resources">资料区</button>
+        </div>
+      </div>
+
+      <div id="panel-tools" class="library-panel is-active" role="tabpanel" aria-labelledby="tab-tools" data-library-panel="tools">
+        <article class="supply-card featured has-actions">
+          <span class="supply-no">TOOL · 01</span><i class="supply-icon">实</i>
+          <h3>实习翻译机</h3><p>每天一分钟，把打杂小事变成能写进简历、扛得住追问的经历。</p>
+          <span class="supply-meta"><b>在线工具</b><em>需邀请码</em></span>
+          <p class="intern-token-note">找阿涵领取邀请码 · Token 数量有限</p>
+          <span class="supply-actions">
+            <a href="https://2899959170-hue.github.io/?v=9" target="_blank" rel="noopener">直接打开 ↗</a>
+            <button class="copy-url-button" type="button" data-copy-url="https://2899959170-hue.github.io/?v=9" data-copy-state="idle" aria-label="复制实习翻译机网址">复制网址</button>
+            <button type="button" data-guide="intern">教程</button>
+          </span>
+        </article>
+        <article class="supply-card has-actions">
+          <span class="supply-no">TOOL · 02</span><i class="supply-icon">库</i>
+          <h3>供应链库存健康看板</h3><p>看周转、现货、长库龄和不动销，再用净利测算盘验证清仓动作。</p>
+          <span class="supply-meta"><b>HTML 看板</b><em>文件已收录</em></span>
+          <span class="supply-actions">
+            <a href="downloads/tools/inventory-dashboard-2026.html" download>直接下载 ↓</a><button type="button" data-guide="inventory">使用教程</button>
+          </span>
+        </article>
+        <article class="supply-card has-actions">
+          <span class="supply-no">SKILL · 03</span><i class="supply-icon">.S</i>
+          <h3>运营 SQL 学习 Skill</h3><p>五阶段学习路径、运营场景教学和大厂真题，适合支持 Skill 的 AI 工具。</p>
+          <span class="supply-meta"><b>.skill 安装包</b><em>完整版本</em></span>
+          <span class="supply-actions">
+            <a href="downloads/tools/ops-sql-learner.skill" download>下载 .skill ↓</a><button type="button" data-guide="sql-skill">安装教程</button>
+          </span>
+        </article>
+        <article class="supply-card has-actions">
+          <span class="supply-no">PROMPT · 04</span><i class="supply-icon">MD</i>
+          <h3>运营 SQL 国内 AI 版</h3><p>单独保留 SKILL.md，并拆出学习路径、真题库和速查表供国内同学使用。</p>
+          <span class="supply-meta"><b>ZIP 工具包</b><em>DeepSeek / Kimi 等</em></span>
+          <span class="supply-actions">
+            <a href="downloads/tools/ops-sql-cn-bundle.zip" download>整包下载 ↓</a><button type="button" data-guide="sql-cn">使用教程</button>
+          </span>
+        </article>
+        <article class="supply-card has-actions">
+          <span class="supply-no">PROMPT · 05</span><i class="supply-icon">答</i>
+          <h3>简历面试逐字稿生成器</h3><p>把简历里的每个数据点拆成狠追问、回答顺序和可填写的面试作业本。</p>
+          <span class="supply-meta"><b>国内 AI 通用提示词</b><em>无需安装</em></span>
+          <span class="supply-actions">
+            <a href="downloads/tools/resume-interview-script-prompt.md" download>下载提示词 ↓</a><button type="button" data-guide="script-prompt">使用教程</button>
+          </span>
+        </article>
+      </div>
+
+      <div id="panel-resources" class="library-panel resource-library" role="tabpanel" aria-labelledby="tab-resources" data-library-panel="resources" hidden>
+        <article class="supply-card resource-card featured has-actions">
+          <span class="supply-no">GUIDE · 01</span><i class="supply-icon">京</i>
+          <h3>27 届京东采销准备指南</h3><p>价值观演变、刘强东关键讲话与采销必背 50 题，一份完成公司与岗位准备。</p>
+          <span class="supply-meta"><b>HTML 指南</b><em>文件已收录</em></span>
+          <span class="supply-actions">
+            <a href="downloads/resources/jd-category-prep-guide-2027.html" download>直接下载 ↓</a><button type="button" data-guide="jd-guide">使用教程</button>
+          </span>
+        </article>
+        <article class="supply-card resource-card has-actions">
+          <span class="supply-no">DECK · 02</span><i class="supply-icon">链</i>
+          <h3>供应链全链路课件</h3><p>从供应链概念到京东全链路，再用匹配题和排序题完成自测。</p>
+          <span class="supply-meta"><b>PPTX · 5 页</b><em>文件已收录</em></span>
+          <span class="supply-actions">
+            <a href="downloads/resources/supply-chain-full-process.pptx" download>下载课件 ↓</a><button type="button" data-guide="supply-chain">学习教程</button>
+          </span>
+        </article>
+        <article class="supply-card resource-card has-actions">
+          <span class="supply-no">PDF · 03</span><i class="supply-icon">用</i>
+          <h3>用户运营 100 问</h3><p>用户运营方向高频问题库，适合按主题拆分刷题与录音复盘。</p>
+          <span class="supply-meta"><b>PDF · 在线查看</b><em>飞书资料</em></span>
+          <span class="supply-actions">
+            <a href="https://kcnhitqvw8lb.feishu.cn/file/Y0q9bEl3joZYbcxau3Fch8R6nvc?from=from_copylink" target="_blank" rel="noopener">打开并下载 ↗</a>
+            <button type="button" data-guide="question-bank">刷题方法</button>
+          </span>
+        </article>
+        <article class="supply-card resource-card has-actions">
+          <span class="supply-no">PDF · 04</span><i class="supply-icon">商</i>
+          <h3>商家运营 100 问</h3><p>围绕商家分层、成长、活动与经营诊断，建立岗位回答素材库。</p>
+          <span class="supply-meta"><b>PDF · 在线查看</b><em>飞书资料</em></span>
+          <span class="supply-actions">
+            <a href="https://kcnhitqvw8lb.feishu.cn/file/V9OVbszBIoJId7xrMgWcp7eOnhc?from=from_copylink" target="_blank" rel="noopener">打开并下载 ↗</a>
+            <button type="button" data-guide="question-bank">刷题方法</button>
+          </span>
+        </article>
+        <article class="supply-card resource-card has-actions">
+          <span class="supply-no">PDF · 05</span><i class="supply-icon">电</i>
+          <h3>电商运营 100 问</h3><p>覆盖平台、活动、转化、商品和数据分析，适合电商运营面试冲刺。</p>
+          <span class="supply-meta"><b>PDF · 在线查看</b><em>飞书资料</em></span>
+          <span class="supply-actions">
+            <a href="https://kcnhitqvw8lb.feishu.cn/file/WR1nbU2JPoXmJxxvHc3cCxQznmb?from=from_copylink" target="_blank" rel="noopener">打开并下载 ↗</a>
+            <button type="button" data-guide="question-bank">刷题方法</button>
+          </span>
+        </article>
+      </div>
+      <p class="library-swipe-tip">左右滑动查看全部 <span>→</span></p>
+    </div>
+
+    <details class="community-details reveal">
+      <summary><span><b>一起把军火库造出来</b><small>未来工具投票 · 匿名留言</small></span><i>＋</i></summary>
+      <div class="community-grid">
+        <section class="future-poll" aria-labelledby="futurePollTitle">
+          <span class="community-label">COMMUNITY VOTE · 未来工具</span>
+          <h2 id="futurePollTitle">下一件，你最想让阿涵造什么？</h2>
+          <p>先选一个最想要的方向。当前是交互预览，正式接入后才会记录真实票数。</p>
+          <div class="poll-options" role="group" aria-label="未来工具方向投票">
+            <button type="button" data-vote="岗位投递项目管理工具" aria-pressed="false"><span>01</span><b>岗位投递项目管理工具</b><i>想要</i></button>
+            <button type="button" data-vote="大厂笔试测评带刷工具" aria-pressed="false"><span>02</span><b>大厂笔试 / 测评带刷工具</b><i>想要</i></button>
+            <button type="button" data-vote="Python 自学 Skill" aria-pressed="false"><span>03</span><b>Python 自学 Skill</b><i>想要</i></button>
+            <button type="button" data-vote="大厂 AI 面试模拟工具" aria-pressed="false"><span>04</span><b>大厂 AI 面试模拟工具</b><i>想要</i></button>
+            <button type="button" data-vote="AI 筛简历自测工具" aria-pressed="false"><span>05</span><b>AI 筛简历自测工具</b><i>想要</i></button>
+          </div>
+          <p class="poll-status" id="pollStatus" aria-live="polite">选择后会在这里显示你的意向</p>
+        </section>
+
+        <section class="comment-preview" aria-labelledby="commentTitle" data-twikoo-env="projecy-d7gbho4c9b0ab5614" data-twikoo-region="ap-shanghai">
+          <span class="community-label">ARSENAL WALL · 军火库留言板</span>
+          <h2 id="commentTitle">匿名也能说，想找什么直接留。</h2>
+          <p>不要求 GitHub 账号、昵称或邮箱，写下内容就能匿名发布，也能回复讨论。</p>
+          <div id="tcomment"></div>
+          <div class="comment-setup" id="commentSetup">
+            <b><span>●</span> 正在连接匿名留言</b>
+            <p>一般几秒内就会出现输入框；如果长时间没有加载，请刷新页面重试。</p>
+          </div>
+        </section>
+      </div>
+    </details>
+  </section>
+
+  <dialog id="guideDialog" class="guide-dialog" aria-labelledby="guideTitle">
+    <button class="guide-close" type="button" aria-label="关闭教程" data-guide-close>×</button>
+    <span class="guide-kicker">QUICK START · 3—10 MIN</span>
+    <h2 id="guideTitle">使用教程</h2>
+    <p id="guideIntro"></p>
+    <ol id="guideSteps"></ol>
+    <p class="guide-tip" id="guideTip"></p>
+  </dialog>
+
+  <section id="quick-services" class="quick-services reveal">
+    <div class="quick-services-head">
+      <div>
+        <span>SINGLE MISSION · 小额单项服务</span>
+        <h2>不想自己硬弄，<br><em>先把眼前这一关解决。</em></h2>
+      </div>
+      <p>已经知道自己卡在哪，不一定要直接买全程。两项服务可以单独选，不捆绑。</p>
+    </div>
+
+    <div class="quick-service-track">
+      <article class="quick-service-card resume-service">
+        <div class="quick-service-top"><span>MISSION · 01</span><b>¥<strong>349</strong></b></div>
+        <h3>简历代写</h3>
+        <p class="quick-fit">适合：方向基本确定，但经历写不清、投递没反馈。</p>
+        <div class="quick-flow" role="img" aria-label="简历代写四步流程：收材料、深挖经历、按岗代写、确认修改">
+          <span><i>01</i><b>收材料</b><small>简历 · JD · 经历</small></span>
+          <em>→</em>
+          <span><i>02</i><b>深挖经历</b><small>找成绩与证据</small></span>
+          <em>→</em>
+          <span><i>03</i><b>按岗代写</b><small>重做结构表达</small></span>
+          <em>→</em>
+          <span><i>04</i><b>确认修改</b><small>交付可投版本</small></span>
+        </div>
+        <div class="quick-result"><span>最终拿到</span><b>一份针对目标岗位、可以直接投递的简历</b></div>
+        <a href="https://work.weixin.qq.com/ca/cawcdecd5308b30992" target="_blank" rel="noopener">先把简历发来看看 ↗</a>
+      </article>
+
+      <article class="quick-service-card interview-service">
+        <div class="quick-service-top"><span>MISSION · 02</span><b>¥<strong>649</strong></b></div>
+        <h3>面试辅导</h3>
+        <p class="quick-fit">适合：已经拿到面试，但回答散、容易卡壳、不知道怎么复盘。</p>
+        <div class="quick-flow" role="img" aria-label="面试辅导四步流程：看岗位简历、搭问题库、模拟面试、逐题复盘">
+          <span><i>01</i><b>看岗看人</b><small>JD · 简历诊断</small></span>
+          <em>→</em>
+          <span><i>02</i><b>搭问题库</b><small>预测高频追问</small></span>
+          <em>→</em>
+          <span><i>03</i><b>真人 Mock</b><small>现场开口练</small></span>
+          <em>→</em>
+          <span><i>04</i><b>逐题复盘</b><small>补结构与表达</small></span>
+        </div>
+        <div class="quick-result"><span>最终拿到</span><b>一套针对这场面试的回答框架与复盘方向</b></div>
+        <a href="https://work.weixin.qq.com/ca/cawcdecd5308b30992" target="_blank" rel="noopener">把面试信息发来聊聊 ↗</a>
+      </article>
+    </div>
+
+    <p class="quick-service-note">单项服务解决一个明确问题；如果方向、投递、面试、复盘都需要长期有人盯，再继续看下面的全路径陪跑。</p>
+  </section>
+
+  <section class="library-handoff reveal" aria-label="从自助工具到全路径陪跑">
+    <div>
+      <span>TOOLS HELP YOU START · COACHING GETS YOU THERE</span>
+      <h2>工具解决一件事，<br>陪跑解决<span>整条路。</span></h2>
+      <p>如果你需要的不只是一个答案，而是有人盯方向、盯执行、盯复盘，下面这套全路径陪跑就是为你准备的。</p>
+      <a href="#hero">继续看陪跑方案 ↓</a>
+    </div>
+    <div class="handoff-route" role="img" aria-label="从工具资料自助解决到全路径陪跑的过渡路线">
+      <span><i>SELF</i><b>工具</b></span><em>＋</em><span><i>LEARN</i><b>资料</b></span><em>→</em><span class="handoff-finish"><i>TOGETHER</i><b>全路径陪跑</b></span>
+    </div>
+  </section>
 
   <!-- HERO -->
   <section id="hero" class="hero hero-map">
@@ -2377,17 +2621,17 @@ footer b{color:#f29275}
 })();
 /* 手机底部咨询按钮：离开首屏后再出现，避免一直压住内容 */
 (function(){
-  var cta=document.querySelector('.mobile-cta'),hero=document.getElementById('hero');
-  if(!cta||!hero)return;
+  var cta=document.querySelector('.mobile-cta'),marker=document.getElementById('quick-services')||document.getElementById('library');
+  if(!cta||!marker)return;
   function setVisible(show){cta.classList.toggle('is-visible',show);}
-  if(!('IntersectionObserver' in window)){setVisible(true);return;}
-  var io=new IntersectionObserver(function(entries){setVisible(!entries[0].isIntersecting);},{threshold:.08});
-  io.observe(hero);
+  function update(){setVisible(marker.getBoundingClientRect().bottom<=window.innerHeight*.2);}
+  update();window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);
 })();
 </script>
 
 <button id="tocFab" type="button" aria-label="打开页面目录" aria-expanded="false" aria-controls="tocPanel">☰</button>
 <nav id="tocPanel" aria-label="页面目录">
+ <a href="#library">工具资料库</a><a href="#quick-services">349 / 649 单项</a><a href="#hero">陪跑方案</a>
  <a href="#why">不是你的错</a><a href="#pits">两个坑</a><a href="#why-me">我为什么做</a>
  <a href="#flow">全路径</a><a href="#deliver">七项交付</a><a href="#ai">AI 作品集</a>
  <a href="#city">城市投递</a><a href="#offers">上岸捷报</a><a href="#team">导师</a>
@@ -2403,6 +2647,309 @@ footer b{color:#f29275}
 .mobile-route-visual,.mobile-deliver-visual,.mobile-pits-visual,.deliver-details>summary,.pits-details>summary{display:none}
 .deliver-details,.pits-details{display:block}
 
+/* Library hub — two product layers: self-service first, coaching second */
+.library-hub{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 8% 16%,rgba(192,86,47,.13),transparent 20rem),
+    linear-gradient(155deg,#f8f5ee 0%,#f1ebde 100%);
+  border-bottom:1px solid var(--line-strong)
+}
+.library-hub::before{
+  content:"LIBRARY";position:absolute;right:-18px;top:10px;
+  font-family:var(--mono);font-size:clamp(72px,13vw,156px);font-weight:700;line-height:1;
+  letter-spacing:-.08em;color:rgba(21,20,15,.035);pointer-events:none
+}
+.library-intro{
+  position:relative;z-index:1;display:grid;grid-template-columns:minmax(290px,.72fr) minmax(0,1.28fr);
+  gap:clamp(34px,5vw,72px);align-items:center;padding:clamp(54px,7vw,86px) clamp(24px,6.6vw,76px) 38px
+}
+.library-copy{max-width:430px}
+.library-kicker{display:flex;align-items:center;gap:12px;margin-bottom:25px}
+.library-kicker span{
+  padding:7px 10px;border:1px solid var(--ink);border-radius:999px;
+  font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.13em
+}
+.library-kicker b{font-family:var(--serif);font-size:12px;color:var(--clay)}
+.library-copy h1{
+  margin:0;font-family:var(--serif);font-size:clamp(54px,6.1vw,78px);font-weight:900;
+  line-height:.97;letter-spacing:-.055em
+}
+.library-copy h1 em{font-style:normal;color:var(--clay)}
+.library-copy>p{max-width:390px;margin-top:24px;font-size:14px;line-height:1.85;color:var(--ink-soft)}
+.library-shortcuts{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}
+.library-shortcuts span{
+  padding:7px 10px;border:1px solid rgba(21,20,15,.15);border-radius:8px;background:rgba(255,255,255,.56);
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.04em;color:var(--ink-faint)
+}
+.library-shortcuts b{color:var(--clay)}
+.library-gates{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.library-gate{
+  position:relative;display:flex;flex-direction:column;min-width:0;min-height:392px;padding:25px;
+  overflow:hidden;border:1px solid transparent;border-radius:24px;text-align:left;
+  font-family:var(--sans);cursor:pointer;transition:transform .2s ease,box-shadow .2s ease
+}
+.library-gate:hover,.library-gate:focus-visible{transform:translateY(-4px);box-shadow:0 18px 42px rgba(30,27,21,.16)}
+.library-gate:focus-visible{outline:3px solid rgba(192,86,47,.35);outline-offset:3px}
+.gate-tool{
+  color:#fff;background:
+    radial-gradient(circle at 100% 0,rgba(217,84,45,.35),transparent 13rem),
+    linear-gradient(145deg,#171713,#292a22)
+}
+.gate-resource{color:var(--ink);border-color:#dbcdb7;background:linear-gradient(145deg,#fffaf1,#e8d7bd)}
+.library-gate.is-active{box-shadow:0 16px 36px rgba(30,27,21,.16)}
+.gate-top{display:flex;justify-content:space-between;align-items:center}
+.gate-top i{
+  display:grid;place-items:center;width:32px;height:32px;border:1px solid currentColor;border-radius:50%;
+  font-family:var(--mono);font-size:9px;font-style:normal
+}
+.gate-top small{font-family:var(--mono);font-size:8px;letter-spacing:.16em;opacity:.55}
+.library-gate>strong{margin-top:32px;font-family:var(--serif);font-size:clamp(28px,3vw,39px);line-height:1}
+.library-gate>p{margin-top:12px;font-size:12.5px;line-height:1.7;opacity:.67}
+.gate-preview{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:25px}
+.gate-preview i{
+  padding:12px 9px;border:1px solid rgba(255,255,255,.12);border-radius:11px;
+  background:rgba(255,255,255,.06);font-size:10px;font-style:normal;text-align:center
+}
+.gate-preview i:first-child{grid-column:1/-1;color:#f59a7e;border-color:rgba(245,154,126,.4)}
+.gate-docs{position:relative;display:grid;gap:7px;margin-top:24px;padding-left:10px}
+.gate-docs::before{content:"";position:absolute;inset:7px 9px -10px 23px;border:1px solid rgba(101,77,49,.2);border-radius:9px;transform:rotate(3deg)}
+.gate-docs i{
+  position:relative;padding:10px 12px;border:1px solid rgba(101,77,49,.2);border-radius:9px;
+  background:rgba(255,255,255,.58);font-size:9.5px;font-style:normal
+}
+.gate-go{margin-top:auto;padding-top:22px;font-family:var(--mono);font-size:9px;letter-spacing:.09em}
+.gate-tool .gate-go{color:#f59a7e}.gate-resource .gate-go{color:var(--clay-deep)}
+.library-console{
+  position:relative;z-index:1;margin:0 clamp(24px,6.6vw,76px) 58px;padding:25px;
+  border:1px solid rgba(196,188,168,.86);border-radius:22px;background:rgba(255,255,255,.73);
+  box-shadow:0 18px 50px rgba(41,34,25,.08);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)
+}
+.library-console-head{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:19px}
+.library-console-head>div:first-child{display:grid;gap:4px}
+.library-console-head span{font-family:var(--mono);font-size:8px;letter-spacing:.15em;color:var(--clay)}
+.library-console-head strong{font-family:var(--serif);font-size:17px}
+.library-tabs{display:flex;padding:3px;border:1px solid var(--line);border-radius:999px;background:#f0ebe2}
+.library-tabs button{
+  min-width:76px;padding:7px 13px;border:0;border-radius:999px;background:transparent;color:var(--ink-soft);
+  font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer
+}
+.library-tabs button.is-active{background:var(--ink);color:#fff;box-shadow:0 4px 12px rgba(21,20,15,.16)}
+.library-panel{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.library-panel[hidden]{display:none}
+.supply-card{
+  position:relative;display:flex;flex-direction:column;min-width:0;min-height:202px;padding:17px;
+  border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden
+}
+.supply-card.featured{color:#fff;border-color:var(--ink);background:var(--ink)}
+.supply-card.resource-card.featured{color:var(--ink);border-color:#d8c09e;background:#ead8bd}
+.supply-no{font-family:var(--mono)!important;font-size:7px!important;letter-spacing:.14em!important;color:var(--ink-faint)!important}
+.supply-card.featured .supply-no{color:rgba(255,255,255,.45)!important}
+.supply-card.resource-card.featured .supply-no{color:rgba(21,20,15,.44)!important}
+.supply-icon{
+  position:absolute;right:15px;top:15px;display:grid;place-items:center;width:35px;height:35px;
+  border:1px solid var(--line);border-radius:10px;font-family:var(--mono);font-size:9px;font-style:normal;color:var(--clay)
+}
+.supply-card.featured .supply-icon{border-color:rgba(255,255,255,.2);color:#f59a7e}
+.supply-card.resource-card.featured .supply-icon{border-color:rgba(21,20,15,.15);color:var(--clay-deep)}
+.supply-card h3{margin-top:34px;font-size:17px;line-height:1.25}
+.supply-card p{margin-top:8px;font-size:10.5px;line-height:1.6;color:var(--ink-faint)}
+.supply-card.featured p{color:rgba(255,255,255,.55)}
+.supply-card.resource-card.featured p{color:rgba(21,20,15,.56)}
+.supply-meta{display:flex;justify-content:space-between;gap:8px;margin-top:auto;padding-top:15px!important}
+.supply-meta b,.supply-meta em{font-family:var(--mono);font-size:7.5px;font-style:normal;letter-spacing:.03em}
+.supply-meta b{color:inherit}.supply-meta em{color:var(--clay)}
+.supply-card.featured .supply-meta em{color:#f59a7e}
+.supply-card.resource-card.featured .supply-meta em{color:var(--clay-deep)}
+.intern-token-note{
+  margin-top:9px!important;padding:8px 9px;border:1px solid rgba(245,154,126,.28);border-radius:9px;
+  background:rgba(245,154,126,.08);font-family:var(--mono);font-size:7.5px!important;
+  font-weight:700;line-height:1.45!important;letter-spacing:.025em;color:#f59a7e!important
+}
+.library-swipe-tip{display:none}
+.supply-card.has-actions{min-height:252px}
+.supply-actions{
+  display:flex;align-items:center;justify-content:space-between;gap:7px;margin-top:13px;
+  padding-top:11px;border-top:1px solid var(--line)
+}
+.supply-card.featured .supply-actions{border-top-color:rgba(255,255,255,.14)}
+.supply-card.resource-card.featured .supply-actions{border-top-color:rgba(21,20,15,.13)}
+.supply-actions a,.supply-actions button,.supply-actions>span{
+  font-family:var(--mono);font-size:7.5px;font-weight:700;letter-spacing:.03em
+}
+.supply-actions a{color:var(--clay);text-decoration:none}
+.supply-card.featured .supply-actions a{color:#f59a7e}
+.supply-card.resource-card.featured .supply-actions a{color:var(--clay-deep)}
+.supply-actions>span{color:var(--ink-faint)}
+.supply-card.featured .supply-actions>span{color:rgba(255,255,255,.48)}
+.supply-card.resource-card.featured .supply-actions>span{color:rgba(21,20,15,.48)}
+.supply-actions button{
+  padding:6px 8px;border:1px solid currentColor;border-radius:999px;background:transparent;
+  color:var(--clay);cursor:pointer
+}
+.supply-actions .copy-url-button[data-copy-state="copied"]{color:#fff;background:var(--clay);border-color:var(--clay)}
+.supply-card.featured .supply-actions button{color:#f59a7e}
+.supply-card.featured .supply-actions .copy-url-button[data-copy-state="copied"]{color:var(--ink);background:#f59a7e;border-color:#f59a7e}
+.supply-card.resource-card.featured .supply-actions button{color:var(--clay-deep)}
+.resource-library{
+  display:flex;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:var(--clay) transparent
+}
+.resource-library[hidden]{display:none}
+.resource-library .supply-card{flex:0 0 min(25%,260px);scroll-snap-align:start}
+
+.community-details{margin:0 clamp(24px,6.6vw,76px) 64px}
+.community-details>summary{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;
+  border:1px solid var(--line);border-radius:18px;background:#fff;list-style:none;cursor:pointer
+}
+.community-details>summary::-webkit-details-marker{display:none}
+.community-details>summary span{display:grid;gap:2px}
+.community-details>summary b{font-family:var(--serif);font-size:17px}
+.community-details>summary small{font-size:9px;color:var(--ink-faint)}
+.community-details>summary i{font-size:23px;font-style:normal;color:var(--clay);transition:transform .2s}
+.community-details[open]>summary i{transform:rotate(45deg)}
+.community-grid{
+  display:grid;grid-template-columns:1.08fr .92fr;gap:14px;margin-top:12px;padding:15px;border:1px solid var(--line-strong);
+  border-radius:24px;background:rgba(255,255,255,.63);box-shadow:0 18px 50px rgba(41,34,25,.07)
+}
+.future-poll,.comment-preview{min-width:0;padding:26px;border-radius:18px}
+.future-poll{color:#fff;background:
+  radial-gradient(circle at 100% 0,rgba(217,84,45,.28),transparent 15rem),
+  linear-gradient(145deg,#171713,#292a22)}
+.comment-preview{border:1px solid #dccdb6;background:linear-gradient(150deg,#fffaf1,#eadac2)}
+.community-label{font-family:var(--mono);font-size:8px;letter-spacing:.15em;color:#f49375}
+.comment-preview .community-label{color:var(--clay-deep)}
+.community-grid h2{margin-top:9px;font-size:clamp(24px,2.6vw,34px);line-height:1.2}
+.community-grid h2+p{margin-top:10px;font-size:11px;line-height:1.7;color:rgba(255,255,255,.56)}
+.comment-preview h2+p{color:var(--ink-soft)}
+.poll-options{display:grid;gap:6px;margin-top:19px}
+.poll-options button{
+  display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:center;
+  min-height:48px;padding:8px 11px;border:1px solid rgba(255,255,255,.12);border-radius:12px;
+  color:#fff;background:rgba(255,255,255,.055);text-align:left;cursor:pointer
+}
+.poll-options button:hover,.poll-options button:focus-visible{border-color:rgba(244,147,117,.7)}
+.poll-options button[aria-pressed="true"]{border-color:#f49375;background:rgba(217,84,45,.2)}
+.poll-options span{font-family:var(--mono);font-size:8px;color:#f49375}
+.poll-options b{font-family:var(--sans);font-size:11px}
+.poll-options i{padding:5px 7px;border:1px solid rgba(255,255,255,.2);border-radius:999px;font-size:8px;font-style:normal;color:rgba(255,255,255,.62)}
+.poll-options button[aria-pressed="true"] i{border-color:#f49375;color:#f49375}
+.poll-status{margin-top:12px;font-size:9px;color:rgba(255,255,255,.42)}
+.comment-preview form{display:grid;gap:10px;margin-top:18px}
+.comment-preview label{display:grid;gap:5px;font-size:9px;font-weight:700;color:var(--ink-soft)}
+.comment-preview input,.comment-preview textarea{
+  width:100%;padding:11px 12px;border:1px solid rgba(120,97,65,.22);border-radius:10px;
+  color:var(--ink);background:rgba(255,255,255,.72);font:12px/1.5 var(--sans);resize:vertical
+}
+.comment-preview input:focus,.comment-preview textarea:focus{outline:2px solid rgba(192,86,47,.28);border-color:var(--clay)}
+.comment-preview form button{
+  min-height:42px;border:0;border-radius:10px;background:var(--clay);color:#fff;
+  font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer
+}
+.comment-status{display:flex;align-items:center;gap:7px;margin-top:11px;font-size:8.5px;color:var(--ink-faint)}
+.comment-status span{color:var(--clay)}
+.comment-setup{
+  display:grid;gap:8px;margin-top:19px;padding:18px;border:1px dashed rgba(120,97,65,.3);
+  border-radius:13px;background:rgba(255,255,255,.5)
+}
+.comment-setup b{display:flex;align-items:center;gap:8px;font-size:11px}
+.comment-setup b span{color:var(--clay)}
+.comment-setup p{font-size:10px;line-height:1.65;color:var(--ink-faint)}
+.comment-preview.twikoo-ready .comment-setup{display:none}
+#tcomment:empty{display:none}
+#tcomment{margin-top:20px}
+
+.guide-dialog{
+  width:min(540px,calc(100vw - 32px));max-height:min(78vh,720px);padding:30px;
+  border:1px solid var(--line-strong);border-radius:22px;color:var(--ink);background:#faf7ef;
+  box-shadow:0 30px 90px rgba(21,20,15,.34);overflow:auto
+}
+.guide-dialog::backdrop{background:rgba(15,15,12,.68);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.guide-close{
+  position:absolute;right:15px;top:15px;width:36px;height:36px;border:1px solid var(--line);border-radius:50%;
+  color:var(--ink);background:#fff;font-size:21px;cursor:pointer
+}
+.guide-kicker{font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:var(--clay)}
+.guide-dialog h2{margin:10px 45px 0 0;font-size:30px;line-height:1.2}
+.guide-dialog>p{margin-top:10px;font-size:12px;line-height:1.7;color:var(--ink-soft)}
+.guide-dialog ol{display:grid;gap:10px;margin-top:20px;list-style:none;counter-reset:guide}
+.guide-dialog li{
+  counter-increment:guide;display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start;
+  padding:13px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:12px;line-height:1.65
+}
+.guide-dialog li::before{
+  content:"0" counter(guide);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;
+  color:#fff;background:var(--ink);font-family:var(--mono);font-size:8px
+}
+.guide-dialog .guide-tip{padding:12px;border-radius:11px;color:var(--clay-deep);background:var(--clay-bg);font-size:11px}
+
+.quick-services{
+  padding:62px clamp(24px,6.6vw,76px);overflow:hidden;background:
+    radial-gradient(circle at 92% 8%,rgba(192,86,47,.13),transparent 18rem),
+    #e9e1d3;border-bottom:1px solid var(--line-strong)
+}
+.quick-services-head{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:end}
+.quick-services-head>div>span{font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:var(--clay)}
+.quick-services-head h2{margin-top:10px;font-size:clamp(31px,4vw,48px);line-height:1.1}
+.quick-services-head h2 em{font-style:normal;color:var(--clay)}
+.quick-services-head>p{max-width:390px;font-size:12px;line-height:1.75;color:var(--ink-soft)}
+.quick-service-track{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.quick-service-card{
+  position:relative;min-width:0;padding:25px;border:1px solid var(--line-strong);border-radius:22px;
+  background:rgba(255,255,255,.78);box-shadow:0 16px 38px rgba(41,34,25,.08);overflow:hidden
+}
+.quick-service-card::before{content:"";position:absolute;left:0;top:0;width:100%;height:4px;background:var(--clay)}
+.interview-service::before{background:var(--ink)}
+.quick-service-top{display:flex;justify-content:space-between;align-items:flex-start}
+.quick-service-top>span{font-family:var(--mono);font-size:8px;letter-spacing:.15em;color:var(--ink-faint)}
+.quick-service-top>b{font-family:var(--mono);font-size:15px;color:var(--clay)}
+.quick-service-top>b strong{font-size:34px;line-height:1}
+.interview-service .quick-service-top>b{color:var(--ink)}
+.quick-service-card h3{margin-top:12px;font-size:30px;line-height:1.2}
+.quick-fit{margin-top:7px;font-size:11px;line-height:1.65;color:var(--ink-soft)}
+.quick-flow{
+  display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:6px;align-items:center;
+  margin-top:20px;padding:13px;border:1px solid var(--line);border-radius:16px;background:#fff
+}
+.quick-flow>span{display:grid;align-content:center;min-width:0;min-height:86px;padding:10px 8px;border-radius:11px;background:var(--paper)}
+.quick-flow i{font-family:var(--mono);font-size:7px;font-style:normal;color:var(--clay)}
+.quick-flow b{margin-top:4px;font-family:var(--serif);font-size:12px;line-height:1.3}
+.quick-flow small{margin-top:3px;font-size:7.5px;line-height:1.35;color:var(--ink-faint)}
+.quick-flow>em{font-style:normal;color:var(--clay)}
+.quick-result{display:grid;grid-template-columns:auto 1fr;gap:10px;margin-top:14px;padding:11px 13px;border-radius:12px;background:var(--clay-bg)}
+.quick-result span{font-family:var(--mono);font-size:7px;letter-spacing:.1em;color:var(--clay)}
+.quick-result b{font-size:10.5px;line-height:1.5}
+.quick-service-card>a{
+  display:flex;justify-content:center;align-items:center;min-height:44px;margin-top:13px;border-radius:11px;
+  color:#fff;background:var(--clay);text-decoration:none;font-size:11px;font-weight:800
+}
+.interview-service>a{background:var(--ink)}
+.quick-service-note{margin-top:15px;text-align:center;font-size:9.5px;color:var(--ink-faint)}
+
+.library-handoff{
+  display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;
+  padding:46px clamp(24px,6.6vw,76px);color:#fff;background:
+    linear-gradient(115deg,#a94221 0%,#c0562f 56%,#d06b45 100%)
+}
+.library-handoff>div:first-child>span{font-family:var(--mono);font-size:8px;letter-spacing:.15em;color:rgba(255,255,255,.58)}
+.library-handoff h2{margin-top:10px;font-size:clamp(27px,3.4vw,42px);line-height:1.15}
+.library-handoff h2 span{color:#201d18}
+.library-handoff p{max-width:560px;margin-top:13px;font-size:12px;line-height:1.75;color:rgba(255,255,255,.72)}
+.library-handoff a{
+  display:inline-flex;margin-top:19px;padding:10px 14px;border:1px solid rgba(255,255,255,.45);
+  border-radius:999px;color:#fff;text-decoration:none;font-size:11px;font-weight:700
+}
+.handoff-route{display:grid;grid-template-columns:1fr auto 1fr auto 1.35fr;gap:9px;align-items:center}
+.handoff-route>span{
+  display:grid;place-items:center;min-height:104px;padding:13px 8px;border:1px solid rgba(255,255,255,.28);
+  border-radius:16px;background:rgba(255,255,255,.08);text-align:center
+}
+.handoff-route i{font-family:var(--mono);font-size:7px;font-style:normal;letter-spacing:.12em;color:rgba(255,255,255,.55)}
+.handoff-route b{font-family:var(--serif);font-size:15px}.handoff-route>em{font-style:normal;color:rgba(255,255,255,.62)}
+.handoff-route .handoff-finish{color:var(--ink);border-color:#f2e5ce;background:#f2e5ce}
+.handoff-route .handoff-finish i{color:var(--clay-deep)}
+
 /* Mobile reading system — one column, shorter rhythm, one compact action dock */
 @media(max-width:720px){
   html{scroll-padding-top:68px}
@@ -2416,6 +2963,97 @@ footer b{color:#f29275}
   .mh-cta{min-width:84px;min-height:42px;padding:8px 12px;font-size:0}
   .mh-cta::before{content:"微信咨询";font-size:12px;letter-spacing:.02em}
   .ticker{display:none}
+
+  .library-hub::before{right:-6px;top:4px;font-size:66px}
+  .library-intro{display:block;padding:35px 18px 22px}
+  .library-copy{max-width:none}
+  .library-kicker{margin-bottom:19px}
+  .library-kicker span{font-size:7.5px;padding:6px 9px}
+  .library-copy h1{font-size:clamp(48px,14.3vw,60px);line-height:.95}
+  .library-copy>p{max-width:330px;margin-top:18px;font-size:13px;line-height:1.75}
+  .library-shortcuts{gap:6px;margin-top:17px}
+  .library-shortcuts span{padding:6px 8px;font-size:7.5px}
+  .library-gates{grid-template-columns:1fr 1fr;gap:9px;margin-top:25px}
+  .library-gate{min-height:230px;padding:15px;border-radius:17px}
+  .gate-top i{width:27px;height:27px;font-size:8px}.gate-top small{font-size:6.5px}
+  .library-gate>strong{margin-top:22px;font-size:25px}
+  .library-gate>p{margin-top:8px;font-size:9.5px;line-height:1.55}
+  .gate-preview{grid-template-columns:1fr;gap:5px;margin-top:15px}
+  .gate-preview i{padding:7px 5px;font-size:8px}
+  .gate-preview i:first-child{grid-column:auto}
+  .gate-preview i:last-child{display:none}
+  .gate-docs{gap:5px;margin-top:14px;padding-left:4px}
+  .gate-docs::before{display:none}
+  .gate-docs i{padding:7px 6px;font-size:7.5px}
+  .gate-docs i:last-child{display:none}
+  .gate-go{padding-top:12px;font-size:7.5px}
+  .library-console{margin:0 14px 35px;padding:14px 0 13px 14px;border-radius:18px}
+  .library-console-head{display:grid;gap:13px;margin:0 14px 14px 0}
+  .library-console-head strong{font-size:14px}
+  .library-tabs{justify-self:start}
+  .library-tabs button{min-width:68px;padding:7px 11px;font-size:10px}
+  .library-panel{
+    display:flex;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;padding-right:14px;scrollbar-width:none
+  }
+  .library-panel::-webkit-scrollbar{display:none}
+  .library-panel[hidden]{display:none}
+  .supply-card{flex:0 0 min(72vw,254px);min-height:188px;padding:16px;scroll-snap-align:start}
+  .supply-card.has-actions{min-height:252px}
+  .supply-card h3{font-size:18px}.supply-card p{font-size:10.5px}
+  .library-swipe-tip{display:block;margin:10px 14px 0 0;text-align:right;font-size:8px;color:var(--ink-faint)}
+  .library-swipe-tip span{color:var(--clay);font-size:13px}
+  .resource-library{padding-bottom:3px}
+  .resource-library .supply-card{flex-basis:min(76vw,265px)}
+  .community-details{margin:0 14px 35px}
+  .community-details>summary{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px;
+    border:1px solid var(--line);border-radius:17px;background:#fff;list-style:none;cursor:pointer
+  }
+  .community-details>summary::-webkit-details-marker{display:none}
+  .community-details>summary span{display:grid;gap:2px}
+  .community-details>summary b{font-family:var(--serif);font-size:15px}
+  .community-details>summary small{font-size:9px;color:var(--ink-faint)}
+  .community-details>summary i{font-size:22px;font-style:normal;color:var(--clay);transition:transform .2s}
+  .community-details[open]>summary i{transform:rotate(45deg)}
+  .community-grid{grid-template-columns:1fr;gap:9px;margin-top:10px;padding:8px;border-radius:18px}
+  .future-poll,.comment-preview{padding:19px;border-radius:15px}
+  .community-grid h2{font-size:25px}
+  .poll-options b{font-size:10.5px}
+  .guide-dialog{
+    width:100%;max-height:82vh;margin:auto 0 0;padding:26px 18px calc(24px + env(safe-area-inset-bottom));
+    border-radius:22px 22px 0 0
+  }
+  .guide-dialog h2{font-size:26px}
+  .quick-services{padding:40px 0 35px}
+  .quick-services-head{display:block;padding:0 18px}
+  .quick-services-head h2{font-size:31px}
+  .quick-services-head>p{margin-top:13px;font-size:11.5px}
+  .quick-service-track{
+    display:flex;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;margin-top:24px;padding:0 18px 12px;scrollbar-width:none
+  }
+  .quick-service-track::-webkit-scrollbar{display:none}
+  .quick-service-card{flex:0 0 min(88vw,340px);padding:20px;scroll-snap-align:start;border-radius:18px}
+  .quick-service-card h3{font-size:27px}
+  .quick-flow{grid-template-columns:1fr auto 1fr;grid-template-rows:auto 14px auto;gap:6px;margin-top:17px}
+  .quick-flow>span{min-height:78px}
+  .quick-flow>span:nth-of-type(1){grid-column:1;grid-row:1}
+  .quick-flow>em:nth-of-type(1){grid-column:2;grid-row:1}
+  .quick-flow>span:nth-of-type(2){grid-column:3;grid-row:1}
+  .quick-flow>em:nth-of-type(2){grid-column:3;grid-row:2;text-align:center;transform:rotate(90deg)}
+  .quick-flow>span:nth-of-type(3){grid-column:3;grid-row:3}
+  .quick-flow>em:nth-of-type(3){grid-column:2;grid-row:3;transform:rotate(180deg)}
+  .quick-flow>span:nth-of-type(4){grid-column:1;grid-row:3}
+  .quick-service-note{padding:0 18px;text-align:left;line-height:1.6}
+  .library-handoff{display:block;padding:31px 18px 28px}
+  .library-handoff h2{font-size:29px}
+  .library-handoff p{font-size:11.5px}
+  .library-handoff a{margin-top:16px}
+  .handoff-route{grid-template-columns:1fr auto 1fr auto 1.45fr;gap:6px;margin-top:23px}
+  .handoff-route>span{min-height:68px;padding:8px 4px;border-radius:12px}
+  .handoff-route i{font-size:5.5px}.handoff-route b{font-size:12px}
+  .handoff-route>em{font-size:11px}
 
   .pad{padding-left:18px;padding-right:18px}
   .block{padding-top:52px;padding-bottom:12px}
@@ -2678,8 +3316,11 @@ footer b{color:#f29275}
   #tocFab{
     left:14px;right:auto;bottom:max(12px,env(safe-area-inset-bottom));
     width:52px;height:52px;border-radius:16px;background:var(--ink);
-    box-shadow:0 12px 30px rgba(23,23,19,.25);font-size:18px
+    box-shadow:0 12px 30px rgba(23,23,19,.25);font-size:18px;
+    opacity:0;pointer-events:none;transform:translateY(calc(100% + 28px));
+    transition:opacity .22s ease,transform .22s ease
   }
+  #tocFab.is-visible{opacity:1;pointer-events:auto;transform:translateY(0)}
   .mobile-cta{
     left:76px;right:14px;bottom:max(12px,env(safe-area-inset-bottom));
     min-width:0;min-height:52px;border-radius:16px;padding:0 18px;
@@ -2717,6 +3358,163 @@ function close(){p.classList.remove('open');f.textContent='\u2630';f.setAttribut
 f.addEventListener('click',function(e){e.stopPropagation();var o=p.classList.toggle('open');f.textContent=o?'\u2715':'\u2630';f.setAttribute('aria-expanded',o?'true':'false');f.setAttribute('aria-label',o?'关闭页面目录':'打开页面目录');});
 p.addEventListener('click',function(e){if(e.target.tagName==='A')close();});
 document.addEventListener('click',close);})();
+(function(){
+  var menu=document.getElementById('tocFab'),marker=document.getElementById('quick-services')||document.getElementById('library');
+  if(!menu||!marker)return;
+  function setVisible(show){menu.classList.toggle('is-visible',show);}
+  function update(){setVisible(marker.getBoundingClientRect().bottom<=window.innerHeight*.2);}
+  update();window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);
+})();
+(function(){
+  var controls=[].slice.call(document.querySelectorAll('[data-library-target]'));
+  var panels=[].slice.call(document.querySelectorAll('[data-library-panel]'));
+  var title=document.getElementById('libraryPanelTitle');
+  if(!controls.length||!panels.length)return;
+  function show(name,scroll){
+    controls.forEach(function(control){
+      var active=control.getAttribute('data-library-target')===name;
+      control.classList.toggle('is-active',active);
+      if(control.hasAttribute('aria-selected'))control.setAttribute('aria-selected',active?'true':'false');
+      if(control.hasAttribute('aria-pressed'))control.setAttribute('aria-pressed',active?'true':'false');
+    });
+    panels.forEach(function(panel){
+      var active=panel.getAttribute('data-library-panel')===name;
+      panel.hidden=!active;panel.classList.toggle('is-active',active);
+    });
+    if(title)title.textContent=name==='tools'?'5 个现有工具 · 先解决眼前这一关':'5 份岗位资料 · 按目标岗位直接拿';
+    if(scroll)document.querySelector('.library-console').scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  controls.forEach(function(control){
+    control.addEventListener('click',function(){show(control.getAttribute('data-library-target'),control.classList.contains('library-gate'));});
+  });
+})();
+(function(){
+  function fallbackCopy(value){
+    var field=document.createElement('textarea');
+    field.value=value;field.setAttribute('readonly','');field.style.position='fixed';field.style.opacity='0';
+    document.body.appendChild(field);field.select();
+    var copied=false;try{copied=document.execCommand('copy');}catch(error){copied=false;}
+    field.remove();return copied;
+  }
+  document.addEventListener('click',function(e){
+    var button=e.target.closest('[data-copy-url]');
+    if(!button)return;
+    var value=button.getAttribute('data-copy-url')||'';
+    if(!value)return;
+    var original=button.textContent;
+    var copyPromise=navigator.clipboard&&window.isSecureContext
+      ?navigator.clipboard.writeText(value).then(function(){return true;}).catch(function(){return fallbackCopy(value);})
+      :Promise.resolve(fallbackCopy(value));
+    copyPromise.then(function(copied){
+      button.textContent=copied?'已复制 ✓':'复制失败';
+      button.setAttribute('data-copy-state',copied?'copied':'error');
+      window.setTimeout(function(){button.textContent=original;button.setAttribute('data-copy-state','idle');},1800);
+    });
+  });
+})();
+(function(){
+  var dialog=document.getElementById('guideDialog');
+  if(!dialog)return;
+  var guides={
+    'intern':{
+      title:'实习翻译机 · 5 步上手',
+      intro:'它不是替你编经历，而是帮你每天留下真实工作证据，再翻译成简历和面试语言。',
+      steps:['先联系阿涵领取一个邀请码，再打开实习翻译机。','进入后点“今日投喂”，每天记下一件做过的小事，越具体越好。','一周后用“周报”按时间导出，检查自己到底积累了哪些能力。','需要写简历时点“导出锦鲤”，生成简历版和面试版素材。','面试前用“卡点复盘”，把没讲清楚的地方补成能追问、能复盘的故事。'],
+      tip:'邀请码备注：找阿涵领取，Token 数量有限。不要等实习结束再回忆，每天一分钟最好用。'
+    },
+    'inventory':{
+      title:'库存健康看板 · 阅读顺序',
+      intro:'这份 HTML 看板适合采销、供应链、电商运营同学用来建立库存诊断框架。',
+      steps:['先看库存周转率、现货率、长库龄、不动销四个指标，记住每个指标回答什么问题。','再看“异常库存痛点”，练习把断货和积压分别归因。','按生命周期库存管控五步 SOP，把动作放回正确阶段。','看标杆对比和场景连带策略，理解“以爆带滞”和场景大包装。','最后用净利测算盘验证活动、清仓或组合销售是否真的赚钱。'],
+      tip:'建议边看边拿一个真实商品练习，不要只背指标定义。'
+    },
+    'sql-skill':{
+      title:'运营 SQL Skill · 安装版',
+      intro:'适合支持 .skill 文件的 AI 工具，安装后会按运营场景带你定级、学习和刷真题。',
+      steps:['下载 ops-sql-learner.skill 文件。','在支持 Skill 的 AI 工具中上传并安装这个文件。','第一句话写：“我目前完全 0 基础，目标用户运营，请先给我定级并安排 7 天计划。”','按它给出的题目先自己想，再要解题思路，最后才看完整答案。','把写错的 SQL 直接贴回去，让它按问题定位、原因、正确写法和举一反三四步讲解。'],
+      tip:'如果你的 AI 不支持 .skill，请使用旁边的“国内 AI 通用版”。'
+    },
+    'sql-cn':{
+      title:'运营 SQL · 国内 AI 通用版',
+      intro:'给 DeepSeek、Kimi、豆包、通义等不支持 .skill 的同学，主文件和三份配套资料会分别提供。',
+      steps:['上传 SKILL.md，并同时上传学习路径、真题库、SQL 速查表。','第一句话说明基础和目标，例如：“我 0 基础，准备电商运营笔试，剩 14 天。”','让 AI 先做三级定级，再从对应阶段开始，不要一上来就刷压轴题。','每道题坚持“读题—中文拆逻辑—写 SQL—验证结果”四步。','考前用速查表回忆模板，再从真题库抽题限时练习。'],
+      tip:'国内版会重复展示，这是有意的：不依赖 Skill 机制，下载文件就能学。'
+    },
+    'jd-guide':{
+      title:'京东采销指南 · 备考顺序',
+      intro:'内容很多，不建议从第一页一路背到最后。用“公司—岗位—题目”三层顺序效率更高。',
+      steps:['先看目录，用 20 分钟了解京东 15 年价值观演变。','从刘强东 12 段关键讲话里提炼你认可的 3 个观点。','进入采销必背 50 题，先刷自我认知和岗位理解。','再刷行业公司、价值观文化、业务场景和压力题。','每题只写关键词，录音回答 90 秒，再根据卡壳处补材料。'],
+      tip:'重点不是背京东，而是让每个回答都能落回你自己的经历。'
+    },
+    'supply-chain':{
+      title:'供应链全链路课件 · 10 分钟',
+      intro:'5 页内容已经组成一个小练习：先建总图，再匹配动作，最后排序复盘。',
+      steps:['第 1 页先理解供应链不是单一物流，而是计划、采购、生产、销售和服务协同。','第 2 页重点看京东全链路：采购入库前、采购入库后、销售出库三段。','第 3 页做动作与模块匹配，不要先看答案。','第 4 页把九个动作放入三个阶段，并说出排序原因。','最后看第 5 页答案，再用“成本—效率—体验”复述整条链路。'],
+      tip:'能把第 2 页总图讲清楚，比背九个动作更重要。'
+    },
+    'question-bank':{
+      title:'运营 100 问 · 正确刷法',
+      intro:'100 题不是 100 篇背诵稿。每个方向先建立自己的 15 题核心库，再逐步扩充。',
+      steps:['先选与你目标岗位一致的一套：用户运营、商家运营或电商运营。','扫完目录，圈出 15 道最高频、最容易被追问的问题。','每题只写“结论—例子—数据—复盘”四行提纲。','不开资料录一遍 90 秒回答，标记卡壳和空话。','把薄弱题放回下一轮，直到 10 秒内给结论、90 秒内答完。'],
+      tip:'三套题库不要同时刷。岗位先定准，再刷对应方向。'
+    },
+    'script-prompt':{
+      title:'简历面试逐字稿 · 使用教程',
+      intro:'这是一段国内 AI 通用提示词，会把简历里的每个数字拆成面试追问和填空作业本。',
+      steps:['把整段提示词复制到 DeepSeek、Kimi、豆包、通义等任意 AI。','在同一条消息里粘贴简历，最好再附上目标岗位 JD。','让 AI 输出 20—35 个作业块，不要接受空泛分析报告。','沿着每条答题顺序，在横线上写自己的真实逐字稿。','写完大声念：结论 10 秒内出，整段 90 秒内结束。'],
+      tip:'AI 负责把问题问狠，你负责填真实细节；不要让 AI 替你编数字。'
+    }
+  };
+  var title=document.getElementById('guideTitle'),intro=document.getElementById('guideIntro');
+  var steps=document.getElementById('guideSteps'),tip=document.getElementById('guideTip');
+  document.addEventListener('click',function(e){
+    var open=e.target.closest('[data-guide]');
+    if(open){
+      var guide=guides[open.getAttribute('data-guide')];if(!guide)return;
+      title.textContent=guide.title;intro.textContent=guide.intro;tip.textContent=guide.tip;
+      steps.innerHTML='';guide.steps.forEach(function(copy){var li=document.createElement('li');li.textContent=copy;steps.appendChild(li);});
+      if(dialog.showModal)dialog.showModal();else dialog.setAttribute('open','');
+      return;
+    }
+    if(e.target.closest('[data-guide-close]'))dialog.close();
+  });
+  dialog.addEventListener('click',function(e){if(e.target===dialog)dialog.close();});
+})();
+(function(){
+  var options=[].slice.call(document.querySelectorAll('[data-vote]'));
+  var status=document.getElementById('pollStatus');
+  options.forEach(function(option){
+    option.addEventListener('click',function(){
+      options.forEach(function(item){item.setAttribute('aria-pressed',item===option?'true':'false');item.querySelector('i').textContent=item===option?'已选':'想要';});
+      status.textContent='已选：'+option.getAttribute('data-vote')+'（预览，不计入正式票数）';
+    });
+  });
+})();
+(function(){
+  var host=document.querySelector('.comment-preview[data-twikoo-env]');
+  if(!host)return;
+  var env=(host.getAttribute('data-twikoo-env')||'').trim();
+  if(!env)return;
+  var setup=document.getElementById('commentSetup');
+  var script=document.createElement('script');
+  script.src='https://registry.npmmirror.com/twikoo/1.7.15/files/dist/twikoo.all.min.js';
+  script.async=true;
+  script.onload=function(){
+    if(!window.twikoo)return;
+    var options={envId:env,el:'#tcomment',path:'/AI-Job/',lang:'zh-CN'};
+    var region=(host.getAttribute('data-twikoo-region')||'').trim();
+    if(region)options.region=region;
+    Promise.resolve(window.twikoo.init(options)).then(function(){
+      host.classList.add('twikoo-ready');
+    }).catch(function(){
+      if(setup)setup.innerHTML='<b><span>●</span> 留言服务暂时没连上</b><p>请稍后刷新重试，或联系阿涵反馈。</p>';
+    });
+  };
+  script.onerror=function(){
+    if(setup)setup.innerHTML='<b><span>●</span> 留言组件加载失败</b><p>请检查网络后刷新页面。</p>';
+  };
+  document.head.appendChild(script);
+})();
 </script>
 </body>
 </html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026年京东新品引爆与供应链库存健康运营看板</title>
+    <!-- Tailwind CSS -->
+    <script src="//storage.360buyimg.com/smartdata/jda_imgs/tailwind.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Echarts -->
+    <script src="//storage.360buyimg.com/pubfree-bucket/ei-data-resource/02f0288/static/echarts.min.js"></script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 3px; }
+        .card { 
+            background: white; 
+            border: 1px solid #e0f2fe; 
+            border-radius: 0.75rem; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); 
+            transition: all 0.2s ease-in-out; 
+        }
+        .card:hover { 
+            border-color: #0284c7; 
+            box-shadow: 0 10px 15px -3px rgba(2, 132, 199, 0.1); 
+            transform: translateY(-2px);
+        }
+        .step-num { 
+            width: 2rem; height: 2rem; display: inline-flex; align-items: center; justify-content: center; 
+            border-radius: 9999px; color: white; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); 
+            margin-right: 0.75rem; font-weight: bold; flex-shrink: 0;
+        }
+        .highlight-tag { display: inline-block; padding: 0.1rem 0.4rem; border-radius: 0.25rem; font-size: 0.875rem; margin: 0 0.2rem; }
+        
+        /* 引用标签样式要求 */
+        cite a { color: #007bff; text-decoration: none; transition: text-decoration 0.2s; font-weight: 500;}
+        cite a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body class="bg-sky-50 text-slate-800 font-sans pb-20">
+
+    <!-- 顶部导航 -->
+    <header class="bg-white border-b border-sky-100 sticky top-0 z-50 shadow-sm backdrop-blur-md bg-white/90">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="font-bold text-sky-800 text-lg flex items-center">
+                <i class="fas fa-cubes mr-2"></i> 京东自营 | 供应链库存健康度大盘
+            </div>
+            <nav class="hidden md:flex gap-4 text-sm font-medium text-slate-600">
+                <a href="#step1" class="hover:text-sky-600 transition">1. 核心定义</a>
+                <a href="#painpoints" class="hover:text-sky-600 transition">2. 痛点狙击</a>
+                <a href="#step2" class="hover:text-sky-600 transition">3. 生命周期SOP</a>
+                <a href="#step3" class="hover:text-sky-600 transition">4. 竞品与连带</a>
+                <a href="#step4" class="hover:text-sky-600 transition">5. 种草排雷</a>
+                <a href="#profit-calc" class="hover:text-sky-600 transition">算账推演</a>
+            </nav>
+            <div class="font-mono font-bold text-sky-700 bg-sky-50 px-3 py-1 rounded-full text-sm border border-sky-200">
+                目标库存周转天数: <span id="header-profit" class="text-red-500">≤30天</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-10">
+
+        <!-- STEP 1: 定义与图表 -->
+        <section id="step1">
+            <h2 class="text-xl font-bold mb-4 flex items-center text-slate-800">
+                <span class="step-num">1</span>供应链管理 4大核心指标定义与基准
+            </h2>
+            <div class="grid md:grid-cols-5 gap-6">
+                <!-- 指标定义卡片 -->
+                <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="card p-5 border-l-4 border-l-sky-500">
+                        <h3 class="font-bold text-sky-800 mb-1"><i class="fas fa-sync-alt mr-2"></i>库存周转率 (Turns)</h3>
+                        <p class="text-xs text-slate-500 mb-2">库存在一年内完成销售的次数，反映资金利用效率和供应链管理水平<cite><a href="https://www.yitongweb.cn/data/metric/inventory_turnover/" target="_blank" rel="noopener noreferrer">[2]</a></cite>。</p>
+                        <div class="bg-sky-50 p-2 rounded text-sm text-slate-700 font-mono">
+                            公式: 销售成本 ÷ 平均库存成本
+                        </div>
+                        <p class="text-xs mt-2 text-slate-600"><strong>采销视角：</strong>京东自营对仓配要求极高，高周转意味着更高的流量分配权，我们主张“小批量多频次补货”。</p>
+                    </div>
+
+                    <div class="card p-5 border-l-4 border-l-emerald-500">
+                        <h3 class="font-bold text-emerald-800 mb-1"><i class="fas fa-check-circle mr-2"></i>现货率 (Availability)</h3>
+                        <p class="text-xs text-slate-500 mb-2">指可直接发货的现货库存货品在总库存/总SKU中的占比<cite><a href="https://zhidao.baidu.com/question/1766278729751234580.html" target="_blank" rel="noopener noreferrer">[4]</a></cite><cite><a href="https://cloud.tencent.com/developer/news/3607726" target="_blank" rel="noopener noreferrer">[5]</a></cite>。</p>
+                        <div class="bg-emerald-50 p-2 rounded text-sm text-slate-700 font-mono">
+                            公式: 可直接发货库存 ÷ 总库存 × 100%
+                        </div>
+                        <p class="text-xs mt-2 text-slate-600"><strong>采销视角：</strong>没有现货就没有211限时达！缺货率预警是底线，现货率跌破90%，转化率暴跌，白白给竞品送流量。</p>
+                    </div>
+
+                    <div class="card p-5 border-l-4 border-l-orange-500">
+                        <h3 class="font-bold text-orange-800 mb-1"><i class="fas fa-hourglass-half mr-2"></i>长库龄 (Aged Inventory)</h3>
+                        <p class="text-xs text-slate-500 mb-2">在仓库中存放超过特定周期（如180天）未售出的商品。</p>
+                        <div class="bg-orange-50 p-2 rounded text-sm text-slate-700 font-mono">
+                            预警: >90天黄警, >180天红警
+                        </div>
+                        <p class="text-xs mt-2 text-slate-600"><strong>采销视角：</strong>2026年亚马逊新规，存放超181天即收巨额超龄附加费<cite><a href="https://mjzj.com/article/fgd0j5s7yjuo" target="_blank" rel="noopener noreferrer">[3]</a></cite>。京东仓同样寸土寸金，长库龄不除，利润全被仓储费吃空。</p>
+                    </div>
+
+                    <div class="card p-5 border-l-4 border-l-red-500">
+                        <h3 class="font-bold text-red-800 mb-1"><i class="fas fa-ban mr-2"></i>不动销 (Dead Stock)</h3>
+                        <p class="text-xs text-slate-500 mb-2">上架后在一定周期内（通常30天）没有任何销量记录的商品。</p>
+                        <div class="bg-red-50 p-2 rounded text-sm text-slate-700 font-mono">
+                            规则: 连续30天动销率=0
+                        </div>
+                        <p class="text-xs mt-2 text-slate-600"><strong>采销视角：</strong>不动销就是毒瘤。必须通过数坊发券、或站内便宜包邮+CPS达人合作的方式，哪怕亏本也要强制破零出清。</p>
+                    </div>
+                </div>
+
+                <!-- 行业基准图表 -->
+                <div class="md:col-span-2 card p-4 flex flex-col">
+                    <h3 class="font-bold text-slate-800 mb-2 border-b border-sky-100 pb-2">2026年电商类目库存周转率基准 <cite><a href="https://www.yitongweb.cn/data/metric/inventory_turnover/" target="_blank" rel="noopener noreferrer">[2]</a></cite></h3>
+                    <div id="chartTurnover" class="flex-grow w-full min-h-[250px]"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 痛点分析与狙击 -->
+        <section id="painpoints">
+            <h2 class="text-xl font-bold mb-4 flex items-center text-slate-800">
+                <i class="fas fa-bullseye text-sky-600 mr-2 text-2xl"></i>异常库存痛点狙击与行动清单
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="card p-5 border-t-4 border-t-red-500">
+                    <h3 class="font-bold mb-2 text-slate-800">痛点一：动销冰封，长库龄积压导致资金链断裂</h3>
+                    <div class="bg-red-50 p-3 rounded text-sm text-red-800 italic mb-3">
+                        <i class="fas fa-quote-left mr-1 opacity-50"></i>
+                        “上架了3个月，每天访客个位数，库存还压在八大仓，每个月还要交天价仓配费，利润全盘吃光。”
+                    </div>
+                    <div class="text-sm border-t border-dashed border-red-200 pt-3">
+                        <strong class="text-red-600 mb-1 block"><i class="fas fa-tools mr-1"></i>运营对策与SOP：</strong>
+                        <ul class="list-disc pl-4 space-y-1 text-slate-600">
+                            <li><strong>极速出清：</strong>将长库龄产品直接提报 <span class="bg-red-100 text-red-700 px-1 rounded">便宜包邮</span> 频道，配合CPS平台设置30%以上高佣金，联系达人集中在特定时间点打爆出货。</li>
+                            <li><strong>捆绑连带：</strong>利用“顺手买一件”或“主推款满额赠送”，将滞销品作为附属价值消化掉。</li>
+                            <li><strong>话术调整：</strong>从“极致体验”降维到“白菜价捡漏”、“清仓狂欢”，击穿下沉市场心智。</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card p-5 border-t-4 border-t-emerald-500">
+                    <h3 class="font-bold mb-2 text-slate-800">痛点二：爆款断货，现货率不足导致降权流失</h3>
+                    <div class="bg-emerald-50 p-3 rounded text-sm text-emerald-800 italic mb-3">
+                        <i class="fas fa-quote-left mr-1 opacity-50"></i>
+                        “大促刚开门红，主推SKU就提示无货（现货率跌至30%），京东快车烧了钱，客户加购后却无法履约，不仅退款率飙升，类目排名直接掉出TOP20。”
+                    </div>
+                    <div class="text-sm border-t border-dashed border-emerald-200 pt-3">
+                        <strong class="text-emerald-600 mb-1 block"><i class="fas fa-tools mr-1"></i>运营对策与SOP：</strong>
+                        <ul class="list-disc pl-4 space-y-1 text-slate-600">
+                            <li><strong>智能补货：</strong>引入数字化管理<cite><a href="https://www.jiandaoyun.com/news/article/69bb598f34594e4ba65880b6" target="_blank" rel="noopener noreferrer">[1]</a></cite>，安全库存 = 日均销量 × 补货周期 × 1.5系数<cite><a href="https://www.yitongweb.cn/data/metric/inventory_turnover/" target="_blank" rel="noopener noreferrer">[2]</a></cite>，对A类畅销商品保证高现货储备。</li>
+                            <li><strong>分仓策略：</strong>提前通过京东商智看区域转化图，将爆款精准调拨至华东、华南等高潜订单产出仓。</li>
+                            <li><strong>秒杀脉冲保护：</strong>当感知到库存吃紧时，切勿盲目上秒杀，改为阶段性提价保护库存，赚取高毛利，待产能恢复后再做活动冲量。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 操盘手建议 -->
+            <div class="mt-6 bg-white p-5 rounded-xl border border-sky-100 shadow-sm">
+                <h4 class="font-bold text-sky-800 mb-3">💎 10年采销专家的操盘箴言：</h4>
+                <div class="grid md:grid-cols-3 gap-4 text-sm">
+                    <div class="p-3 bg-slate-50 rounded">
+                        <span class="font-bold text-sky-600 block mb-1">流量端 (获取)</span>
+                        流量永远不够，要从“争夺流量”转为“创造流量”。对不动销新品，通过京东试用中心“1元/9.9元”低价闪电破零，快速获取带图优质评价，先让系统识别你有动销权重。
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded">
+                        <span class="font-bold text-emerald-600 block mb-1">转化端 (承接)</span>
+                        没有现货率支撑的转化就是灾难。大促前必须保证爆款主推品现货率>95%。利用PLUS会员专属价打标，不仅提高转化率，还能提升商品基础权重。
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded">
+                        <span class="font-bold text-orange-600 block mb-1">复购端 (清库)</span>
+                        利用社群私域和1号会员店权益，把有囤货属性的商品做成周期购，或是送小包装小样试用，再通过UCM发券触达复购，这是降低未来库存风险的最佳路径。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 2: 节奏 SOP -->
+        <section id="step2">
+            <h2 class="text-xl font-bold mb-4 flex items-center text-slate-800">
+                <span class="step-num">2</span>生命周期库存管控 五步走SOP
+            </h2>
+            <div class="space-y-4">
+                
+                <!-- 导入期 -->
+                <div class="card p-4 border-l-4 border-l-slate-400 hover:border-l-sky-500 group">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="md:w-1/4">
+                            <div class="font-bold text-lg group-hover:text-sky-600 transition">1. 新品导入期 (1-2周)</div>
+                            <div class="text-xs text-slate-500 mt-1"> 目标：基础优化、破零避免不动销 </div>
+                        </div>
+                        <div class="md:w-3/4 border-t md:border-t-0 md:border-l border-slate-100 md:pl-4 pt-2 md:pt-0">
+                            <div class="mb-2 text-xs flex gap-2">
+                                <span class="bg-sky-50 text-sky-700 px-2 py-1 rounded border border-sky-100">京东试用中心</span>
+                                <span class="bg-sky-50 text-sky-700 px-2 py-1 rounded border border-sky-100">新品频道</span>
+                            </div>
+                            <ul class="list-disc pl-4 text-sm space-y-1 text-slate-600">
+                                <li><strong>库存动作：</strong>极小批量铺货入核心主仓，打上“京东物流”标签。重点盯每日动销，连续3天不动销立刻启动补救。</li>
+                                <li><strong>运营动作：</strong>投放>100元广告，务必将新品标签提升至B级进入流量池。参与试用中心换取种子用户带图评价。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 成长期 -->
+                <div class="card p-4 border-l-4 border-l-blue-400 hover:border-l-sky-500 group">
+                     <div class="flex flex-col md:flex-row gap-4">
+                        <div class="md:w-1/4">
+                            <div class="font-bold text-lg group-hover:text-sky-600 transition">2. 拉升成长期 (2-4周)</div>
+                            <div class="text-xs text-slate-500 mt-1"> 目标：精准拉新、放大流量、确保现货 </div>
+                        </div>
+                        <div class="md:w-3/4 border-t md:border-t-0 md:border-l border-slate-100 md:pl-4 pt-2 md:pt-0">
+                            <div class="mb-2 text-xs flex gap-2">
+                                <span class="bg-blue-50 text-blue-700 px-2 py-1 rounded border border-blue-100">京东快车 / 购物触点</span>
+                                <span class="bg-blue-50 text-blue-700 px-2 py-1 rounded border border-blue-100">PLUS会员人群定向</span>
+                            </div>
+                            <ul class="list-disc pl-4 text-sm space-y-1 text-slate-600">
+                                <li><strong>库存动作：</strong>根据测款转化率预测月销，启动第一轮补货，周转率控制在10次/年，现货率要求达到85%以上。</li>
+                                <li><strong>运营动作：</strong>利用触点广告拦截竞品购物车犹豫人群，商详页增加动图和痛点解答，提升静默转化率。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 爆发期 -->
+                <div class="card p-4 border-l-4 border-l-orange-400 hover:border-l-sky-500 group">
+                     <div class="flex flex-col md:flex-row gap-4">
+                        <div class="md:w-1/4">
+                            <div class="font-bold text-lg group-hover:text-sky-600 transition">3. 大促爆发期</div>
+                            <div class="text-xs text-slate-500 mt-1"> 目标：冲击类目排名TOP、海量流量承接 </div>
+                        </div>
+                        <div class="md:w-3/4 border-t md:border-t-0 md:border-l border-slate-100 md:pl-4 pt-2 md:pt-0">
+                            <div class="mb-2 text-xs flex gap-2">
+                                <span class="bg-orange-50 text-orange-700 px-2 py-1 rounded border border-orange-100">单品秒杀</span>
+                                <span class="bg-orange-50 text-orange-700 px-2 py-1 rounded border border-orange-100">百亿补贴入池</span>
+                            </div>
+                            <ul class="list-disc pl-4 text-sm space-y-1 text-slate-600">
+                                <li><strong>库存动作：</strong>提前1-2个月备战，八大仓满负荷备货，核心爆款现货率必须死守 <span class="text-red-500 font-bold">98%</span>。断货即败局。</li>
+                                <li><strong>运营动作：</strong>配合秒杀流量脉冲，集中打穿价格心智。如果是POP店也要用极致低价跟进竞品，守住品类排名。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 稳定与清仓期 -->
+                <div class="card p-4 border-l-4 border-l-emerald-400 hover:border-l-sky-500 group">
+                     <div class="flex flex-col md:flex-row gap-4">
+                        <div class="md:w-1/4">
+                            <div class="font-bold text-lg group-hover:text-sky-600 transition">4. 稳定稳销期 (长期)</div>
+                            <div class="text-xs text-slate-500 mt-1"> 目标：利润最大化、严控长库龄 </div>
+                        </div>
+                        <div class="md:w-3/4 border-t md:border-t-0 md:border-l border-slate-100 md:pl-4 pt-2 md:pt-0">
+                            <div class="mb-2 text-xs flex gap-2">
+                                <span class="bg-emerald-50 text-emerald-700 px-2 py-1 rounded border border-emerald-100">复购自动化发券</span>
+                            </div>
+                            <ul class="list-disc pl-4 text-sm space-y-1 text-slate-600">
+                                <li><strong>库存动作：</strong>每日通过黄金眼监控周转，当某SKU接近90天黄警库龄时，停止该SKU补货。</li>
+                                <li><strong>运营动作：</strong>爆款阶段性提价赚取利润，排名下滑再通过秒杀降价拉回。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 尾货期 -->
+                <div class="card p-4 border-l-4 border-l-red-400 hover:border-l-sky-500 group">
+                     <div class="flex flex-col md:flex-row gap-4">
+                        <div class="md:w-1/4">
+                            <div class="font-bold text-lg group-hover:text-sky-600 transition">5. 尾盘清仓期</div>
+                            <div class="text-xs text-slate-500 mt-1"> 目标：回笼资金，切除不动销烂疮 </div>
+                        </div>
+                        <div class="md:w-3/4 border-t md:border-t-0 md:border-l border-slate-100 md:pl-4 pt-2 md:pt-0">
+                            <div class="mb-2 text-xs flex gap-2">
+                                <span class="bg-red-50 text-red-700 px-2 py-1 rounded border border-red-100">便宜包邮</span>
+                                <span class="bg-red-50 text-red-700 px-2 py-1 rounded border border-red-100">高佣CPS达人</span>
+                            </div>
+                            <ul class="list-disc pl-4 text-sm space-y-1 text-slate-600">
+                                <li><strong>库存动作：</strong>针对 >180天 长库龄和不动销，宁可亏本出清，绝不留库消耗仓配费。</li>
+                                <li><strong>运营动作：</strong>主动联系站外推客达人，差异化谈高佣金，将尾货集中爆破消化。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- STEP 3: 连带与竞品 -->
+        <section id="step3">
+            <h2 class="text-xl font-bold mb-4 flex items-center text-slate-800">
+                <span class="step-num">3</span>标杆对比与场景连带策略
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 竞品分析卡片 -->
+                <div class="card p-6">
+                    <h3 class="font-bold text-sky-800 mb-4 border-b border-sky-100 pb-2">
+                        <i class="fas fa-chess-knight mr-2"></i>库存模式：标杆竞品 vs 传统对手
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                            <thead class="bg-sky-50 text-sky-700">
+                                <tr>
+                                    <th class="px-4 py-2 rounded-tl">维度</th>
+                                    <th class="px-4 py-2">敏捷型标杆 (优)</th>
+                                    <th class="px-4 py-2 rounded-tr">传统铺货型 (劣)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-slate-600">
+                                <tr class="border-b border-slate-100">
+                                    <td class="px-4 py-3 font-bold">周转率</td>
+                                    <td class="px-4 py-3 text-emerald-600">12-15次/年 (高流转)</td>
+                                    <td class="px-4 py-3 text-red-500">2-4次/年 (重资金)</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="px-4 py-3 font-bold">备货逻辑</td>
+                                    <td class="px-4 py-3">多频次小批次，数据驱动</td>
+                                    <td class="px-4 py-3">一次性大批量压仓</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="px-4 py-3 font-bold">尾货处理</td>
+                                    <td class="px-4 py-3">30天不动销立即CPS切除</td>
+                                    <td class="px-4 py-3">被动等待自然消化</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-bold">护城河</td>
+                                    <td class="px-4 py-3">通过高现货率独占搜索TOP</td>
+                                    <td class="px-4 py-3">仓储成本蚕食利润</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 连带策略卡片 -->
+                <div class="card p-6">
+                    <h3 class="font-bold text-sky-800 mb-4 border-b border-sky-100 pb-2">
+                        <i class="fas fa-link mr-2"></i>消化长库龄：场景化连带设计
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-slate-800 mb-2">策略 A：以爆带滞 (客服导流法)</h4>
+                            <p class="text-sm text-slate-600">
+                                <strong>场景：</strong>主力爆品（如高配游戏本）流量极大，但某款外设鼠标成了长库龄。 <br>
+                                <strong>动作：</strong>在爆品商详和客服自动回复设置：“升级电竞大礼包仅需加19.9元（原价99元）”。利用强关联场景，以近乎赠送的方式将死库存变为提升客单价的筹码。
+                            </p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-slate-800 mb-2">策略 B：场景大包装 (人无我有)</h4>
+                            <p class="text-sm text-slate-600">
+                                <strong>场景：</strong>快消品多SKU长尾动销慢。 <br>
+                                <strong>动作：</strong>与百补频道沟通，定制独家“家庭特惠囤货装”（组合滞销口味与爆款口味），在百补场打出极致性价比，实现既起量又能保本清空库存。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 4: 内容种草 -->
+        <section id="step4">
+            <h2 class="text-xl font-bold mb-4 flex items-center text-slate-800">
+                <span class="step-num">4</span>内容种草：低成本化解库存僵局
+            </h2>
+            <div class="card p-6">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 站外种草引流 -->
+                    <div class="relative">
+                        <h3 class="font-bold mb-3 text-red-600 flex items-center">
+                            <i class="fas fa-fire text-xl mr-2"></i>小红书/值得买 外部爆破
+                        </h3>
+                        <div class="text-sm text-slate-600 bg-slate-50 p-4 rounded border border-slate-200 min-h-[140px] space-y-2">
+                            <p>依靠免费流量和KOL背书，解决日常没钱投广告导致的不动销：</p>
+                            <ul class="list-disc pl-4">
+                                <li><strong>什么值得买：</strong>采销亲自下场爆料或寻找V7级达人发布深度评测，直接挂出清仓满减链接，单篇笔记能抵得上一次秒杀的清仓效力。</li>
+                                <li><strong>小红书切入：</strong>带话题 <span class="text-sky-600">#京东白菜价捡漏</span>，打造“薅羊毛”人设，将长库龄品类以生活场景痛点痛击发出，引导私域搜索特定标题词转化。</li>
+                            </ul>
+                        </div>
+                        <div class="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 text-slate-300">
+                            <i class="fas fa-arrow-right text-xl"></i>
+                        </div>
+                    </div>
+
+                    <!-- 站内信任状 -->
+                    <div>
+                        <h3 class="font-bold mb-3 text-sky-700 flex items-center">
+                            <i class="fas fa-shield-alt text-xl mr-2"></i>商详页信任状优化
+                        </h3>
+                        <div class="text-sm text-slate-600 bg-slate-50 p-4 rounded border border-slate-200 min-h-[140px] space-y-2">
+                            <p>静默转化率是接住流量的出口，防跳失就是防库存积压：</p>
+                            <ul class="list-disc pl-4">
+                                <li><strong>AIDA模型：</strong>首屏动图直击痛点（3秒视频）；中端深度解析；尾部必须垫底信任状。</li>
+                                <li><strong>必备背书：</strong>打出“京东物流”、“30天价保”、“闪电退款”等服务标签，降低用户决策门槛。增加买家秀好评截图，直接击碎“担心不好吃/不好用”的购买顾虑。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 利润与库存影响推演计算器 -->
+        <section id="profit-calc" class="bg-slate-800 rounded-xl p-6 text-white shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-sky-500 rounded-full blur-3xl opacity-20"></div>
+            <h2 class="font-bold mb-6 text-lg border-b border-slate-600 pb-2 flex justify-between items-center">
+                <span><i class="fas fa-calculator text-sky-400 mr-2"></i>新品爆破与尾货清仓：净利测算盘</span>
+            </h2>
+
+            <div class="grid md:grid-cols-4 gap-6 items-start text-sm relative z-10">
+                <div class="space-y-2">
+                    <label class="text-slate-400 block text-xs uppercase tracking-wider">预估月销量 (件)</label>
+                    <input type="number" id="sales-input" value="5000" class="w-full bg-slate-700 border border-slate-600 rounded px-3 py-2 focus:outline-none focus:border-sky-500 text-white font-mono transition">
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="text-slate-400 block text-xs uppercase tracking-wider">单件售价 (元)</label>
+                    <input type="number" id="price-input" value="199" class="w-full bg-slate-700 border border-slate-600 rounded px-3 py-2 focus:outline-none focus:border-sky-500 text-white font-mono transition">
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-slate-400 block text-xs uppercase tracking-wider">单件硬成本 (元)</label>
+                    <input type="number" id="cost-input" value="120" class="w-full bg-slate-700 border border-slate-600 rounded px-3 py-2 focus:outline-none focus:border-sky-500 text-white font-mono transition">
+                    <div class="text-xs text-slate-500 mt-1">单件毛利: <span id="unit-profit-display" class="text-sky-400 font-bold">--</span> 元</div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-slate-400 block text-xs uppercase tracking-wider">综合营销与仓配费率</label>
+                    <select id="marketing-rate" class="w-full bg-slate-700 border border-slate-600 rounded px-3 py-2 focus:outline-none focus:border-sky-500 text-white cursor-pointer">
+                        <option value="0.10">10% (高周转良性)</option>
+                        <option value="0.20" selected>20% (常规大促投入)</option>
+                        <option value="0.35">35% (长库龄/CPS高佣清仓)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-8 p-4 bg-slate-700/50 rounded-lg flex flex-col md:flex-row justify-between items-center border border-slate-600 relative z-10 gap-4">
+                <div class="text-slate-300 text-xs">
+                    计算逻辑: (单价 - 成本) × 销量 - (总GMV × 费率)<br>
+                    <span class="text-orange-400 mt-1 block"><i class="fas fa-info-circle mr-1"></i> 若为超180天长库龄，仓配费率将大幅上涨，侵蚀此处净利。</span>
+                </div>
+                <div class="text-right">
+                    <div class="text-xs text-slate-400 mb-1">该项目预估月净利</div>
+                    <div id="total-profit" class="text-3xl font-bold text-emerald-400 font-mono tracking-tight">--</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 参考文献 -->
+        <section class="border-t border-slate-200 pt-6 mt-10">
+            <h3 class="text-sm font-bold text-slate-500 mb-3">参考文献</h3>
+            <ol class="list-decimal pl-5 text-xs text-slate-400 space-y-1">
+                <li><a href="https://www.jiandaoyun.com/news/article/69e9922534594e4ba67b6c3e" target="_blank" rel="noopener noreferrer" class="hover:text-sky-600">2026年制造业库存周转率基准：各行业排名 | 零代码企业数字化知识站</a></li>
+                <li><a href="https://www.yitongweb.cn/data/metric/inventory_turnover/" target="_blank" rel="noopener noreferrer" class="hover:text-sky-600">电商库存周转率数据大全 - 2026年全平台全品类基准值 - 电商运营数据分析平台</a></li>
+                <li><a href="https://mjzj.com/article/fgd0j5s7yjuo" target="_blank" rel="noopener noreferrer" class="hover:text-sky-600">亚马逊库存新规，3月31日实施！-卖家之家</a></li>
+                <li><a href="https://zhidao.baidu.com/question/1766278729751234580.html" target="_blank" rel="noopener noreferrer" class="hover:text-sky-600">电商里提到的现货率是什么？怎么计算？ - 百度知道</a></li>
+                <li><a href="https://cloud.tencent.com/developer/news/3607726" target="_blank" rel="noopener noreferrer" class="hover:text-sky-600">履约率、满足率、缺货率、现货率，一文讲清供应链管理4大指标！ - 腾讯云</a></li>
+                <li><a href="https://www.jiandaoyun.com/news/article/69bb598f34594e4ba65880b6" target="_blank" rel="noopener noreferrer" class="hover:text-sky-600">如何通过科学管理提升库存准确性？2026年企业库存准确性最佳实践指南</a></li>
+            </ol>
+        </section>
+
+    </main>
+
+    <footer class="text-center text-xs text-slate-400 py-6 border-t border-sky-100 mt-10">
+        Created by JoyAgent <br>
+        页面内容均由 AI 生成，仅供参考
+    </footer>
+
+    <!-- 计算器与图表交互脚本 -->
+    <script>
+        // --- Echarts 初始化 ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const chartDom = document.getElementById('chartTurnover');
+            const myChart = echarts.init(chartDom);
+            
+            const option = {
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+                legend: { data: ['行业均值', '良好水平'], bottom: 0, textStyle: { color: '#64748b', fontSize: 12 } },
+                grid: { left: '2%', right: '4%', bottom: '15%', top: '10%', containLabel: true },
+                xAxis: { 
+                    type: 'category', 
+                    data: ['食品/零食', '美妆护肤', '服饰鞋包', '数码3C', '家电'],
+                    axisLine: { lineStyle: { color: '#cbd5e1' } },
+                    axisLabel: { color: '#475569' }
+                },
+                yAxis: { 
+                    type: 'value', 
+                    name: '次数/年',
+                    splitLine: { lineStyle: { type: 'dashed', color: '#e2e8f0' } },
+                    axisLabel: { color: '#475569' }
+                },
+                series: [
+                    { 
+                        name: '行业均值', 
+                        type: 'bar', 
+                        data: [15, 8, 5, 7, 4], 
+                        itemStyle: { color: '#94a3b8', borderRadius: [4, 4, 0, 0] },
+                        barWidth: '25%'
+                    },
+                    { 
+                        name: '良好水平', 
+                        type: 'bar', 
+                        data: [24, 12, 8, 10, 7], 
+                        itemStyle: { color: '#0ea5e9', borderRadius: [4, 4, 0, 0] },
+                        barWidth: '25%'
+                    }
+                ]
+            };
+            myChart.setOption(option);
+            window.addEventListener('resize', () => { myChart.resize(); });
+        });
+
+        // --- 利润计算器逻辑 ---
+        const salesInput = document.getElementById('sales-input');
+        const priceInput = document.getElementById('price-input');
+        const costInput = document.getElementById('cost-input');
+        const rateInput = document.getElementById('marketing-rate');
+        
+        const unitProfitDisplay = document.getElementById('unit-profit-display');
+        const totalProfitDisplay = document.getElementById('total-profit');
+
+        function calculate() {
+            const getVal = (input) => {
+                const val = input.value;
+                if (val === '') return 0;
+                return parseFloat(val);
+            };
+
+            const sales = getVal(salesInput);
+            const price = getVal(priceInput);
+            const cost = getVal(costInput);
+            const rate = parseFloat(rateInput.value) || 0;
+
+            const unitGrossProfit = price - cost;
+            const gmv = price * sales;
+            const marketingCost = gmv * rate;
+            const netProfit = (unitGrossProfit * sales) - marketingCost;
+
+            // 更新 UI
+            unitProfitDisplay.innerText = unitGrossProfit.toFixed(2);
+            
+            totalProfitDisplay.innerText = "¥ " + netProfit.toLocaleString('zh-CN', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+            // 亏损预警颜色切换
+            if (netProfit < 0) {
+                totalProfitDisplay.classList.replace('text-emerald-400', 'text-red-400');
+                totalProfitDisplay.classList.replace('text-sky-400', 'text-red-400');
+            } else {
+                totalProfitDisplay.classList.replace('text-red-400', 'text-emerald-400');
+            }
+        }
+
+        [salesInput, priceInput, costInput, rateInput].forEach(input => {
+            input.addEventListener('input', calculate);
+            input.addEventListener('change', calculate);
+        });
+
+        // 初始化执行
+        calculate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "ahan-arsenal-twikoo",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "twikoo-func": "1.7.15"
+  }
+}
