@@ -1,0 +1,2624 @@
+﻿<!-- 素颜光 · AI 客户运营助手 · 商家后台演示 -->
+<title>AI 客户运营助手 · 交互 Demo</title>
+<style>
+  :root {
+    --bg: #F5F4F2;
+    --panel: #FFFFFF;
+    --panel-2: #EEF0F3;
+    --ink: #15161A;
+    --ink-2: #5B5E66;
+    --ink-3: #8E929B;
+    --line: #E4E2DD;
+    --line-2: #DADEE4;
+    --accent: #D87B5F;
+    --accent-soft: #F5E3DC;
+    --ok: #6B8E7F;
+    --warn: #B8843B;
+    --info: #5B7A9E;
+    --rose: #B86575;
+    --code-bg: #1E2027;
+    --code-ink: #C9CCD3;
+    --tag-bg: #F4F1ED;
+    --shadow: 0 1px 0 rgba(20,22,26,0.04), 0 8px 24px -12px rgba(20,22,26,0.08);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --mono: 'JetBrains Mono', 'IBM Plex Mono', 'SF Mono', Menlo, monospace;
+    --serif: 'Noto Serif SC', 'Source Han Serif SC', Georgia, serif;
+    --sans: 'Inter', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.55;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === 顶部品牌条 === */
+  .topbar {
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .brand-mark {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .brand-sub {
+    font-size: 12px;
+    color: var(--ink-2);
+    letter-spacing: 0.04em;
+  }
+  .topbar-divider {
+    width: 1px;
+    height: 18px;
+    background: var(--line);
+  }
+  .merchant-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--ink-2);
+    background: var(--panel-2);
+    padding: 4px 10px;
+    border-radius: 99px;
+  }
+  .merchant-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ok);
+  }
+  .scenario-bar {
+    margin-left: auto;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .scenario-label {
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: 0.08em;
+    margin-right: 4px;
+    text-transform: uppercase;
+  }
+  .scenario-btn {
+    padding: 6px 12px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--ink-2);
+    font-family: var(--sans);
+    transition: all 0.15s;
+  }
+  .scenario-btn:hover { background: var(--bg); }
+  .scenario-btn.active {
+    background: var(--ink);
+    color: var(--panel);
+    border-color: var(--ink);
+  }
+
+  /* === 主区双栏 === */
+  .main {
+    display: grid;
+    grid-template-columns: minmax(520px, 1.05fr) minmax(720px, 1.15fr);
+    align-items: start;
+    gap: 14px;
+    padding: 14px 22px 72px;
+    max-width: 1720px;
+    margin: 0 auto;
+  }
+  .right-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr);
+    align-items: start;
+    gap: 12px;
+  }
+  @media (max-width: 1280px) {
+    .main {
+      grid-template-columns: minmax(480px, 1fr) minmax(460px, 0.95fr);
+      max-width: 1280px;
+    }
+    .right-workspace { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 960px) {
+    .main { grid-template-columns: 1fr; }
+  }
+
+  /* === 左：顾客对话 === */
+  .chat-panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 108px);
+    min-height: 760px;
+    overflow: hidden;
+    position: sticky;
+    top: 72px;
+  }
+  .chat-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, #FAFAF8, var(--panel));
+  }
+  .chat-customer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .customer-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .customer-name { font-size: 13px; font-weight: 500; }
+  .customer-source { font-size: 11px; color: var(--ink-3); }
+
+  .proactive-btn {
+    padding: 6px 12px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .proactive-btn:hover { background: #C56A4E; }
+  .proactive-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .proactive-btn::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .chat-empty {
+    margin: auto;
+    text-align: center;
+    color: var(--ink-3);
+    font-size: 13px;
+    max-width: 280px;
+  }
+  .chat-empty-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink-2);
+    margin-bottom: 6px;
+  }
+
+  .msg {
+    display: flex;
+    gap: 8px;
+    max-width: 78%;
+    animation: msgIn 0.25s ease-out;
+  }
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .msg-bubble {
+    padding: 10px 13px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    word-wrap: break-word;
+  }
+  .msg.customer {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+  .msg.customer .msg-bubble {
+    background: var(--ink);
+    color: #FAFAFA;
+    border-bottom-right-radius: 4px;
+  }
+  .msg.ai .msg-bubble {
+    background: var(--panel-2);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+  }
+  .msg.ai.proactive .msg-bubble {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+  }
+  .msg-meta {
+    font-size: 10px;
+    color: var(--ink-3);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ai-badge {
+    display: inline-block;
+    font-size: 9px;
+    background: var(--ink);
+    color: white;
+    padding: 1px 5px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+  }
+  .proactive-tag {
+    display: inline-block;
+    font-size: 9px;
+    background: var(--accent);
+    color: white;
+    padding: 1px 5px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 12px 14px;
+    background: var(--panel-2);
+    border-radius: 14px;
+    width: fit-content;
+  }
+  .typing-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--ink-3);
+    border-radius: 50%;
+    animation: typingBounce 1.2s infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .chat-input-area {
+    border-top: 1px solid var(--line);
+    padding: 12px 16px;
+    background: var(--panel);
+  }
+  .chat-input-form {
+    display: flex;
+    gap: 8px;
+  }
+  .chat-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-family: var(--sans);
+    background: var(--bg);
+    resize: none;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .chat-input:focus { border-color: var(--ink-2); }
+  .send-btn {
+    padding: 10px 18px;
+    background: var(--ink);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    cursor: pointer;
+    font-family: var(--sans);
+  }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .quick-replies {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .quick-reply {
+    padding: 4px 10px;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    font-size: 11px;
+    color: var(--ink-2);
+    cursor: pointer;
+    font-family: var(--sans);
+  }
+  .quick-reply:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); }
+
+  /* === 右：商家后台 === */
+  .ops-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ops-section {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .ops-header {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--panel-2);
+  }
+  .ops-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--ink-2);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .ops-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-3);
+  }
+  .ops-body {
+    padding: 12px 14px;
+  }
+  .ops-body.empty {
+    color: var(--ink-3);
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  /* 实时决策 */
+  .decision-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .decision-row:last-child { margin-bottom: 0; }
+  .decision-label {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    min-width: 64px;
+    padding-top: 2px;
+  }
+  .decision-value {
+    flex: 1;
+    min-width: 0;
+    font-size: 12.5px;
+    color: var(--ink);
+    font-family: var(--mono);
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  .decision-value.rationale {
+    font-family: var(--sans);
+    color: var(--ink-2);
+    font-style: italic;
+    border-left: 2px solid var(--accent);
+    padding-left: 8px;
+  }
+  .next-action-pill {
+    display: inline-block;
+    padding: 3px 9px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .next-action-pill.转人工 { background: #FCE5E5; color: #B84141; }
+  .next-action-pill.无 { background: var(--panel-2); color: var(--ink-3); }
+
+  /* 标签档案 */
+  .tag-group {
+    margin-bottom: 10px;
+  }
+  .tag-group:last-child { margin-bottom: 0; }
+  .tag-group-label {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tag-list {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    padding: 3px 9px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    background: var(--tag-bg);
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    animation: tagIn 0.3s ease-out;
+  }
+  @keyframes tagIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .tag.skin { background: #E8F0EC; color: #3F6356; }
+  .tag.stage { background: #F4ECDC; color: #7C5A20; }
+  .tag.focus { background: #F4E1E5; color: #84364A; }
+  .tag.price { background: #E3EBF3; color: #3A5775; }
+  .tag.product { background: #EAF0DF; color: #516323; }
+  .tag.intent { background: #EDE8F3; color: #5E4B73; }
+  .tag.risk { background: #F5E2DD; color: #8A422F; }
+  .tag.strategy { background: #E8EDF1; color: #415667; }
+  .tag-conf {
+    font-family: var(--mono);
+    font-size: 9px;
+    opacity: 0.6;
+  }
+  .tag-source {
+    font-family: var(--mono);
+    font-size: 9px;
+    opacity: 0.5;
+  }
+  .tag-empty {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    font-style: italic;
+  }
+
+  /* 知识库命中 */
+  .kb-hit {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--code-ink);
+    background: var(--code-bg);
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 4px;
+    border-left: 2px solid var(--accent);
+  }
+  .kb-hit:last-child { margin-bottom: 0; }
+  .kb-hit-source {
+    color: #7A9AAD;
+    margin-right: 6px;
+  }
+
+  /* 复购任务 */
+  .task-item {
+    padding: 10px;
+    background: var(--panel-2);
+    border-radius: var(--radius-sm);
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .task-item:last-child { margin-bottom: 0; }
+  .task-text {
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .task-when {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* 客户资产沉淀 */
+  .asset-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .asset-row:last-child { border-bottom: none; }
+  .asset-row-label {
+    font-size: 10px;
+    color: var(--ink-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    min-width: 58px;
+  }
+  .asset-row-value {
+    flex: 1;
+    min-width: 0;
+    font-size: 12px;
+    color: var(--ink);
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+  .asset-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-end;
+  }
+  .asset-chip {
+    padding: 2px 7px;
+    background: var(--tag-bg);
+    border-radius: 4px;
+    font-size: 11px;
+    color: var(--ink-2);
+  }
+
+  /* 知识库抽屉 */
+  .kb-drawer {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 0;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .kb-drawer-header {
+    padding: 10px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--panel-2);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .kb-drawer.open .kb-drawer-header { border-bottom-color: var(--line); }
+  .kb-drawer-title {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    text-transform: uppercase;
+    font-weight: 500;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .kb-drawer-title-note {
+    font-size: 10.5px;
+    color: var(--ink-3);
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+  }
+  .kb-toggle {
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--ink-2);
+    transition: transform 0.2s;
+  }
+  .kb-drawer.open .kb-toggle { transform: rotate(45deg); }
+  .kb-content {
+    display: none;
+    padding: 10px 12px 12px;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    overflow: visible;
+  }
+  .kb-drawer.open .kb-content { display: grid; }
+  @media (max-width: 700px) {
+    .kb-content { grid-template-columns: 1fr; }
+  }
+  .kb-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 9px 10px;
+  }
+  .kb-card-title {
+    font-size: 11.5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .kb-card-title::before {
+    content: '';
+    width: 3px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  .kb-row {
+    font-size: 11.2px;
+    color: var(--ink-2);
+    padding: 3px 0;
+    border-bottom: 1px dashed var(--line);
+    font-family: var(--mono);
+  }
+  .kb-row:last-child { border-bottom: none; }
+  .kb-row b { color: var(--ink); font-weight: 600; }
+  .kb-card.dynamic {
+    border-color: #E7C7BC;
+    background: #FFF8F5;
+  }
+  .kb-card.dynamic .kb-card-title::before {
+    background: var(--warn);
+  }
+  .kb-growth-note {
+    font-size: 10.5px;
+    color: var(--ink-3);
+    line-height: 1.5;
+    margin: -2px 0 4px;
+  }
+  .kb-growth-empty {
+    font-size: 11.5px;
+    color: var(--ink-3);
+    font-style: italic;
+    padding: 5px 0 2px;
+  }
+  .kb-growth-row {
+    font-size: 11.3px;
+    color: var(--ink-2);
+    line-height: 1.55;
+    padding: 5px 0;
+    border-bottom: 1px dashed #E9D6CE;
+  }
+  .kb-growth-row:last-child { border-bottom: none; }
+  .kb-growth-meta {
+    display: inline-flex;
+    gap: 5px;
+    margin-left: 4px;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--accent);
+  }
+
+  /* 底部商业化条 */
+  .tier-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--panel);
+    border-top: 1px solid var(--line);
+    padding: 10px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--ink-2);
+    z-index: 5;
+  }
+  .tier-info {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .tier-pill {
+    padding: 3px 10px;
+    background: var(--ink);
+    color: white;
+    border-radius: 99px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+  .tier-meter {
+    font-family: var(--mono);
+    color: var(--ink-3);
+  }
+  .tier-meter b {
+    color: var(--ink);
+    display: inline-block;
+  }
+  .tier-meter b.bump {
+    color: var(--accent);
+    animation: metricBump 0.55s ease;
+  }
+  @keyframes metricBump {
+    0% { transform: translateY(0); }
+    35% { transform: translateY(-2px); }
+    100% { transform: translateY(0); }
+  }
+  .tier-note {
+    color: var(--ink-3);
+    font-style: italic;
+  }
+
+  .err-banner {
+    background: #FCE5E5;
+    color: #8B2A2A;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    margin: 10px 16px 0;
+  }
+
+  /* === API 配置按钮 + 模态框 === */
+  .config-btn {
+    padding: 6px 12px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--ink-2);
+    font-family: var(--sans);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .config-btn:hover { background: var(--bg); }
+  .config-btn.unset {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+    animation: pulseBorder 2s infinite;
+  }
+  .config-btn.ok::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ok);
+  }
+  @keyframes pulseBorder {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(216,123,95,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(216,123,95,0); }
+  }
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,22,26,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--panel);
+    border-radius: var(--radius);
+    padding: 24px;
+    max-width: 460px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .modal-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .modal-desc {
+    font-size: 13px;
+    color: var(--ink-2);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .modal-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 12px;
+    outline: none;
+    background: var(--bg);
+  }
+  .modal-input:focus { border-color: var(--ink); }
+  .modal-hint {
+    font-size: 11px;
+    color: var(--ink-3);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .modal-hint code {
+    background: var(--panel-2);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: var(--mono);
+    color: var(--ink);
+  }
+  .modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+  .modal-btn {
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--ink-2);
+    font-family: var(--sans);
+  }
+  .modal-btn:hover { background: var(--bg); }
+  .modal-btn.primary {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: white;
+  }
+  .modal-btn.primary:hover { background: #000; }
+</style>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">素颜光</span>
+    <span class="brand-sub">· AI 客户运营助手</span>
+  </div>
+  <div class="topbar-divider"></div>
+  <span class="merchant-badge">商家后台视角 · demo 店铺</span>
+  <button class="config-btn unset" id="configBtn">⚙ 配置 API</button>
+
+  <div class="scenario-bar">
+    <span class="scenario-label">场景</span>
+    <button class="scenario-btn active" data-scenario="新客">新客咨询</button>
+    <button class="scenario-btn" data-scenario="用后疑问">已购3天 · 用后疑问</button>
+    <button class="scenario-btn" data-scenario="复购触达">已购30天 · 复购触达</button>
+    <button class="scenario-btn" data-scenario="流失召回">已购60天 · 流失召回</button>
+    <button class="scenario-btn" data-scenario="自由">自由对话</button>
+  </div>
+</header>
+
+<main class="main">
+  <!-- 左：顾客对话面板 -->
+  <section class="chat-panel">
+    <div class="chat-header">
+      <div class="chat-customer">
+        <div class="avatar" id="custAvatar">客</div>
+        <div class="customer-meta">
+          <div class="customer-name" id="custName">访客 #2847</div>
+          <div class="customer-source" id="custSource">来自店铺客服 · 首次接触</div>
+        </div>
+      </div>
+      <button class="proactive-btn" id="proactiveBtn" title="模拟 AI 按复购规则主动触达老客">
+        触发复购任务
+      </button>
+    </div>
+
+    <div class="chat-messages" id="messages">
+      <div class="chat-empty" id="emptyState">
+        <div class="chat-empty-title">等待客户消息</div>
+        <div>切换上方场景，或直接发送一句话开始对话。AI 会同步在右侧显示后台决策。</div>
+      </div>
+    </div>
+
+    <div class="chat-input-area">
+      <form class="chat-input-form" id="chatForm">
+        <textarea class="chat-input" id="chatInput" rows="2" placeholder="以客户身份发消息（Enter 发送，Shift+Enter 换行）"></textarea>
+        <button type="submit" class="send-btn" id="sendBtn">发送</button>
+      </form>
+      <div class="quick-replies" id="quickReplies"></div>
+    </div>
+  </section>
+
+  <div class="right-workspace">
+  <!-- 右：商家后台决策面板 -->
+  <aside class="ops-panel">
+    <!-- 1. 实时决策 -->
+    <div class="ops-section">
+      <div class="ops-header">
+        <span class="ops-title">实时决策 · 决策层</span>
+        <span class="ops-num" id="turnCount">turn 0</span>
+      </div>
+      <div class="ops-body empty" id="decisionBody">
+        客户发消息后，这里显示 AI 对本条消息的意图判断、动作选择和判断依据。
+      </div>
+    </div>
+
+    <!-- 2. 客户档案（累积标签） -->
+    <div class="ops-section">
+      <div class="ops-header">
+        <span class="ops-title">客户档案 · 知识层（壁垒）</span>
+        <span class="ops-num" id="tagCount">0 个标签</span>
+      </div>
+      <div class="ops-body empty" id="profileBody">尚未识别</div>
+    </div>
+
+    <!-- 3. 知识库命中 -->
+    <div class="ops-section">
+      <div class="ops-header">
+        <span class="ops-title">知识库命中 · 历史可追溯</span>
+        <span class="ops-num" id="kbCount">0 条</span>
+      </div>
+      <div class="ops-body empty" id="kbBody">
+        本轮和历史回复用到的知识库条目会累积在这里（可追溯、可纠正）。
+      </div>
+    </div>
+
+    <!-- 4. 复购资产 -->
+    <div class="ops-section">
+      <div class="ops-header">
+        <span class="ops-title">复购资产 · 客户生命周期</span>
+        <span class="ops-num" id="repurchaseCount">0 条线索</span>
+      </div>
+      <div class="ops-body empty" id="repurchaseBody">
+        已购商品、上次购买时间、复购周期、触达依据和触达记录会沉淀在这里。
+      </div>
+    </div>
+
+    <!-- 5. 复购任务队列 -->
+    <div class="ops-section">
+      <div class="ops-header">
+        <span class="ops-title">复购任务队列 · 执行层</span>
+        <span class="ops-num" id="taskCount">0 项</span>
+      </div>
+      <div class="ops-body empty" id="taskBody">
+        AI 根据复购规则自动排入的主动触达任务会在这里显示。
+      </div>
+    </div>
+  </aside>
+
+<!-- 知识库抽屉 -->
+<div class="kb-drawer open" id="kbDrawer">
+  <div class="kb-drawer-header" id="kbHeader">
+    <div class="kb-drawer-title">
+      知识层 · 商家自己的四个库
+      <span class="kb-drawer-title-note">越攒越厚，别人搬不走 ——「素颜光」店铺</span>
+    </div>
+    <span class="kb-toggle">+</span>
+  </div>
+  <div class="kb-content">
+    <div class="kb-card">
+      <div class="kb-card-title">商品库</div>
+      <div class="kb-row"><b>A醇抗皱精华</b> · ¥329 · 0.3% 视黄醇 · 抗老核心款</div>
+      <div class="kb-row"><b>多肽紧致面霜</b> · ¥259 · 夜间锁效 · 抗老套装组合品</div>
+      <div class="kb-row"><b>玻尿酸补水精华</b> · ¥159 · 引流款 · 敏感肌入门</div>
+    </div>
+    <div class="kb-card">
+      <div class="kb-card-title">问答库（节选）</div>
+      <div class="kb-row">Q: 敏感肌能用A醇？ → 建议建立耐受，玻尿酸打底</div>
+      <div class="kb-row">Q: 孕期可用？ → <b>转人工</b>（禁忌）</div>
+      <div class="kb-row">Q: 嫌贵？ → 算单天成本 + 推引流款 + 30天可退</div>
+    </div>
+    <div class="kb-card">
+      <div class="kb-card-title">话术规则</div>
+      <div class="kb-row">嫌贵 → 共情 → 讲价值 → 给台阶（不硬逼）</div>
+      <div class="kb-row">用后不适 → 安抚 + 方案 + 设回访（防退货）</div>
+      <div class="kb-row">超出范围 → 转人工（宁可不答不能答错）</div>
+    </div>
+    <div class="kb-card">
+      <div class="kb-card-title">复购规则</div>
+      <div class="kb-row">精华类：购买后 <b>第 30 天</b> 自动触达（老客价）</div>
+      <div class="kb-row">已购精华 + 关注抗老 → 推面霜做套装关联</div>
+      <div class="kb-row"><b>60 天未复购</b> → 推唤醒券（流失召回）</div>
+    </div>
+    <div class="kb-card dynamic">
+      <div class="kb-card-title">新增沉淀（越聊越厚）</div>
+      <div class="kb-growth-note">这里只展示基础库原本没有的新常见问答 / 话术 / 售后 / 复购规则；普通商品推荐和已有规则只算“知识命中”。</div>
+      <div id="kbGrowthBody">
+        <div class="kb-growth-empty">当前对话没有发现基础库之外的新规则。</div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</main>
+
+<!-- 底部商业化条 -->
+<footer class="tier-bar">
+  <div class="tier-info">
+    <span class="tier-pill">复购包 · 当前套餐</span>
+    <span class="tier-meter" title="初始值模拟一个月中段的真实运营盘：1247 次对话、3820 条历史标签、89 次复购任务；演示过程中会按新增对话/标签/任务实时增加。">本月对话 <b id="metricChats">1,247</b> / <span id="metricQuota">5,000</span> · 已沉淀标签 <b id="metricTags">3,820</b> 条 · 复购任务执行 <b id="metricTasks">89</b> 次</span>
+  </div>
+  <span class="tier-note">本月累计运营盘，随演示实时递增 · 商家自有数据，多租户隔离</span>
+</footer>
+
+<!-- API 配置模态框 -->
+<div class="modal-overlay" id="configModal">
+  <div class="modal">
+    <div class="modal-title">配置 DeepSeek API 密钥</div>
+    <div class="modal-desc">
+      这个 demo 会直接在你的浏览器里调用 DeepSeek API，需要你的 API 密钥才能跑通。密钥<b>只保存在本次会话的内存里</b>，刷新页面就清除，不会上传到任何服务器。
+    </div>
+    <input type="password" class="modal-input" id="apiKeyInput" placeholder="sk-..." autocomplete="off" spellcheck="false"/>
+    <div class="modal-hint">
+      · 没有密钥？去 <code>platform.deepseek.com</code> → API keys 创建一个<br>
+      · 给老板演示前，建议先充值 10 元人民币，足够跑几百轮对话<br>
+      · 上线部署时建议在自己的服务器加一层代理，不要把密钥放在前端
+    </div>
+    <div class="modal-actions">
+      <button class="modal-btn" id="modalCancel">取消</button>
+      <button class="modal-btn primary" id="modalSave">保存并继续</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// =============================
+// 状态
+// =============================
+let API_KEY = '';  // 仅存内存，刷新即清除
+
+const TAG_DIMS = ['肤质', '购买阶段', '产品偏好', '实时意图', '运营风险', '关注点', '价格敏感度', '沟通策略'];
+const STABLE_TAG_DIMS = ['肤质', '产品偏好', '运营风险', '关注点', '价格敏感度', '沟通策略'];
+const DISPLAY_TAG_GROUPS = [
+  { dim: '肤质', label: '肤质', color: 'skin' },
+  { dim: '购买阶段', label: '购买阶段', color: 'stage' },
+  { dim: '产品偏好', label: '产品偏好', color: 'product' },
+  { dim: '运营风险', label: '运营风险', color: 'risk' },
+  { dim: '价格敏感度', label: '价格敏感度', color: 'price' }
+];
+const DIMENSION_ALIASES = {
+  阶段: '购买阶段',
+  购买关系: '购买阶段',
+  意图: '实时意图',
+  风险: '运营风险',
+  产品需求: '产品偏好',
+  沟通偏好: '沟通策略'
+};
+const MEANINGLESS_TAG_VALUES = new Set(['未明确', '不明确', '未知', '未识别', '尚未识别', '无', '暂无', 'N/A', 'NA', '-']);
+
+const TEXT_TAG_RULES = [
+  { re: /敏感肌|敏感皮|敏皮|皮肤.{0,8}敏感|有点敏感|比较敏感|容易敏感|易敏|泛红|刺痛|过敏|容易痒|发痒|瘙痒|痒/, dimension: '肤质', value: '敏感肌', confidence: 0.9 },
+  { re: /干皮|偏干|干燥|起皮|紧绷/, dimension: '肤质', value: '干皮/偏干', confidence: 0.82 },
+  { re: /油皮|出油|油光|冒油|闭口|痘痘|长痘/, dimension: '肤质', value: '油皮/易闷痘', confidence: 0.82 },
+  { re: /补水|保湿|缺水|干燥|起皮|锁水|水润|滋润/, dimension: '产品偏好', value: '保湿修护', confidence: 0.86 },
+  { re: /美白|提亮|改善肤色|肤色不均|暗沉|黄气|去黄|变白|亮肤/, dimension: '产品偏好', value: '美白提亮', confidence: 0.86 },
+  { re: /祛痘|痘痘|闭口|粉刺|控油|黑头|毛孔/, dimension: '产品偏好', value: '控油祛痘', confidence: 0.84 },
+  { re: /抗老|抗衰|细纹|皱纹|紧致|松弛|法令纹|垮脸/, dimension: '产品偏好', value: '抗老紧致', confidence: 0.88 },
+  { re: /舒缓|修护|屏障|维稳|泛红|刺痛|过敏|不耐受|皮肤.{0,8}敏感|容易痒|发痒|瘙痒|痒/, dimension: '产品偏好', value: '舒缓修护', confidence: 0.86 },
+  { re: /A醇|视黄醇|抗皱精华/, dimension: '产品偏好', value: 'A醇用户/意向', confidence: 0.86 },
+  { re: /玻尿酸|透明质酸|补水精华/, dimension: '产品偏好', value: '玻尿酸补水意向', confidence: 0.84 },
+  { re: /多肽|紧致面霜|面霜/, dimension: '产品偏好', value: '多肽面霜意向', confidence: 0.84 },
+  { re: /多少钱|价格|有优惠|优惠券|活动|折扣|便宜|贵|划算|预算/, dimension: '实时意图', value: '咨询价格/优惠', confidence: 0.86 },
+  { re: /怎么用|用法|多久用一次|建立耐受|先用什么|步骤|搭配/, dimension: '实时意图', value: '咨询用法', confidence: 0.86 },
+  { re: /能用吗|适合吗|可不可以用|能不能用|敏感肌能用/, dimension: '实时意图', value: '适配咨询', confidence: 0.84 },
+  { re: /退货|退款|退了|退掉|现在就退|直接退|不要了/, dimension: '实时意图', value: '退货/退款处理', confidence: 0.95 },
+  { re: /男士|男生|男的|男朋友|男友|老公|爸爸|先生用|给他买/, dimension: '实时意图', value: '男士护肤咨询', confidence: 0.82 },
+  { re: /复购|补一瓶|再买|再来一瓶|继续买|回购/, dimension: '购买阶段', value: '复购意向老客', confidence: 0.92 },
+  { re: /大学生|学生党|学生|没太多钱|没有太多钱|没钱|预算有限|生活费|省钱|嫌贵|太贵|便宜点|优惠|券|降价|价格|预算/, dimension: '价格敏感度', value: '价格敏感', confidence: 0.92 },
+  { re: /品质|效果更好|成分好|不想买便宜的|贵点也行|预算不是问题|主要看效果|更看重效果/, dimension: '价格敏感度', value: '品质优先', confidence: 0.82 },
+  { re: /退货|退款|退了|退掉|不想试|不要试|别让我试|不想继续用|不想用了|不要了/, dimension: '运营风险', value: '退货/退款风险', confidence: 0.98 },
+  { re: /脱皮|泛红|刺痛|过敏|不适|爆皮|烂脸|不耐受|容易痒|发痒|瘙痒|痒/, dimension: '运营风险', value: '过敏不适风险', confidence: 0.9 },
+  { re: /大学生|学生党|学生|没太多钱|没有太多钱|没钱|预算有限|生活费|省钱|嫌贵|太贵|便宜点|优惠|券|降价|价格/, dimension: '运营风险', value: '价格流失风险', confidence: 0.86 },
+  { re: /犹豫|考虑一下|再看看|纠结|等等再说/, dimension: '运营风险', value: '犹豫未下单风险', confidence: 0.78 },
+  { re: /直接说|简单说|别绕|怎么安排|你直接推荐|给个方案/, dimension: '沟通策略', value: '直接给方案', confidence: 0.78 },
+  { re: /为什么|原理|成分|详细|讲清楚|解释一下|安全吗/, dimension: '沟通策略', value: '需要详细解释', confidence: 0.78 },
+  { re: /别推|别营销|不要推销|不想被推|别劝我买/, dimension: '沟通策略', value: '抗拒推销', confidence: 0.86 },
+  { re: /退货|退款|别让我试|不用劝|不想继续用/, dimension: '沟通策略', value: '人工介入优先', confidence: 0.9 }
+];
+
+function emptyAssetState() {
+  return {
+    assetTimeline: [],
+    purchaseSignals: [],
+    repurchaseData: {
+      products: [],
+      lastPurchase: '',
+      orderVerified: false,
+      pendingOrderClaim: '',
+      cycle: '',
+      intent: '',
+      triggers: [],
+      touchHistory: [],
+      followUps: []
+    },
+    knowledgeHistory: [],
+    knowledgeGrowth: []
+  };
+}
+
+function hydrateProfile(seed = {}, source = '初始档案') {
+  const profile = { ...Object.fromEntries(TAG_DIMS.map(dim => [dim, []])), ...emptyAssetState() };
+  TAG_DIMS.forEach(dim => {
+    const seedList = seed[dim] || seed[Object.keys(DIMENSION_ALIASES).find(k => DIMENSION_ALIASES[k] === dim)] || [];
+    profile[dim] = seedList.map(t => normalizeTag({
+      dimension: dim,
+      value: t.value,
+      confidence: t.confidence || 0.7,
+      hits: t.hits || 1,
+      firstSource: t.firstSource || source,
+      lastSource: t.lastSource || source
+    })).filter(Boolean);
+  });
+  return profile;
+}
+
+function normalizeTag(tag) {
+  if (!tag) return null;
+  let dimension = DIMENSION_ALIASES[tag.dimension] || tag.dimension;
+  let value = String(tag.value || '').trim();
+  if (!dimension || !value) return null;
+  const text = `${dimension} ${value}`;
+  const allowedByDimension = {
+    肤质: ['肤质'],
+    购买阶段: ['购买阶段'],
+    产品偏好: ['产品偏好'],
+    实时意图: ['实时意图'],
+    运营风险: ['运营风险'],
+    关注点: ['产品偏好', '关注点'],
+    价格敏感度: ['价格敏感度'],
+    沟通策略: ['沟通策略']
+  };
+  const allowed = allowedByDimension[dimension] || TAG_DIMS;
+  const matched = TEXT_TAG_RULES.find(rule => allowed.includes(rule.dimension) && rule.re.test(text));
+  if (matched) {
+    dimension = matched.dimension;
+    value = matched.value;
+  }
+  if (value === '复购老客') value = '已复购老客';
+  return { ...tag, dimension, value };
+}
+
+function cloneTag(t) {
+  return {
+    value: t.value,
+    confidence: t.confidence || 0.7,
+    hits: t.hits || 1,
+    firstSource: t.firstSource || '历史档案',
+    lastSource: t.lastSource || '历史档案'
+  };
+}
+
+function isMeaningfulTag(t) {
+  const tag = normalizeTag(t);
+  if (!tag || !tag.dimension || !tag.value) return false;
+  const value = String(tag.value).trim();
+  if (!value || MEANINGLESS_TAG_VALUES.has(value)) return false;
+  if (/未明确|不明确|未知|未识别|尚未/.test(value)) return false;
+  return true;
+}
+
+function inheritStableAssets(nextProfile, previousProfile, nextScenario, previousScenario = '历史') {
+  const canInheritSameCustomer =
+    previousProfile &&
+    previousScenario !== '自由' &&
+    nextScenario !== '新客' &&
+    nextScenario !== '自由';
+  if (!canInheritSameCustomer) return nextProfile;
+  STABLE_TAG_DIMS.forEach(dim => {
+    const prevTags = (previousProfile[dim] || []).filter(t => isMeaningfulTag({ dimension: dim, value: t.value }));
+    if (prevTags.length === 0) return;
+    if (dim === '肤质') {
+      nextProfile[dim] = prevTags.map(t => ({ ...cloneTag(t), lastSource: `继承自${previousScenario}档案` }));
+      return;
+    }
+    prevTags.forEach(tag => {
+      const existing = nextProfile[dim].find(x => x.value === tag.value);
+      if (existing) {
+        existing.confidence = Math.max(existing.confidence || 0.7, tag.confidence || 0.7);
+        existing.hits = Math.max(existing.hits || 1, tag.hits || 1);
+        existing.firstSource = existing.firstSource || tag.firstSource;
+        existing.lastSource = `继承自${previousScenario}档案`;
+      } else {
+        nextProfile[dim].push({ ...cloneTag(tag), lastSource: `继承自${previousScenario}档案` });
+      }
+    });
+  });
+  ['purchaseSignals', 'knowledgeHistory', 'knowledgeGrowth'].forEach(key => {
+    nextProfile[key] = [...(previousProfile[key] || [])];
+  });
+  nextProfile.assetTimeline = [...(previousProfile.assetTimeline || [])];
+  const prevData = previousProfile.repurchaseData || {};
+  nextProfile.repurchaseData.products = [...(prevData.products || []), ...(nextProfile.repurchaseData.products || [])]
+    .filter((x, i, arr) => x && arr.indexOf(x) === i);
+  nextProfile.repurchaseData.pendingOrderClaim = prevData.pendingOrderClaim || nextProfile.repurchaseData.pendingOrderClaim;
+  nextProfile.repurchaseData.intent = prevData.intent || nextProfile.repurchaseData.intent;
+  if ((previousProfile.purchaseSignals || []).some(x => /退货|退款|用后风险/.test(x))) {
+    addUnique(nextProfile.purchaseSignals, '历史退货/退款风险');
+  }
+  return nextProfile;
+}
+
+const STATE = {
+  scenario: '新客',
+  messages: [],       // {role, content, meta}
+  customerProfile: hydrateProfile(),
+  tasks: [],
+  visitorSeq: 2847,
+  businessMetrics: {
+    baseChats: 1247,
+    chatQuota: 5000,
+    baseTags: 3820,
+    baseTasks: 89,
+    tagsAdded: 0,
+    tasksCreated: 0
+  },
+  loading: false,
+  turn: 0,
+};
+
+const SCENARIOS = {
+  新客: {
+    name: '访客 #2847',
+    source: '来自店铺客服 · 首次接触',
+    avatar: '新',
+    initialProfile: {},
+    initialMessages: [],
+    quickReplies: [
+      '你家A醇精华，我皮肤有点敏感能用吗？',
+      '那个精华有点贵啊…',
+      '我35岁了，想抗老用什么好？'
+    ],
+  },
+  '用后疑问': {
+    name: '李同学（老客）',
+    source: '已购 玻尿酸补水精华 · 3 天前 · 历史咨询敏感肌',
+    avatar: '李',
+    initialProfile: {
+      肤质: [{value: '敏感肌', confidence: 0.8, firstSource: '历史咨询：客户自述皮肤敏感'}],
+      购买阶段: [{value: '首购未复购', confidence: 1.0}],
+      产品偏好: [{value: '玻尿酸补水意向', confidence: 1.0, firstSource: '已核验订单：玻尿酸补水精华'}],
+      关注点: [],
+      价格敏感度: []
+    },
+    initialMessages: [],
+    quickReplies: [
+      '用了三天有点脱皮，是不是过敏了不能用了？',
+      '怎么用都没什么效果',
+      '能退货吗？'
+    ],
+  },
+  '复购触达': {
+    name: '李同学（老客）',
+    source: '已购 玻尿酸补水精华 · 30 天前 · 曾反馈不适',
+    avatar: '李',
+    initialProfile: {
+      肤质: [{value: '中性偏干', confidence: 0.85}],
+      购买阶段: [{value: '首购未复购', confidence: 1.0}],
+      产品偏好: [
+        {value: '玻尿酸补水意向', confidence: 1.0, firstSource: '已核验订单：玻尿酸补水精华'},
+        {value: '舒缓修护', confidence: 0.86, firstSource: '历史反馈：敏感/易痒'}
+      ],
+      关注点: [],
+      价格敏感度: []
+    },
+    initialMessages: [],
+    quickReplies: [
+      '好的，要补一瓶',
+      '能再便宜点吗？',
+      '面霜什么效果？'
+    ],
+  },
+  '流失召回': {
+    name: '李同学（沉默老客）',
+    source: '已购 玻尿酸补水精华 · 60 天前 · 期间未复购',
+    avatar: '李',
+    initialProfile: {
+      肤质: [{value: '敏感肌', confidence: 0.85}],
+      购买阶段: [{value: '流失风险客户', confidence: 1.0}],
+      产品偏好: [
+        {value: '玻尿酸补水意向', confidence: 1.0, firstSource: '已核验订单：玻尿酸补水精华'},
+        {value: '舒缓修护', confidence: 0.86}
+      ],
+      运营风险: [{value: '复购断档风险', confidence: 0.9}],
+      关注点: [],
+      价格敏感度: [{value: '价格敏感', confidence: 0.85}]
+    },
+    initialMessages: [],
+    quickReplies: [
+      '最近太忙忘了补',
+      '有优惠券吗？',
+      '之前用着有点刺激'
+    ],
+  },
+  自由: {
+    name: '测试客户',
+    source: '自由对话模式',
+    avatar: '试',
+    initialProfile: {},
+    initialMessages: [],
+    quickReplies: [],
+  }
+};
+
+// =============================
+// 系统提示词（产品的"大脑"——决策层）
+// =============================
+const SYSTEM_PROMPT = `你是"素颜光"国货抗老护肤品牌的 AI 客户运营助手。你不是被动回答的客服——你会判断、会给客户打标签、会主动出手做复购。
+
+# 商品库
+- A醇抗皱精华 · ¥329 · 核心抗老款（0.3% 视黄醇，需建立耐受）
+- 多肽紧致面霜 · ¥259 · 夜间锁效，与精华做"抗老套装"
+- 玻尿酸补水精华 · ¥159 · 引流款，敏感肌入门友好
+
+# 工作机制（三条决策线，每条都要跑）
+1. 意图识别 → 决定怎么答
+2. 客户分层 → 边聊边打标签（肤质 / 购买阶段 / 产品偏好 / 实时意图 / 运营风险 / 关注点 / 价格敏感度 / 沟通策略），抓到的标签要作为客户资产长期保留，不要用新标签覆盖旧标签
+3. 复购时机 → 判断要不要设回访、要不要主动出手，并尽量补充购买时间、已购商品、复购周期、触达依据等可沉淀资产
+
+# 决策规则（红线）
+- 标签只能来自客户明确表达或已核验订单/历史档案，不能把商品属性、AI推荐话术、知识库条目反推成客户标签
+- 近义词要归一：皮肤有点敏感/容易痒/发痒=肤质「敏感肌」；补水/保湿/缺水/干燥=产品偏好「保湿修护」；美白/提亮/改善肤色/暗沉=「美白提亮」；抗老/抗衰/细纹/紧致=「抗老紧致」；退货/退款/不要了=运营风险「退货/退款风险」
+- 商品被推荐/被提到不等于客户已购买；只有已核验订单或客户明确说买了/下单了，才可沉淀为已购商品
+- 涉及孕期 / 哺乳 / 严重皮肤问题 → next_action 必须="转人工"
+- 知识库答不上 → next_action="转人工"，宁可不答不能答错
+- 嫌贵：先共情 → 讲价值（如"一天不到 7 块"）→ 给台阶（推引流款 + 30天可退），不硬逼
+- 用后不适：先安抚 → 给方案 → 必须设回访任务（next_action 含"设第N天回访"）
+- 客户明确说退货/退款/不想继续试：不要再劝试用，必须 next_action="转人工"，由人工售后承接退货处理；如果已多次表达退货，直接确认诉求并转人工
+- 敏感肌 + A醇：建议建立耐受 + 玻尿酸打底
+- 复购触达：只有客户档案/订单记录确认已购时，才可以带上次购买时间和老客专属价
+- 已核验订单中只要出现“已购N天/购买后N天/距今N天”，不管 N 是多少，都视为已购老客，老客权益可用；N 较小时偏关怀/使用指导，N 接近复购周期时再加强复购提醒
+- 客户自称“买过/3个月前买过/我是老客”，但客户档案里没有已核验订单时：只能说“我先帮您核一下订单/购买记录”，next_action="核验订单"，不能承诺老客价、老客福利、专属券或复购周期
+- 男士咨询：店内没有男士专属线时，不要硬推“男士款”；先问肤质/需求/使用习惯，再推荐男女通用功效品。护肤新手优先玻尿酸补水精华；明确抗老再推荐 A醇并提醒建立耐受。若需求与现有商品不匹配，next_action="转人工"，并沉淀男士新品需求
+
+# 输出格式（严格）
+只输出一个 JSON 对象，不要任何前后文字，不要 markdown 代码块。结构：
+{
+  "reply": "给客户的回复（口语化、有温度、可适度用 emoji，对客户称'您'）",
+  "intent": "成分咨询|比价犹豫|用后疑问|复购意向|通用咨询|超出范围",
+  "tags_added": [
+    {"dimension": "肤质|购买阶段|产品偏好|实时意图|运营风险|关注点|价格敏感度|沟通策略", "value": "具体值", "confidence": 0.0-1.0}
+  ],
+  "knowledge_hit": ["商品库:A醇精华", "话术规则:嫌贵共情", ...],
+  "asset_notes": ["本轮值得沉淀的客户资产，如买过A醇、3个月前购买、抗老套装意向、价格敏感等"],
+  "repurchase_signal": "可选：已购商品/购买时间/复购周期/触达依据/触达记录",
+  "next_action": "促单组合|推引流款|设第N天回访|转人工|无",
+  "rationale": "一句话给运营人员看：为什么这样回复"
+}
+
+# 客户档案（已累积的标签，影响你的判断）
+{{CUSTOMER_PROFILE}}`;
+
+const PROACTIVE_SYSTEM_PROMPT = `你是"素颜光"国货抗老护肤品牌的 AI 客户运营助手。现在不是客户来找你——是你按"复购规则"主动出手。
+
+# 先判断触发场景
+- 如果客户档案/订单显示"30天前/第30天/精华类30天"：这是到期触达。必须先看已购商品和历史反馈；有退货/不适记录时，重点是售后补偿券 + 其他温和小样，不催复购。
+- 如果客户档案/订单显示"60天前/60天未复购/流失风险"：这是流失召回。重点是好久没回来 + 唤醒券/新品体验 + 轻触达不催单。不要说"快用完了"，不要推抗老套装，不要硬补货。
+- 如果当前场景是用后疑问/售后风险：才先道歉安抚，给关怀券或小样补偿。
+
+# 主动触达写作要求
+- 称呼必须根据客户年龄/身份判断：大学生/学生党不要叫姐，可用"美女"或"同学"；男性用"帅哥"；不确定用"您好"。
+- 给出明确依据（上次购买时间）
+- 控制在 80 字以内，可用 emoji
+- 30天触达：商品是玻尿酸就围绕补水/舒缓/温和使用；商品是A醇才可以说抗老/耐受/抗老套装。不能把玻尿酸客户写成A醇客户。
+- 30天且历史退货/不适：必须先补偿，出现"关怀券/补偿券/小样/售后"，不要催补货。
+- 60天召回：必须出现"好久没回来/60天未复购/唤醒券/不着急下单"这类轻召回语气
+- 60天且历史退货/不适：承认之前体验不适，再给唤醒券和更温和的小样，不要直接复购催单。
+- reply 不能为空；如果信息不足，也要输出一句自然的关怀触达
+
+# 输出格式（严格）
+只输出一个 JSON 对象，不要任何前后文字。结构同正常对话；30天 intent="复购触达 (主动)"，60天 intent="流失召回 (主动)"。`;
+
+// =============================
+// API 调用
+// =============================
+async function callClaude(userMessage, isProactive = false) {
+  const profileStr = JSON.stringify(STATE.customerProfile, null, 2);
+  const systemPrompt = isProactive
+    ? `${PROACTIVE_SYSTEM_PROMPT}\n\n# 当前客户档案（必须优先遵守）\n${profileStr}`
+    : SYSTEM_PROMPT.replace('{{CUSTOMER_PROFILE}}', profileStr);
+
+  // 把已有对话历史传过去（不含 system）
+  const apiMessages = STATE.messages
+    .filter(m => m.role === 'customer' || m.role === 'ai')
+    .map(m => ({
+      role: m.role === 'customer' ? 'user' : 'assistant',
+      content: m.role === 'ai' ? JSON.stringify({
+        reply: m.content,
+        intent: m.meta?.intent,
+        tags_added: m.meta?.tags_added || [],
+        next_action: m.meta?.next_action || '无'
+      }) : m.content
+    }));
+
+  // 加入本次新消息
+  if (isProactive) {
+    apiMessages.push({
+      role: 'user',
+      content: `[系统触发] 当前场景=${STATE.scenario}。请按客户档案判断是30天复购触达、60天流失召回，还是用后售后关怀，并主动发起对应消息。`
+    });
+  } else {
+    apiMessages.push({ role: 'user', content: userMessage });
+  }
+
+  const response = await fetch('https://api.deepseek.com/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + API_KEY
+    },
+    body: JSON.stringify({
+      model: 'deepseek-chat',
+      max_tokens: 1000,
+      temperature: 0.7,
+      response_format: { type: 'json_object' },
+      messages: [
+        { role: 'system', content: systemPrompt },
+        ...apiMessages
+      ]
+    })
+  });
+
+  if (!response.ok) {
+    const errText = await response.text();
+    throw new Error(`API ${response.status}: ${errText.slice(0,200)}`);
+  }
+
+  const data = await response.json();
+  const rawText = (data.choices?.[0]?.message?.content || '').trim();
+
+  // 去掉可能的 markdown 包裹
+  const cleaned = rawText.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
+  let parsed;
+  try {
+    parsed = JSON.parse(cleaned);
+  } catch (e) {
+    // 兜底：从 raw 里抓第一个 { ... }
+    const m = cleaned.match(/\{[\s\S]*\}/);
+    if (m) parsed = JSON.parse(m[0]);
+    else throw new Error('AI 返回非 JSON 格式');
+  }
+  return parsed;
+}
+
+// =============================
+// 渲染：消息
+// =============================
+function renderMessages() {
+  const $msgs = document.getElementById('messages');
+  const $empty = document.getElementById('emptyState');
+
+  if (STATE.messages.length === 0) {
+    $empty.style.display = 'block';
+    Array.from($msgs.children).forEach(c => { if (c !== $empty) c.remove(); });
+    return;
+  }
+  $empty.style.display = 'none';
+  Array.from($msgs.children).forEach(c => { if (c !== $empty) c.remove(); });
+
+  STATE.messages.forEach(m => {
+    if (m.role === 'typing') {
+      const div = document.createElement('div');
+      div.className = 'msg ai';
+      div.innerHTML = `<div class="typing"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`;
+      $msgs.appendChild(div);
+      return;
+    }
+    const div = document.createElement('div');
+    div.className = `msg ${m.role}${m.meta?.proactive ? ' proactive' : ''}`;
+    const isAI = m.role === 'ai';
+    div.innerHTML = `
+      <div>
+        <div class="msg-bubble">${escapeHtml(m.content)}</div>
+        <div class="msg-meta">
+          ${isAI ? (m.meta?.proactive ? '<span class="proactive-tag">主动触达</span>' : '<span class="ai-badge">AI</span>') : ''}
+          <span>${m.meta?.time || ''}</span>
+        </div>
+      </div>`;
+    $msgs.appendChild(div);
+  });
+  $msgs.scrollTop = $msgs.scrollHeight;
+}
+
+// =============================
+// 渲染：客户档案标签
+// =============================
+function formatNumber(n) {
+  return Number(n || 0).toLocaleString('en-US');
+}
+
+function setMetricValue(id, value) {
+  const $el = document.getElementById(id);
+  if (!$el) return;
+  const next = formatNumber(value);
+  if ($el.textContent === next) return;
+  $el.textContent = next;
+  $el.classList.remove('bump');
+  void $el.offsetWidth;
+  $el.classList.add('bump');
+}
+
+function renderBusinessMetrics() {
+  const m = STATE.businessMetrics;
+  if (!m) return;
+  setMetricValue('metricChats', m.baseChats + STATE.turn);
+  setMetricValue('metricQuota', m.chatQuota);
+  setMetricValue('metricTags', m.baseTags + m.tagsAdded);
+  setMetricValue('metricTasks', m.baseTasks + m.tasksCreated);
+}
+
+function renderProfile() {
+  const $body = document.getElementById('profileBody');
+  let total = 0;
+  const html = DISPLAY_TAG_GROUPS.map(({ dim, label, color }) => {
+    const tags = Array.from(
+      new Map((STATE.customerProfile[dim] || []).map(t => [t.value, t])).values()
+    );
+    if (tags.length === 0) return '';
+    total += tags.length;
+    return `
+      <div class="tag-group">
+        <div class="tag-group-label">${label}</div>
+        <div class="tag-list">
+          ${tags.map(t => `<span class="tag ${color}" title="首次来源：${escapeHtml(t.firstSource || '—')}；最近来源：${escapeHtml(t.lastSource || '—')}；置信度：${Number(t.confidence || 0.7).toFixed(2)}">${escapeHtml(t.value)}</span>`).join('')}
+        </div>
+      </div>
+    `;
+  }).filter(Boolean).join('');
+  $body.className = total ? 'ops-body' : 'ops-body empty';
+  $body.innerHTML = total ? html : '尚未识别';
+  document.getElementById('tagCount').textContent = `${total} 个标签`;
+  renderBusinessMetrics();
+}
+
+// =============================
+// 渲染：决策、知识库命中、任务
+// =============================
+function renderDecision(d) {
+  const $body = document.getElementById('decisionBody');
+  if (!d) {
+    $body.className = 'ops-body empty';
+    $body.textContent = '客户发消息后，这里显示 AI 对本条消息的意图判断、动作选择和判断依据。';
+    return;
+  }
+  $body.className = 'ops-body';
+  const nextActionClass = (d.next_action || '无').includes('转人工') ? '转人工' :
+                         (d.next_action === '无' ? '无' : '');
+  $body.innerHTML = `
+    <div class="decision-row">
+      <div class="decision-label">意图</div>
+      <div class="decision-value">${escapeHtml(d.intent || '—')}</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-label">下一步</div>
+      <div class="decision-value"><span class="next-action-pill ${nextActionClass}">${escapeHtml(d.next_action || '无')}</span></div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-label">判断依据</div>
+      <div class="decision-value rationale">${escapeHtml(d.rationale || '—')}</div>
+    </div>
+  `;
+  document.getElementById('turnCount').textContent = `turn ${STATE.turn}`;
+}
+
+function renderRepurchaseAssets() {
+  const $body = document.getElementById('repurchaseBody');
+  const data = STATE.customerProfile.repurchaseData;
+  const verifiedDays = getVerifiedPurchaseAgeDays();
+  const orderStatus = data.orderVerified
+    ? `已核验订单${verifiedDays != null ? ` · 已购${verifiedDays}天 · 老客权益可用` : ' · 老客权益可用'}`
+    : (data.pendingOrderClaim ? `待核验：${escapeHtml(data.pendingOrderClaim)}` : '未核验');
+  const signalCount = (STATE.customerProfile.purchaseSignals || []).length + data.triggers.length + data.touchHistory.length + data.followUps.length + (data.pendingOrderClaim ? 1 : 0);
+  if (signalCount === 0 && data.products.length === 0 && !data.lastPurchase && !data.intent) {
+    $body.className = 'ops-body empty';
+    $body.textContent = '已购商品、上次购买时间、复购周期、触达依据和触达记录会沉淀在这里。';
+    document.getElementById('repurchaseCount').textContent = '0 条线索';
+    return;
+  }
+  $body.className = 'ops-body';
+  const chips = (arr) => arr.length ? `<div class="asset-chip-list">${arr.map(x => `<span class="asset-chip">${escapeHtml(x)}</span>`).join('')}</div>` : '—';
+  $body.innerHTML = `
+    <div class="asset-row"><div class="asset-row-label">已购/关注</div><div class="asset-row-value">${chips(data.products)}</div></div>
+    <div class="asset-row"><div class="asset-row-label">订单状态</div><div class="asset-row-value">${orderStatus}</div></div>
+    <div class="asset-row"><div class="asset-row-label">上次购买</div><div class="asset-row-value">${escapeHtml(data.lastPurchase || '尚未识别')}</div></div>
+    <div class="asset-row"><div class="asset-row-label">复购周期</div><div class="asset-row-value">${escapeHtml(data.cycle || '待累积')}</div></div>
+    <div class="asset-row"><div class="asset-row-label">复购意向</div><div class="asset-row-value">${escapeHtml(data.intent || '待识别')}</div></div>
+    <div class="asset-row"><div class="asset-row-label">触达依据</div><div class="asset-row-value">${chips(data.triggers)}</div></div>
+    <div class="asset-row"><div class="asset-row-label">触达记录</div><div class="asset-row-value">${chips(data.touchHistory.concat(data.followUps))}</div></div>
+  `;
+  document.getElementById('repurchaseCount').textContent = `${signalCount} 条线索`;
+}
+
+function renderKbHits(hits) {
+  const $body = document.getElementById('kbBody');
+  const history = STATE.customerProfile.knowledgeHistory || [];
+  if (history.length === 0) {
+    $body.className = 'ops-body empty';
+    $body.textContent = '本轮和历史回复用到的知识库条目会累积在这里（可追溯、可纠正）。';
+    document.getElementById('kbCount').textContent = '0 条';
+    renderKbGrowth();
+    return;
+  }
+  $body.className = 'ops-body';
+  $body.innerHTML = history.slice(-8).reverse().map(h => {
+    const [src, ...rest] = h.text.split(':');
+    const source = rest.length ? `${escapeHtml(src)}:` : '知识:';
+    const body = rest.length ? rest.join(':') : h.text;
+    return `<div class="kb-hit"><span class="kb-hit-source">${source}</span>${escapeHtml(body)} <span class="tag-conf">turn ${h.turn} · x${h.hits}</span></div>`;
+  }).join('');
+  document.getElementById('kbCount').textContent = `${history.length} 条历史命中`;
+  renderKbGrowth();
+}
+
+function isExistingBaseKnowledge(text = '') {
+  const t = String(text || '');
+  return [
+    /^商品库:/,
+    /^客户档案:/,
+    /^问答库:/,
+    /^常见问答:/,
+    /^知识:/,
+    /促单组合/,
+    /A醇精华/,
+    /多肽面霜/,
+    /玻尿酸补水精华/,
+    /精华类产品/,
+    /抗老套装/,
+    /嫌贵共情/,
+    /推引流款/,
+    /30天可退/,
+    /精华30天触达/,
+    /精华类第30天/,
+    /已购精华.*关联面霜/
+  ].some(re => re.test(t));
+}
+
+function classifyGrowthRule(text = '') {
+  const t = String(text || '');
+  if (/订单|核验|自称|老客/.test(t)) return '风控规则';
+  if (/退货|退款|售后|用后|不适|过敏|脱皮|泛红|刺痛|补偿|小样/.test(t)) return '售后规则';
+  if (/任意|已购N天|已购\d+天|老客权益|复购|60天未复购|流失召回|唤醒券/.test(t)) return '复购规则';
+  if (/男士|男生|男客户|男女通用|性别|新品需求|使用习惯/.test(t)) return '经营规则';
+  if (/人工纠错|纠正|答错/.test(t)) return '人工纠错';
+  return '新规则';
+}
+
+function addKnowledgeGrowth(text, type = '') {
+  const value = String(text || '').trim();
+  if (!value || isExistingBaseKnowledge(value)) return false;
+  const growthType = type || classifyGrowthRule(value);
+  const list = STATE.customerProfile.knowledgeGrowth;
+  const existing = list.find(x => x.text === value && x.type === growthType);
+  if (existing) {
+    existing.hits += 1;
+    existing.turn = STATE.turn;
+    return false;
+  }
+  list.push({ type: growthType, text: value, hits: 1, turn: STATE.turn });
+  return true;
+}
+
+function renderKbGrowth() {
+  const $body = document.getElementById('kbGrowthBody');
+  if (!$body) return;
+  const list = STATE.customerProfile.knowledgeGrowth || [];
+  if (list.length === 0) {
+    $body.innerHTML = '<div class="kb-growth-empty">当前对话没有发现基础库之外的新规则。</div>';
+    return;
+  }
+  $body.innerHTML = list.slice(-8).reverse().map(item => `
+    <div class="kb-growth-row">
+      <b>${escapeHtml(item.type)}</b> · ${escapeHtml(item.text)}
+      <span class="kb-growth-meta"><span>turn ${item.turn}</span><span>x${item.hits}</span></span>
+    </div>
+  `).join('');
+}
+
+function renderTasks() {
+  const $body = document.getElementById('taskBody');
+  if (STATE.tasks.length === 0) {
+    $body.className = 'ops-body empty';
+    $body.textContent = 'AI 根据复购规则自动排入的主动触达任务会在这里显示。';
+  } else {
+    $body.className = 'ops-body';
+    $body.innerHTML = STATE.tasks.map(t =>
+      `<div class="task-item"><div class="task-text">${escapeHtml(t.text)}</div><div class="task-when">${escapeHtml(t.when)}</div></div>`
+    ).join('');
+  }
+  document.getElementById('taskCount').textContent = `${STATE.tasks.length} 项`;
+}
+
+// =============================
+// 合并新标签到客户档案（按 dimension）
+// =============================
+function addUnique(list, value) {
+  if (!value) return false;
+  const text = String(value).trim();
+  if (!text) return false;
+  if (list.includes(text)) return false;
+  list.push(text);
+  return true;
+}
+
+function addKnowledgeHits(hits) {
+  if (!hits) return [];
+  const added = [];
+  hits.forEach(raw => {
+    const text = String(raw || '').trim();
+    if (!text) return;
+    const existing = STATE.customerProfile.knowledgeHistory.find(x => x.text === text);
+    if (existing) {
+      existing.hits += 1;
+      existing.turn = STATE.turn;
+    } else {
+      STATE.customerProfile.knowledgeHistory.push({ text, hits: 1, turn: STATE.turn });
+      added.push(text);
+    }
+  });
+  return added;
+}
+
+function extractExplicitPurchaseTime(userText = '', assetText = '') {
+  const normalizedUser = String(userText || '').replace(/\s+/g, '');
+  const normalizedAsset = String(assetText || '').replace(/\s+/g, '');
+
+  const userPatterns = [
+    { re: /(上次|之前|已购|购买|买了|下单|入手|拍下|收到|用了|用了大概)(\d+(?:个)?月前|\d+天前)/, group: 2 },
+    { re: /(上次|之前|已购|购买|买了|下单|入手|拍下|收到|用了|用了大概)(\d+天|\d+(?:个)?月)/, group: 2 },
+    { re: /(\d+(?:个)?月前|\d+天前)(买|购|下单|入手|拍下|收到|用)/, group: 1 }
+  ];
+  for (const pattern of userPatterns) {
+    const m = normalizedUser.match(pattern.re);
+    if (m) return normalizePurchaseAge(m[pattern.group]);
+  }
+
+  const assetPatterns = [
+    /(上次购买|购买时间|已购|距今)(\d+(?:个)?月前|\d+天前)/,
+    /(上次购买|购买时间|已购|距今)(\d+天|\d+(?:个)?月)/
+  ];
+  for (const pattern of assetPatterns) {
+    const m = normalizedAsset.match(pattern);
+    if (!m) continue;
+    return normalizePurchaseAge(m[2]);
+  }
+  return '';
+}
+
+function normalizePurchaseAge(value = '') {
+  const text = String(value || '').replace(/\s+/g, '');
+  if (!text) return '';
+  if (text.endsWith('前')) return text;
+  if (/^\d+天$/.test(text) || /^\d+个?月$/.test(text)) return `${text}前`;
+  return text;
+}
+
+function getVerifiedPurchaseAgeDays() {
+  const data = STATE.customerProfile?.repurchaseData;
+  if (!data?.orderVerified || !data.lastPurchase) return null;
+  const text = String(data.lastPurchase).replace(/\s+/g, '');
+  const day = text.match(/(\d+)天前?/);
+  if (day) return Number(day[1]);
+  const month = text.match(/(\d+)个?月前?/);
+  if (month) return Number(month[1]) * 30;
+  return null;
+}
+
+function mergeTags(newTags, source = '本轮对话') {
+  if (!newTags) return;
+  newTags.forEach(t => {
+    const tag = normalizeTag(t);
+    if (!isMeaningfulTag(tag)) return;
+    const list = STATE.customerProfile[tag.dimension];
+    if (!list) return;
+    const confidence = Number(tag.confidence || 0.7);
+    const existing = list.find(x => x.value === tag.value);
+    if (existing) {
+      existing.confidence = Math.max(existing.confidence || 0.7, confidence);
+      existing.hits = 1;
+      existing.lastSource = source;
+    } else {
+      list.push({
+        value: tag.value,
+        confidence,
+        hits: 1,
+        firstSource: source,
+        lastSource: source
+      });
+      STATE.businessMetrics.tagsAdded += 1;
+    }
+  });
+}
+
+function hasVerifiedOrder() {
+  return Boolean(STATE.customerProfile?.repurchaseData?.orderVerified);
+}
+
+function canUseOldCustomerBenefits() {
+  return hasVerifiedOrder();
+}
+
+function detectCustomerPurchaseClaim(text = '') {
+  const compact = String(text || '').replace(/\s+/g, '');
+  if (!/(买过|上次买|之前买|已购|下过单|3个月前|三个月前|老客|复购)/.test(compact)) return '';
+  const time = compact.match(/(\d+(?:个)?月前|[一二三四五六七八九十]+个月前|\d+天前|[一二三四五六七八九十]+天前)/)?.[1] || '';
+  if (time) return `客户自称${time}买过`;
+  if (/老客/.test(compact)) return '客户自称老客';
+  return '客户自称买过';
+}
+
+function needsOrderVerification(userText = '') {
+  return Boolean(detectCustomerPurchaseClaim(userText)) && !hasVerifiedOrder();
+}
+
+function detectMaleConsultation(text = '') {
+  const compact = String(text || '').replace(/\s+/g, '');
+  return /(男士|男生|男的|男客户|男朋友|男友|老公|爸爸|父亲|先生用|他能用|给他买|送男朋友|送老公|送爸爸)/.test(compact);
+}
+
+function buildMaleConsultationResult(raw = {}, userText = '') {
+  const baseTags = [
+    { dimension: '实时意图', value: '男士护肤咨询', confidence: 0.85 },
+    { dimension: '产品偏好', value: '男士护肤需求', confidence: 0.8 }
+  ];
+  const existingTags = Array.isArray(raw.tags_added) ? raw.tags_added : [];
+  return {
+    ...raw,
+    reply: '可以的～我们目前没有单独的男士专属线，我不按性别硬推。您是自己用还是送人？主要想抗老、补水，还是改善熬夜暗沉/干燥？如果护肤比较简单，建议先从玻尿酸补水精华开始，清爽好上手；如果明确想抗老，再考虑 A 醇精华，但要晚上用、先建立耐受。',
+    intent: raw.intent || '男士咨询',
+    tags_added: [...existingTags, ...baseTags],
+    knowledge_hit: [
+      '话术规则:男士咨询按需求/肤质推荐',
+      '商品库:玻尿酸补水精华',
+      ...(String(userText).includes('抗老') ? ['商品库:A醇精华'] : []),
+      ...(Array.isArray(raw.knowledge_hit) ? raw.knowledge_hit : [])
+    ],
+    next_action: raw.next_action && raw.next_action !== '促单组合' ? raw.next_action : '先问需求',
+    rationale: raw.rationale || '客户出现男士护肤场景；店内没有男士专属线，因此按肤质、需求和使用习惯推荐男女通用功效品，避免性别化硬推。',
+    asset_notes: [
+      ...(Array.isArray(raw.asset_notes) ? raw.asset_notes : []),
+      '男士护肤场景：按肤质/需求/使用习惯推荐，不按性别硬推'
+    ],
+    repurchase_signal: raw.repurchase_signal || ''
+  };
+}
+
+function buildOrderVerificationResult(raw = {}, userText = '') {
+  const claim = detectCustomerPurchaseClaim(userText) || STATE.customerProfile.repurchaseData.pendingOrderClaim || '客户自称买过';
+  STATE.customerProfile.repurchaseData.pendingOrderClaim = claim;
+  addUnique(STATE.customerProfile.purchaseSignals, `待核验订单：${claim}`);
+  addKnowledgeGrowth('客户自称已购/老客时，必须先核验订单，再决定是否给老客权益', '风控规则');
+  return {
+    ...raw,
+    reply: `我先帮您核一下购买记录哈～目前这边还没查到已核验订单，所以暂时不能直接给老客专属价。您方便发一下手机号后四位/订单号，或告诉我是哪个平台下单的吗？核到后我再帮您申请对应福利。`,
+    intent: '订单核验',
+    tags_added: raw.tags_added || [],
+    knowledge_hit: ['客户档案:订单未核验', '话术规则:自称老客先核验订单', ...(raw.knowledge_hit || [])],
+    next_action: '核验订单',
+    rationale: '客户自称有购买记录，但当前客户档案没有已核验订单；先核验再决定是否给老客福利，避免被错误领取优惠。',
+    asset_notes: [`${claim}，状态=待核验`],
+    repurchase_signal: '待核验订单，不触发老客价'
+  };
+}
+
+function countRefundRequests(extraText = '') {
+  const refundRe = /退货|退款|退了|退掉|现在就退|直接退|不想试|不要试|别让我试|不想继续用|不想用了/;
+  const previous = STATE.messages.filter(m => m.role === 'customer' && refundRe.test(m.content || '')).length;
+  const alreadyCounted = STATE.messages.some(m => m.role === 'customer' && m.content === extraText && refundRe.test(m.content || ''));
+  return previous + (!alreadyCounted && refundRe.test(extraText || '') ? 1 : 0);
+}
+
+function needsRefundHumanHandoff(userText = '') {
+  return /退货|退款|退了|退掉|现在就退|直接退|不想试|不要试|别让我试|不想继续用|不想用了/.test(userText || '');
+}
+
+function buildRefundHandoffResult(raw = {}, userText = '') {
+  const refundCount = countRefundRequests(userText);
+  addKnowledgeGrowth('客户明确退货/退款时，不再继续劝试，直接转人工售后承接处理', '售后规则');
+  return {
+    reply: refundCount >= 2
+      ? '理解您的感受，这种情况下我就不再建议您继续试用了。我马上帮您转人工售后处理，人工同事会帮您核对订单和商品状态，尽快给您安排退货。'
+      : '理解，您明确想退货的话，我这边不再建议您继续试用。我马上帮您转人工售后，核对订单和商品状态后为您处理退货。收到人工回复前，建议先暂停使用并保留商品包装。', 
+    intent: '退货/退款处理',
+    tags_added: [
+      ...(Array.isArray(raw.tags_added) ? raw.tags_added : []),
+      { dimension: '运营风险', value: '退货/退款风险', confidence: 0.98 },
+      { dimension: '沟通策略', value: '人工介入优先', confidence: 0.9 }
+    ],
+    knowledge_hit: ['售后规则:明确退货/退款直接转人工', '话术规则:不再继续劝试', ...(raw.knowledge_hit || [])],
+    next_action: '转人工',
+    rationale: refundCount >= 2
+      ? `客户已表达 ${refundCount} 次退货/退款诉求，继续劝试会增加反感，应立即由人工售后承接。`
+      : '客户明确提出退货/退款诉求，应停止继续劝试，转人工售后核单处理。',
+    asset_notes: [`退货/退款诉求${refundCount}次，状态=需人工介入`, ...(raw.asset_notes || [])],
+    repurchase_signal: '售后风险优先，不触发复购'
+  };
+}
+
+function textHasExplicitPurchaseIntent(userText = '') {
+  return /要买|想买|准备买|买了|买过|下单|拍下|入手|已购|之前买|上次买|收到|用了|用完|复购|补一瓶|再买|再来一瓶/.test(userText || '');
+}
+
+function getPrimaryProduct() {
+  const profile = STATE.customerProfile || {};
+  const data = profile.repurchaseData || {};
+  const products = data.products || [];
+  const prefs = [
+    ...(profile['产品偏好'] || []).map(t => t.value),
+    ...(profile.purchaseSignals || [])
+  ].join(' ');
+  if (products.some(x => /玻尿酸|补水/.test(x)) || /玻尿酸|补水精华/.test(prefs)) return '玻尿酸补水精华';
+  if (products.some(x => /A醇|抗皱/.test(x)) || /A醇|视黄醇/.test(prefs)) return 'A醇抗皱精华';
+  return '玻尿酸补水精华';
+}
+
+function getProductCycle(product = getPrimaryProduct()) {
+  return /玻尿酸/.test(product) ? '补水精华约30天' : '精华类约30天';
+}
+
+function getSupportSample(product = getPrimaryProduct()) {
+  return /玻尿酸/.test(product) ? '舒缓修护小样' : '玻尿酸补水小样';
+}
+
+function getCustomerSalutation() {
+  const profile = STATE.customerProfile || {};
+  const text = [
+    ...(profile.purchaseSignals || []),
+    ...(profile.assetTimeline || []).flatMap(x => x.items || []),
+    ...TAG_DIMS.flatMap(dim => (profile[dim] || []).map(t => t.value))
+  ].join(' ');
+  if (/男士|男生|男朋友|男友|老公|先生/.test(text)) return '帅哥';
+  if (/大学生|学生党|学生|没太多钱|生活费/.test(text)) return '美女';
+  return '您好';
+}
+
+function inferTagsFromUserText(userText = '') {
+  const text = String(userText || '');
+  const tags = [];
+  TEXT_TAG_RULES.forEach(rule => {
+    if (rule.re.test(text)) tags.push({ dimension: rule.dimension, value: rule.value, confidence: rule.confidence });
+  });
+  return tags;
+}
+
+function filterModelTagsByUserEvidence(tags = [], userText = '') {
+  const evidence = inferTagsFromUserText(userText).map(normalizeTag).filter(Boolean);
+  return (Array.isArray(tags) ? tags : [])
+    .map(normalizeTag)
+    .filter(Boolean)
+    .filter(tag => evidence.some(e => e.dimension === tag.dimension && e.value === tag.value));
+}
+
+function captureAssets(result, userMessage = '', options = {}) {
+  const profile = STATE.customerProfile;
+  const data = profile.repurchaseData;
+  const userText = String(userMessage || '');
+  const assetText = [result?.repurchase_signal, ...(result?.asset_notes || [])].filter(Boolean).join(' ');
+  const text = [userText, result?.intent, result?.next_action, assetText]
+    .filter(Boolean)
+    .join(' ');
+  const items = [];
+  const time = new Date();
+  const clock = `${time.getHours().toString().padStart(2,'0')}:${time.getMinutes().toString().padStart(2,'0')}`;
+
+  const tagItems = (result?.tags_added || [])
+    .map(normalizeTag)
+    .filter(t => isMeaningfulTag(t))
+    .map(t => `标签沉淀：${t.dimension}=${t.value}`);
+  items.push(...tagItems);
+
+  const knowledgeAdded = addKnowledgeHits(result?.knowledge_hit || []);
+  if (knowledgeAdded.length) items.push(`知识资产：命中 ${knowledgeAdded.length} 条新知识`);
+
+  if (result?.asset_notes?.length) {
+    result.asset_notes.forEach(note => items.push(`运营备注：${note}`));
+  }
+  if (result?.repurchase_signal) {
+    items.push(`复购信号：${result.repurchase_signal}`);
+  }
+
+  if (detectMaleConsultation(userText)) {
+    addKnowledgeGrowth('男士咨询时不硬推男士专属，先按肤质/需求/使用习惯推荐男女通用功效品；无匹配时转人工并沉淀新品需求', '经营规则');
+    items.push('经营规则：男士咨询不按性别硬推，先问需求/肤质/使用习惯');
+  }
+
+  if (data.orderVerified || textHasExplicitPurchaseIntent(userText)) {
+    const productMap = [
+      ['A醇', 'A醇抗皱精华'],
+      ['多肽', '多肽紧致面霜'],
+      ['面霜', '多肽紧致面霜'],
+      ['玻尿酸', '玻尿酸补水精华']
+    ];
+    productMap.forEach(([key, product]) => {
+      if (userText.includes(key) && addUnique(data.products, product)) {
+        items.push(`商品资产：${product}`);
+      }
+    });
+  }
+
+  const orderClaim = detectCustomerPurchaseClaim(userText);
+  if (orderClaim && !data.orderVerified) {
+    data.pendingOrderClaim = orderClaim;
+    addUnique(profile.purchaseSignals, `待核验订单：${orderClaim}`);
+    items.push(`订单线索：${orderClaim}（待核验，未写入购买时间）`);
+  }
+
+  const explicitPurchaseTimeFromUser = data.orderVerified ? extractExplicitPurchaseTime(userText, '') : '';
+  const explicitPurchaseTimeFromAsset = extractExplicitPurchaseTime('', assetText);
+  const canTrustModelPurchaseTime = Boolean(data.lastPurchase) || STATE.scenario === '用后疑问' || STATE.scenario === '复购触达';
+  const explicitPurchaseTime = explicitPurchaseTimeFromUser || (canTrustModelPurchaseTime ? explicitPurchaseTimeFromAsset : '');
+  if (explicitPurchaseTime) {
+    data.lastPurchase = explicitPurchaseTime;
+    if (data.orderVerified) data.pendingOrderClaim = '';
+    data.cycle = data.cycle || '约30-45天';
+    addUnique(profile.purchaseSignals, `购买时间：${data.lastPurchase}`);
+    if (data.orderVerified) {
+      addUnique(profile.purchaseSignals, '老客权益可用');
+      addKnowledgeGrowth('已核验订单出现任意已购天数时，可识别为老客权益可用', '复购规则');
+    }
+    items.push(`购买记录：上次购买/触达时间 ${data.lastPurchase}`);
+  }
+
+  if (data.orderVerified && /买过|上次买|之前买|已购|下过单/.test(text)) {
+    addUnique(profile.purchaseSignals, '已购历史');
+    items.push('购买信号：确认有历史购买');
+  }
+  if (/复购|补一瓶|再买|再来|买过|买|下单|要补/.test(text)) {
+    data.intent = /好的|要|买|下单|补一瓶/.test(userMessage) ? '强复购意向' : (data.intent || '有复购线索');
+    if (!data.orderVerified && /复购|买过|再买/.test(userText)) data.intent = '待核验复购线索';
+    addUnique(profile.purchaseSignals, data.intent);
+    items.push(`复购意向：${data.intent}`);
+  }
+  if (/大学生|学生党|学生|没太多钱|没有太多钱|没钱|预算有限|生活费|省钱|嫌贵|贵|便宜|优惠|券|降价|价格/.test(userText)) {
+    addUnique(profile.purchaseSignals, '价格敏感/优惠诉求');
+    items.push('运营信号：价格敏感或优惠诉求');
+  }
+  if (/脱皮|泛红|刺痛|过敏|不适|退货|没效果/.test(userText)) {
+    addUnique(profile.purchaseSignals, '用后风险/退货风险');
+    items.push('风险信号：用后疑问或退货风险');
+  }
+  if (/退货|退款|退了|退掉|现在就退|直接退|不想试|不要试|别让我试|不想继续用|不想用了/.test(userText)) {
+    addUnique(profile.purchaseSignals, '历史退货/退款风险');
+    data.intent = '退货/退款处理';
+    addKnowledgeGrowth('客户明确退货/退款时，不再继续劝试，直接转人工售后承接处理', '售后规则');
+    items.push('售后资产：客户出现退货/退款意向，需人工介入');
+  }
+  mergeTags(inferTagsFromUserText(userText), `turn ${STATE.turn} 客户明示`);
+  if (/抗老|细纹|紧致/.test(userText)) {
+    addUnique(profile.purchaseSignals, '关注抗老');
+    items.push('偏好资产：关注抗老');
+  }
+
+  if (result?.next_action && result.next_action !== '无') {
+    addUnique(data.triggers, result.next_action);
+    items.push(`动作依据：${result.next_action}`);
+  }
+  if (options.proactive) {
+    addUnique(data.touchHistory, `turn ${STATE.turn} 主动复购触达`);
+    items.push('触达记录：已执行主动复购触达');
+  }
+
+  if (items.length === 0 && result?.intent) {
+    items.push(`本轮意图已记录：${result.intent}`);
+  }
+
+  if (items.length) {
+    profile.assetTimeline.push({
+      turn: STATE.turn,
+      time: clock,
+      title: options.proactive ? '主动触达沉淀' : '对话沉淀为客户资产',
+      items: Array.from(new Set(items)).slice(0, 8)
+    });
+  }
+}
+
+function seedScenarioAssets(name) {
+  const profile = STATE.customerProfile;
+  const data = profile.repurchaseData;
+  if (name === '用后疑问') {
+    const product = getPrimaryProduct();
+    data.products = [product];
+    data.lastPurchase = '3天前';
+    data.orderVerified = true;
+    data.pendingOrderClaim = '';
+    data.cycle = getProductCycle(product);
+    addUnique(profile.purchaseSignals, `已购${product}`);
+    addUnique(data.followUps, '用后第5天回访');
+    profile.assetTimeline.push({
+      turn: 0,
+      time: '初始',
+      title: '历史订单导入为客户资产',
+      items: [`已购商品：${product}`, '购买时间：3天前', '购买阶段：首购未复购', '风险看护：耐受期需要回访']
+    });
+  }
+  if (name === '复购触达') {
+    const product = getPrimaryProduct();
+    data.products = [product];
+    data.lastPurchase = '30天前';
+    data.orderVerified = true;
+    data.pendingOrderClaim = '';
+    data.cycle = getProductCycle(product);
+    data.intent = (profile.purchaseSignals || []).some(x => /退货|退款|用后风险/.test(x)) ? '售后风险优先' : '到期复购机会';
+    addUnique(profile.purchaseSignals, `已购${product}`);
+    addUnique(data.triggers, `${product}第30天自动触达`);
+    if (data.intent === '售后风险优先') addUnique(data.triggers, '30天售后补偿触达');
+    profile.assetTimeline.push({
+      turn: 0,
+      time: '初始',
+      title: '历史订单导入为复购资产',
+      items: [`已购商品：${product}`, '上次购买：30天前', data.intent === '售后风险优先' ? '触达规则：先售后补偿，不催复购' : '复购规则：精华类第30天触达']
+    });
+  }
+  if (name === '流失召回') {
+    const product = getPrimaryProduct();
+    data.products = [product];
+    data.lastPurchase = '60天前';
+    data.orderVerified = true;
+    data.pendingOrderClaim = '';
+    data.cycle = '60天未复购';
+    data.intent = '流失召回机会';
+    addUnique(profile.purchaseSignals, `已购${product}`);
+    addUnique(profile.purchaseSignals, '60天未复购');
+    addUnique(profile.purchaseSignals, '老客权益可用');
+    addUnique(data.triggers, '60天未复购→推唤醒券');
+    addUnique(data.triggers, '流失风险→轻触达不催单');
+    addKnowledgeGrowth('60天未复购客户进入流失召回，优先给唤醒券/新品体验，不催单', '复购规则');
+    profile.assetTimeline.push({
+      turn: 0,
+      time: '初始',
+      title: '历史订单导入为流失召回资产',
+      items: [`已购商品：${product}`, '上次购买：60天前', '流失规则：60天未复购推唤醒券', '策略：结合历史反馈轻触达，不硬推']
+    });
+  }
+}
+
+function addTask(task) {
+  STATE.tasks.push(task);
+  STATE.businessMetrics.tasksCreated += 1;
+  renderBusinessMetrics();
+}
+
+function setLatestFollowUp(days, source = '回访决策') {
+  const data = STATE.customerProfile.repurchaseData;
+  const label = `T+${days}天回访`;
+  data.followUps = [label];
+  data.triggers = (data.triggers || []).filter(x => !/设第\d+天回访|T\+\d+天回访|用后第\d+天回访/.test(x));
+  data.triggers.push(`设第${days}天回访`);
+  STATE.tasks = STATE.tasks.filter(t => !/回访客户/.test(t.text || ''));
+  addTask({
+    text: `回访客户：是否恢复 / 是否需要协助`,
+    when: `T+${days} 天`
+  });
+  return `${source}：${label}`;
+}
+
+function hasRefundOrAfterSaleRisk() {
+  const profile = STATE.customerProfile;
+  const text = [
+    ...(profile.purchaseSignals || []),
+    ...(profile.repurchaseData?.triggers || []),
+    ...(profile.assetTimeline || []).flatMap(x => x.items || []),
+    ...TAG_DIMS.flatMap(dim => (profile[dim] || []).map(t => t.value))
+  ].join(' ');
+  return /退货|退款|退换|用后风险|不适|过敏|脱皮|泛红|刺痛/.test(text);
+}
+
+function buildProactiveFallbackResult(raw = {}) {
+  const product = getPrimaryProduct();
+  const sample = getSupportSample(product);
+  const salutation = getCustomerSalutation();
+  const risk = hasRefundOrAfterSaleRisk();
+  const churn = STATE.scenario === '流失召回' || /60天未复购|流失风险/.test([
+    STATE.customerProfile?.repurchaseData?.lastPurchase,
+    STATE.customerProfile?.repurchaseData?.cycle,
+    ...(STATE.customerProfile?.purchaseSignals || []),
+    ...(STATE.customerProfile?.repurchaseData?.triggers || []),
+    ...TAG_DIMS.flatMap(dim => (STATE.customerProfile?.[dim] || []).map(t => t.value))
+  ].join(' '));
+  const reply = risk && churn
+    ? `${salutation}，之前${product}用着不舒服还退过货，我这边不催您补货。给您留一张老客唤醒券，也可以寄个${sample}，等肤况稳定再慢慢试，不着急下单。`
+    : risk
+    ? `${salutation}，之前${product}用后不舒服我记下了，这次不催您补货。我这边给您留一张售后关怀券，再寄个${sample}，先把肤感和耐受照顾好。`
+    : churn
+    ? `${salutation}，好久没见您回来啦～上次那支${product}已经60天了。我给您留了一张老客唤醒券，想继续温和补水时可以先领着，不着急下单。`
+    : /玻尿酸/.test(product)
+    ? `${salutation}，您上次入手的${product}到30天了。如果这段时间肤感稳定，我给您留了补水老客券；如果之前还有痒或不舒服，先用${sample}更稳。`
+    : `${salutation}，您上次入手的${product}差不多到30天了。如果耐受稳定，我给您留了老客补货价；如果最近敏感，先别急着加量。`;
+  return {
+    reply,
+    intent: raw.intent || (churn ? '流失召回 (主动)' : '复购触达 (主动)'),
+    tags_added: raw.tags_added || [],
+    knowledge_hit: raw.knowledge_hit || [churn ? '复购规则:60天未复购推唤醒券' : '复购规则:精华30天触达', risk ? '售后规则:退货客户先安抚补偿' : `商品库:${product}`],
+    next_action: risk ? '售后关怀券/小样挽回' : (churn ? '推唤醒券召回' : (raw.next_action || '复购触达执行')),
+    rationale: risk
+      ? '客户档案存在退货/用后不适风险，先道歉补偿再尝试挽回，避免硬推造成反感。'
+      : churn
+      ? '复购规则触发：60天未复购，按流失召回策略给唤醒券，避免催单。'
+      : (raw.rationale || `复购规则触发：${product}已购30天，按商品和客户反馈轻柔触达。`),
+    asset_notes: raw.asset_notes || [],
+    repurchase_signal: raw.repurchase_signal || (risk ? '历史售后风险客户，先挽回再复购' : (churn ? '60天未复购流失召回' : '精华类第30天复购触达'))
+  };
+}
+
+function normalizeProactiveResult(raw = {}) {
+  const product = getPrimaryProduct();
+  const risk = hasRefundOrAfterSaleRisk();
+  const churn = STATE.scenario === '流失召回' || /60天未复购|流失风险/.test([
+    STATE.customerProfile?.repurchaseData?.lastPurchase,
+    STATE.customerProfile?.repurchaseData?.cycle,
+    ...(STATE.customerProfile?.purchaseSignals || []),
+    ...(STATE.customerProfile?.repurchaseData?.triggers || []),
+    ...TAG_DIMS.flatMap(dim => (STATE.customerProfile?.[dim] || []).map(t => t.value))
+  ].join(' '));
+  const reply = String(raw.reply || '').trim();
+  if (!reply) return buildProactiveFallbackResult(raw);
+  if (/王姐|王女士/.test(reply)) return buildProactiveFallbackResult(raw);
+  if (/玻尿酸/.test(product) && /(A醇|抗皱精华|抗老套装|老客价299|细纹改善)/.test(reply)) return buildProactiveFallbackResult(raw);
+  if (STATE.scenario === '复购触达' && /(用后不适|费心|抱歉|关怀券|小样|试肤感|唤醒券|好久没见)/.test(reply)) {
+    if (!risk) return buildProactiveFallbackResult(raw);
+  }
+  if (risk && (/(补一瓶|老客价|顺手包邮|抗老套装|推荐|下单)/.test(reply) || !/(关怀券|补偿券|优惠券|券|小样|售后)/.test(reply))) {
+    return buildProactiveFallbackResult(raw);
+  }
+  if (churn && /(快用完|补一瓶|抗老套装|老客价299|顺手包邮)/.test(reply) && !/(好久|唤醒券|券|新品体验|不着急|回来看看|召回)/.test(reply)) {
+    return buildProactiveFallbackResult(raw);
+  }
+  if (churn && /(用后不适|费心|抱歉|关怀券|小样|试肤感|老客价299|抗老套装|补货期)/.test(reply)) {
+    return buildProactiveFallbackResult(raw);
+  }
+  return {
+    ...raw,
+    reply,
+    intent: raw.intent || (churn ? '流失召回 (主动)' : '复购触达 (主动)'),
+    next_action: raw.next_action || (risk ? '售后关怀券/小样挽回' : (churn ? '推唤醒券召回' : '复购触达执行')),
+    rationale: raw.rationale || (risk ? '客户档案存在退货/用后不适风险，先挽回再复购。' : (churn ? '60天未复购，按流失召回策略轻触达。' : '复购规则触发，按客户档案轻柔触达。'))
+  };
+}
+
+// =============================
+// 处理 next_action（例如设回访任务）
+// =============================
+function handleNextAction(action) {
+  if (!action) return;
+  const m = action.match(/设第(\d+)天回访/);
+  if (m) {
+    const days = parseInt(m[1]);
+    setLatestFollowUp(days, '最新回访决策');
+  }
+  if (action.includes('复购') || action.includes('触达') || action.includes('召回') || action.includes('唤醒券')) {
+    addUnique(STATE.customerProfile.repurchaseData.touchHistory, `turn ${STATE.turn} ${action}`);
+    const isChurnRecall = STATE.scenario === '流失召回';
+    const product = getPrimaryProduct();
+    addTask({
+      text: isChurnRecall ? `流失召回执行（老客唤醒券，轻触达）` : `触达执行（${product}，按反馈补偿/复购）`,
+      when: '已执行'
+    });
+  }
+}
+
+// =============================
+// 发送一条客户消息 → 调 Claude → 渲染
+// =============================
+async function sendCustomerMessage(content) {
+  if (STATE.loading) return;
+  if (!ensureApiKey()) return;
+  STATE.loading = true;
+  document.getElementById('sendBtn').disabled = true;
+  document.getElementById('proactiveBtn').disabled = true;
+
+  const now = new Date();
+  const time = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+
+  STATE.messages.push({ role: 'customer', content, meta: { time } });
+  STATE.messages.push({ role: 'typing' });
+  renderMessages();
+
+  try {
+    let result = await callClaude(content, false);
+    if (needsRefundHumanHandoff(content)) {
+      result = buildRefundHandoffResult(result, content);
+    } else if (needsOrderVerification(content)) {
+      result = buildOrderVerificationResult(result, content);
+    } else if (detectMaleConsultation(content)) {
+      result = buildMaleConsultationResult(result, content);
+    }
+    // 移除 typing
+    STATE.messages = STATE.messages.filter(m => m.role !== 'typing');
+    STATE.turn += 1;
+
+    STATE.messages.push({
+      role: 'ai',
+      content: result.reply || '(空回复)',
+      meta: {
+        intent: result.intent,
+        tags_added: result.tags_added,
+        next_action: result.next_action,
+        time
+      }
+    });
+    mergeTags(filterModelTagsByUserEvidence(result.tags_added, content), `turn ${STATE.turn} 客户对话`);
+    handleNextAction(result.next_action);
+    captureAssets(result, content);
+
+    renderMessages();
+    renderProfile();
+    renderDecision(result);
+    renderKbHits(result.knowledge_hit);
+    renderRepurchaseAssets();
+    renderTasks();
+  } catch (err) {
+    STATE.messages = STATE.messages.filter(m => m.role !== 'typing');
+    renderMessages();
+    showError(err.message);
+  } finally {
+    STATE.loading = false;
+    document.getElementById('sendBtn').disabled = false;
+    document.getElementById('proactiveBtn').disabled = false;
+  }
+}
+
+// =============================
+// 主动复购触达
+// =============================
+async function triggerProactive() {
+  if (STATE.loading) return;
+  if (!ensureApiKey()) return;
+  STATE.loading = true;
+  document.getElementById('sendBtn').disabled = true;
+  document.getElementById('proactiveBtn').disabled = true;
+
+  const now = new Date();
+  const time = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+
+  STATE.messages.push({ role: 'typing' });
+  renderMessages();
+
+  try {
+    if (!canUseOldCustomerBenefits() && STATE.scenario !== '复购触达' && STATE.scenario !== '用后疑问') {
+      let result = buildOrderVerificationResult({}, STATE.customerProfile.repurchaseData.pendingOrderClaim || '客户希望领取老客福利');
+      STATE.messages = STATE.messages.filter(m => m.role !== 'typing');
+      STATE.turn += 1;
+      STATE.messages.push({
+        role: 'ai',
+        content: result.reply,
+        meta: {
+          intent: result.intent,
+          next_action: result.next_action,
+          proactive: true,
+          time
+        }
+      });
+      captureAssets(result, '', { proactive: true });
+      renderMessages();
+      renderProfile();
+      renderDecision(result);
+      renderKbHits(result.knowledge_hit);
+      renderRepurchaseAssets();
+      renderTasks();
+      return;
+    }
+    let result = await callClaude('', true);
+    result = normalizeProactiveResult(result);
+    STATE.messages = STATE.messages.filter(m => m.role !== 'typing');
+    STATE.turn += 1;
+
+    STATE.messages.push({
+      role: 'ai',
+      content: result.reply,
+      meta: {
+        intent: result.intent || '复购触达 (主动)',
+        next_action: result.next_action,
+        proactive: true,
+        time
+      }
+    });
+    const isChurnRecall = STATE.scenario === '流失召回';
+    const product = getPrimaryProduct();
+    handleNextAction(result.next_action || (isChurnRecall ? '推唤醒券召回' : '复购触达执行'));
+    captureAssets({
+      ...result,
+      next_action: result.next_action || (isChurnRecall ? '推唤醒券召回' : '复购触达执行'),
+      knowledge_hit: result.knowledge_hit || (isChurnRecall
+        ? ['复购规则:60天未复购推唤醒券', `客户档案:${product} - 60天未复购/流失风险`]
+        : ['复购规则:精华30天触达', `商品库:${product}`, `客户档案:${product} - 按历史反馈触达`]),
+      repurchase_signal: result.repurchase_signal || (isChurnRecall ? '60天未复购流失召回' : `${product}第30天触达`)
+    }, '', { proactive: true });
+
+    renderMessages();
+    renderProfile();
+    renderDecision({
+      ...result,
+      intent: result.intent || (isChurnRecall ? '流失召回 (主动)' : '复购触达 (主动)'),
+      next_action: result.next_action || (isChurnRecall ? '推唤醒券召回' : '复购触达执行'),
+      rationale: result.rationale || (isChurnRecall ? '复购规则触发：60天未复购，按流失召回策略给唤醒券。' : '复购规则触发：精华类第30天，结合客户档案轻柔触达。')
+    });
+    renderKbHits(result.knowledge_hit || (isChurnRecall
+      ? ['复购规则:60天未复购推唤醒券', `客户档案:${product} - 60天未复购/流失风险`]
+      : ['复购规则:精华30天触达', `商品库:${product}`, `客户档案:${product} - 按历史反馈触达`]));
+    renderRepurchaseAssets();
+    renderTasks();
+  } catch (err) {
+    STATE.messages = STATE.messages.filter(m => m.role !== 'typing');
+    renderMessages();
+    showError(err.message);
+  } finally {
+    STATE.loading = false;
+    document.getElementById('sendBtn').disabled = false;
+    document.getElementById('proactiveBtn').disabled = false;
+  }
+}
+
+// =============================
+// 场景切换
+// =============================
+function applyScenario(name) {
+  const previousScenario = STATE.scenario;
+  const previousProfile = STATE.customerProfile;
+  STATE.scenario = name;
+  const sc = SCENARIOS[name];
+  if (name === '新客') {
+    STATE.visitorSeq += 1;
+    sc.name = `访客 #${STATE.visitorSeq}`;
+  }
+  STATE.messages = [];
+  STATE.customerProfile = inheritStableAssets(
+    hydrateProfile(sc.initialProfile, `${name}场景初始档案`),
+    previousProfile,
+    name,
+    previousScenario
+  );
+  seedScenarioAssets(name);
+  STATE.tasks = [];
+  STATE.turn = 0;
+
+  document.getElementById('custName').textContent = sc.name;
+  document.getElementById('custSource').textContent = sc.source;
+  document.getElementById('custAvatar').textContent = sc.avatar;
+
+  // 显示快捷回复
+  const $qr = document.getElementById('quickReplies');
+  $qr.innerHTML = sc.quickReplies.map(q =>
+    `<span class="quick-reply" data-text="${escapeHtml(q)}">${escapeHtml(q)}</span>`
+  ).join('');
+  $qr.querySelectorAll('.quick-reply').forEach(el => {
+    el.addEventListener('click', () => {
+      document.getElementById('chatInput').value = el.dataset.text;
+    });
+  });
+
+  // 复购/召回场景下按钮明显可见
+  const $pb = document.getElementById('proactiveBtn');
+  const proactiveReady = (name === '复购触达' || name === '流失召回');
+  $pb.style.display = 'inline-flex';
+  $pb.style.opacity = proactiveReady ? '1' : '0.5';
+  $pb.textContent = name === '流失召回' ? '触发召回任务' : '触发复购任务';
+
+  renderMessages();
+  renderProfile();
+  renderDecision(null);
+  renderKbHits(null);
+  renderRepurchaseAssets();
+  renderTasks();
+
+  // 按钮 active 状态
+  document.querySelectorAll('.scenario-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.scenario === name);
+  });
+}
+
+// =============================
+// 工具
+// =============================
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function showError(msg) {
+  const existing = document.querySelector('.err-banner');
+  if (existing) existing.remove();
+  const div = document.createElement('div');
+  div.className = 'err-banner';
+  div.textContent = '出错了：' + msg;
+  document.querySelector('.chat-panel').insertBefore(div, document.querySelector('.chat-messages'));
+  setTimeout(() => div.remove(), 6000);
+}
+
+// =============================
+// API 密钥配置
+// =============================
+function ensureApiKey() {
+  if (!API_KEY) {
+    openConfig();
+    return false;
+  }
+  return true;
+}
+function openConfig() {
+  document.getElementById('apiKeyInput').value = API_KEY;
+  document.getElementById('configModal').classList.add('open');
+  setTimeout(() => document.getElementById('apiKeyInput').focus(), 50);
+}
+function closeConfig() {
+  document.getElementById('configModal').classList.remove('open');
+}
+function saveConfig() {
+  const v = document.getElementById('apiKeyInput').value.trim();
+  if (!v) { showError('请填入 API 密钥'); return; }
+  if (!v.startsWith('sk-')) { showError('密钥格式不对，应该以 sk- 开头'); return; }
+  API_KEY = v;
+  const btn = document.getElementById('configBtn');
+  btn.classList.remove('unset');
+  btn.classList.add('ok');
+  btn.innerHTML = 'API 已配置';
+  closeConfig();
+}
+
+// =============================
+// 初始化
+// =============================
+document.addEventListener('DOMContentLoaded', () => {
+  // 场景按钮
+  document.querySelectorAll('.scenario-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyScenario(btn.dataset.scenario));
+  });
+
+  // 表单
+  const $form = document.getElementById('chatForm');
+  const $input = document.getElementById('chatInput');
+  $form.addEventListener('submit', e => {
+    e.preventDefault();
+    const text = $input.value.trim();
+    if (!text) return;
+    $input.value = '';
+    sendCustomerMessage(text);
+  });
+  $input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      $form.requestSubmit();
+    }
+  });
+
+  // 主动复购触达
+  document.getElementById('proactiveBtn').addEventListener('click', triggerProactive);
+
+  // 知识库抽屉
+  document.getElementById('kbHeader').addEventListener('click', () => {
+    document.getElementById('kbDrawer').classList.toggle('open');
+  });
+
+  // API 配置
+  document.getElementById('configBtn').addEventListener('click', openConfig);
+  document.getElementById('modalCancel').addEventListener('click', closeConfig);
+  document.getElementById('modalSave').addEventListener('click', saveConfig);
+  document.getElementById('apiKeyInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); saveConfig(); }
+  });
+  document.getElementById('configModal').addEventListener('click', e => {
+    if (e.target.id === 'configModal') closeConfig();
+  });
+
+  // 默认场景
+  applyScenario('新客');
+});
+</script>
