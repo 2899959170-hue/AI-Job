@@ -2886,10 +2886,15 @@ footer b{color:#f29275}
     if(e.key==='ArrowRight')move(1);
   });
 })();
-/* 面经多图叠成三张牌，点击后可继续翻完整组图 */
+/* 多图叠成三张牌，点击后可继续翻完整组图 */
 (function(){
-  document.querySelectorAll('#deliver .mj-cat .gal-row').forEach(function(row){
-    row.setAttribute('data-count',row.querySelectorAll('.gitem').length);
+  document.querySelectorAll('#deliver .mj-cat .gal-row,#deliver .dcard-media').forEach(function(row){
+    var total=row.querySelectorAll('.gitem').length;
+    row.setAttribute('data-count',total);
+    if(total>1){
+      var hint=row.querySelector('.media-hint');
+      if(hint)hint.textContent=total+' 张样张 · 点击翻牌';
+    }
   });
 })();
 /* 求职卡点互动词云 */
@@ -3978,18 +3983,49 @@ footer b{color:#f29275}
   #deliver .mj-cat .gal-row{min-height:214px;padding:8px!important}
   #deliver .mj-cat .gal-row .gitem,
   #deliver .mj-cat .gal-row .gitem:last-child:nth-child(odd){width:min(66%,238px)!important}
-  #deliver .mj-cat .gal-row .gitem:only-child{width:min(82%,290px)!important}
+  #deliver .mj-cat .gal-row:has(.gitem:only-child){min-height:126px}
+  #deliver .mj-cat .gal-row:has(.gitem:first-child:nth-last-child(2)){min-height:158px}
+  #deliver .mj-cat .gal-row .gitem:only-child{width:min(64%,210px)!important}
+  #deliver .mj-cat .gal-row .gitem:first-child:nth-last-child(2),
+  #deliver .mj-cat .gal-row .gitem:last-child:nth-child(2){width:min(54%,188px)!important}
   #deliver .dcard:has(.dcard-media)>.dcard-media{
     position:relative!important;display:flex!important;flex-wrap:nowrap!important;align-items:center!important;
-    min-height:0!important;gap:8px!important;padding:39px 13px 13px!important;overflow-x:auto!important;
-    scroll-snap-type:x proximity;scrollbar-width:none
+    justify-content:center!important;min-height:132px!important;gap:8px!important;
+    padding:37px 13px 11px!important;overflow:hidden!important;scrollbar-width:none
   }
   #deliver .dcard:has(.dcard-media)>.dcard-media::-webkit-scrollbar{display:none}
   #deliver .dcard-media .gitem,
   #deliver .dcard-media .gitem:only-child,
   #deliver .dcard-media .gitem:first-child:nth-last-child(3){
-    flex:0 0 98px!important;grid-column:auto!important;grid-row:auto!important;width:98px!important;height:118px!important;
+    flex:0 0 142px!important;grid-column:auto!important;grid-row:auto!important;width:142px!important;height:92px!important;
     min-height:0!important;aspect-ratio:auto!important;padding:5px!important;border-radius:10px!important;scroll-snap-align:start
+  }
+  #deliver .dcard-media .gitem:first-child:nth-last-child(2),
+  #deliver .dcard-media .gitem:last-child:nth-child(2){flex-basis:126px!important;width:126px!important}
+  #deliver .dcard-media:has(.gitem:nth-of-type(3)){
+    display:block!important;min-height:214px!important;padding:8px 10px!important;isolation:isolate
+  }
+  #deliver .dcard-media:has(.gitem:nth-of-type(3)) .gitem{
+    --deliver-deck:translate(-50%,-50%);position:absolute!important;left:50%;top:50%;
+    display:block!important;flex:none!important;width:min(57%,190px)!important;height:142px!important;
+    padding:6px!important;border-radius:13px!important;background:#fff!important;
+    box-shadow:0 18px 38px rgba(23,23,19,.2)!important;transform:var(--deliver-deck)!important;
+    transition:transform .2s ease!important
+  }
+  #deliver .dcard-media:has(.gitem:nth-of-type(3)) .gitem:nth-of-type(1){
+    --deliver-deck:translate(-75%,-53%) rotate(-7deg);z-index:2
+  }
+  #deliver .dcard-media:has(.gitem:nth-of-type(3)) .gitem:nth-of-type(2){
+    --deliver-deck:translate(-50%,-58%) rotate(0deg);z-index:5
+  }
+  #deliver .dcard-media:has(.gitem:nth-of-type(3)) .gitem:nth-of-type(3){
+    --deliver-deck:translate(-25%,-53%) rotate(7deg);z-index:3
+  }
+  #deliver .dcard-media:has(.gitem:nth-of-type(3)) .gitem:nth-of-type(n+4){display:none!important}
+  #deliver .dcard-media:has(.gitem:nth-of-type(3)) .media-hint{
+    left:50%;top:auto;bottom:9px;z-index:9;width:auto!important;padding:6px 9px;border-radius:999px;
+    color:#fff!important;background:rgba(23,23,19,.88);font-size:7.5px!important;white-space:nowrap;
+    transform:translateX(-50%)
   }
   #deliver .dcard-media .gitem img,
   #deliver .dcard-media .gitem:only-child img{
