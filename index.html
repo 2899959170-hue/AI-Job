@@ -1844,9 +1844,19 @@ footer b{color:#f29275}
           </div>
           <span class="new-tool-art" aria-hidden="true"><strong>SQL</strong><i>库</i><small>LEARN<br>BY DOING</small></span>
         </a>
+        <button class="new-tool-slide new-tool-qa" type="button" data-library-open="resources" data-new-tool-slide>
+          <span class="new-tool-index">FREE · 04</span>
+          <div class="new-tool-copy">
+            <span class="new-tool-badges"><i>免费开放</i><i>五类运营</i><i>500+ 问</i></span>
+            <h3>运营 100 问<br><em>合集</em></h3>
+            <p>用户、商家、电商、产品、内容五类题库一次汇总，另含京东采销 200 问。</p>
+            <b>打开题库合集 →</b>
+          </div>
+          <span class="new-tool-art" aria-hidden="true"><strong>100Q</strong><i>问</i><small>INTERVIEW<br>QUESTION BANK</small></span>
+        </button>
       </div>
       <div class="new-tools-controls" aria-label="新品工具轮播控制">
-        <span class="new-tools-dots"><button class="is-active" type="button" aria-label="查看简历深挖工具" data-new-tool-dot="0"></button><button type="button" aria-label="查看实习翻译机" data-new-tool-dot="1"></button><button type="button" aria-label="查看 SQL 自学工具" data-new-tool-dot="2"></button></span>
+        <span class="new-tools-dots"><button class="is-active" type="button" aria-label="查看简历深挖工具" data-new-tool-dot="0"></button><button type="button" aria-label="查看实习翻译机" data-new-tool-dot="1"></button><button type="button" aria-label="查看 SQL 自学工具" data-new-tool-dot="2"></button><button type="button" aria-label="查看运营 100 问合集" data-new-tool-dot="3"></button></span>
         <span><button type="button" aria-label="上一个新品工具" data-new-tools-prev>←</button><button type="button" aria-label="下一个新品工具" data-new-tools-next>→</button></span>
       </div>
     </section>
@@ -2392,7 +2402,7 @@ footer b{color:#f29275}
       <div class="mdv-node"><b>06</b><span>AI 作品</span><small>让 HR 看见能力</small></div>
       <div class="mdv-node"><b>07</b><span>选岗谈薪</span><small>拿到真正想去的</small></div>
     </div>
-    <details class="deliver-details mobile-progressive" open>
+    <details class="deliver-details" open>
       <summary><span>查看七项交付与真实样张</span><small>点击展开 · 图片可放大</small><b>＋</b></summary>
       <div class="deliv-grid">
       <div class="dcard"><div class="dn">00</div><h3>项目带做</h3><span class="force">全程带做</span>
@@ -2891,6 +2901,13 @@ footer b{color:#f29275}
   document.querySelectorAll('#deliver .mj-cat .gal-row,#deliver .dcard-media').forEach(function(row){
     var total=row.querySelectorAll('.gitem').length;
     row.setAttribute('data-count',total);
+    if(row.classList.contains('dcard-media')){
+      var card=row.closest('.dcard');
+      if(card){
+        card.classList.toggle('has-media-deck',total>=3);
+        card.classList.toggle('has-media-corner',total<3);
+      }
+    }
     if(total>1){
       var hint=row.querySelector('.media-hint');
       if(hint)hint.textContent=total+' 张样张 · 点击翻牌';
@@ -3123,7 +3140,7 @@ footer b{color:#f29275}
   position:relative;display:grid;grid-template-columns:minmax(0,1fr) 190px;align-items:stretch;
   flex:0 0 min(72%,780px);min-width:0;min-height:320px;padding:28px;overflow:hidden;
   border:1px solid rgba(255,255,255,.14);border-radius:22px;color:#fff;text-decoration:none;
-  scroll-snap-align:start;transition:transform .22s ease,border-color .22s ease
+  font:inherit;text-align:left;cursor:pointer;scroll-snap-align:start;transition:transform .22s ease,border-color .22s ease
 }
 .new-tool-slide:hover,.new-tool-slide:focus-visible{transform:translateY(-3px);border-color:rgba(255,255,255,.48)}
 .new-tool-slide:focus-visible{outline:3px solid rgba(244,147,117,.5);outline-offset:3px}
@@ -3134,6 +3151,10 @@ footer b{color:#f29275}
 .new-tool-sql{background:
   radial-gradient(circle at 88% 8%,rgba(221,174,83,.32),transparent 16rem),
   linear-gradient(132deg,#1b2117,#374324 62%,#8a6a29)}
+.new-tool-qa{background:
+  radial-gradient(circle at 84% 10%,rgba(255,190,128,.26),transparent 16rem),
+  linear-gradient(132deg,#2b1510,#6f281b 60%,#c15a35)}
+.new-tool-qa .new-tool-copy h3 em{color:#ffc09b}
 .new-tool-index{
   position:absolute;left:26px;top:21px;font:700 8px/1 var(--mono);letter-spacing:.15em;
   color:rgba(255,255,255,.5)
@@ -4026,6 +4047,36 @@ footer b{color:#f29275}
     left:50%;top:auto;bottom:9px;z-index:9;width:auto!important;padding:6px 9px;border-radius:999px;
     color:#fff!important;background:rgba(23,23,19,.88);font-size:7.5px!important;white-space:nowrap;
     transform:translateX(-50%)
+  }
+  #deliver .dcard.has-media-corner{
+    position:relative;min-height:0!important;grid-template-areas:"num" "title" "force" "copy"!important
+  }
+  #deliver .dcard.has-media-corner>h3,
+  #deliver .dcard.has-media-corner>.force{max-width:calc(100% - 148px)}
+  #deliver .dcard.has-media-corner>.dcard-media{
+    position:absolute!important;right:15px;top:34px;left:auto;width:128px!important;height:112px!important;
+    min-height:0!important;margin:0!important;padding:27px 8px 8px!important;border:1px solid rgba(201,192,178,.9);
+    border-radius:14px!important;background:#ece7dd!important;box-shadow:0 10px 25px rgba(38,31,23,.08);
+    overflow:hidden!important
+  }
+  #deliver .dcard.has-media-corner .dcard-media .gitem{
+    position:absolute!important;left:50%;top:29px;display:block!important;flex:none!important;
+    width:104px!important;height:70px!important;margin:0!important;padding:4px!important;
+    border-radius:8px!important;background:#fff!important;transform:translateX(-50%)!important;
+    box-shadow:0 7px 18px rgba(23,23,19,.13)!important
+  }
+  #deliver .dcard.has-media-corner .dcard-media:has(.gitem:nth-of-type(2)) .gitem{
+    width:86px!important;height:64px!important
+  }
+  #deliver .dcard.has-media-corner .dcard-media:has(.gitem:nth-of-type(2)) .gitem:nth-of-type(1){
+    transform:translateX(-66%) rotate(-5deg)!important;z-index:2
+  }
+  #deliver .dcard.has-media-corner .dcard-media:has(.gitem:nth-of-type(2)) .gitem:nth-of-type(2){
+    transform:translateX(-34%) rotate(5deg)!important;z-index:3
+  }
+  #deliver .dcard.has-media-corner .dcard-media .media-hint{
+    left:9px;top:8px;width:auto!important;margin:0!important;font-size:6.7px!important;
+    letter-spacing:.03em;white-space:nowrap;transform:none
   }
   #deliver .dcard-media .gitem img,
   #deliver .dcard-media .gitem:only-child img{
