@@ -362,7 +362,17 @@ details.fold .body p{margin:1em 0 0;line-height:1.8}
 .mentor .mr{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-faint);text-transform:uppercase;margin-top:2px}
 .mentor .story{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin-top:11px}
 .mentor .quote{font-family:var(--serif);font-size:13.5px;font-weight:600;color:var(--clay-deep);margin-top:10px;padding-left:14px;border-left:2px solid var(--clay);line-height:1.5}
+.mentor-case-open{margin-top:13px;padding:0;border:0;color:var(--ink);background:none;font:800 10px/1.4 var(--sans);cursor:pointer}
+.mentor-case-open::after{content:" ↗";color:var(--clay)}
+.mentor-case-open:hover,.mentor-case-open:focus-visible{color:var(--clay-deep);text-decoration:underline}
 .mentor-note{font-size:13px;color:var(--ink-soft);margin-top:14px;line-height:1.7}
+.mentor-scope{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;padding:14px;border:1px dashed var(--line-strong);background:rgba(255,255,255,.44)}
+.mentor-scope b{width:100%;margin-bottom:2px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--clay-deep);text-transform:uppercase}
+.mentor-scope span{padding:6px 9px;border:1px solid var(--line-strong);border-radius:999px;background:var(--paper);font-size:10.5px;color:var(--ink-soft)}
+.mentor-case-hint{margin-top:13px;padding:11px 13px;border-radius:10px;color:#fff;background:var(--ink);font-size:10.5px;line-height:1.55}
+.mentor-case-dialog .mentor-case-targets{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.mentor-case-dialog .mentor-case-targets span{padding:7px 10px;border:1px solid var(--line-strong);border-radius:999px;background:#fff;font-size:10.5px;color:var(--ink-soft)}
+.mentor-case-dialog .mentor-case-targets span:first-child{border-color:var(--clay);color:#fff;background:var(--clay);font-weight:800}
 
 /* 创始人 */
 .founders{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
@@ -1667,6 +1677,30 @@ footer b{color:#f29275}
  .mentor .story{display:none!important}
  .mentor .quote{font-size:10px!important;padding-left:7px!important;margin-top:6px!important;line-height:1.4!important}
 }
+
+/* 面经图卡：桌面紧凑分栏，手机横向浏览，避免少量文字撑出整屏留白 */
+@media(min-width:981px){
+  #deliver .mj-cat{grid-template-rows:auto 1fr;align-content:start}
+  #deliver .mj-cat .gal-row{grid-template-columns:repeat(3,minmax(0,1fr));align-self:start}
+  #deliver .mj-cat .gal-row .gitem,
+  #deliver .mj-cat .gal-row .gitem:last-child:nth-child(odd){grid-column:auto;aspect-ratio:4/3}
+}
+@media(max-width:980px){
+  #deliver .dcard:has(.dcard-media)>.dcard-media{min-height:0}
+  #deliver .mj-cat,#deliver .mj-cat:nth-child(even){
+    grid-template-columns:1fr;grid-template-rows:auto auto auto;grid-template-areas:"head" "desc" "gallery"
+  }
+  #deliver .mj-cat .gal-row{
+    display:flex;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;padding:2px 1px 8px;scrollbar-width:none
+  }
+  #deliver .mj-cat .gal-row::-webkit-scrollbar{display:none}
+  #deliver .mj-cat .gal-row .gitem,
+  #deliver .mj-cat .gal-row .gitem:last-child:nth-child(odd){
+    flex:0 0 min(72vw,300px);grid-column:auto;aspect-ratio:4/3!important;scroll-snap-align:start
+  }
+  #deliver .mj-cat .gal-row .gitem img{width:100%;height:100%!important;max-height:none;object-fit:contain}
+}
 </style>
 </head>
 <body>
@@ -1703,8 +1737,8 @@ footer b{color:#f29275}
   <!-- 跑马灯 -->
   <div class="ticker" aria-hidden="true">
     <div class="track">
-      <span>上岸为止</span><span>不设期限</span><span>不额外收费</span><span>60+ 全职导师</span><span>大厂系二面辅导</span><span>AI 作品手把手</span><span>简历改到满意不限次</span><span>模拟面试不限场</span>
-      <span>上岸为止</span><span>不设期限</span><span>不额外收费</span><span>60+ 全职导师</span><span>大厂系二面辅导</span><span>AI 作品手把手</span><span>简历改到满意不限次</span><span>模拟面试不限场</span>
+      <span>上岸为止</span><span>不设期限</span><span>不额外收费</span><span>20+ 全职 · 30+ 兼职导师</span><span>大厂系二面辅导</span><span>AI 作品手把手</span><span>简历改到满意不限次</span><span>模拟面试不限场</span>
+      <span>上岸为止</span><span>不设期限</span><span>不额外收费</span><span>20+ 全职 · 30+ 兼职导师</span><span>大厂系二面辅导</span><span>AI 作品手把手</span><span>简历改到满意不限次</span><span>模拟面试不限场</span>
     </div>
   </div>
 
@@ -1897,6 +1931,16 @@ footer b{color:#f29275}
     <p class="guide-tip" id="guideTip"></p>
   </dialog>
 
+  <dialog id="mentorCaseDialog" class="guide-dialog mentor-case-dialog" aria-labelledby="mentorCaseTitle">
+    <button class="guide-close" type="button" aria-label="关闭岗位案例" data-mentor-case-close>×</button>
+    <span class="guide-kicker">ROLE CASES · 目标岗位拆解</span>
+    <h2 id="mentorCaseTitle">岗位案例</h2>
+    <p id="mentorCaseIntro"></p>
+    <div class="mentor-case-targets" id="mentorCaseTargets"></div>
+    <ol id="mentorCaseSteps"></ol>
+    <p class="guide-tip">案例用于展示岗位拆解与准备方向，不代表对应公司当前正在招聘，也不伪装成学员 offer。</p>
+  </dialog>
+
   <dialog id="wechatPosterDialog" class="wechat-poster-dialog" aria-labelledby="wechatPosterTitle">
     <button class="wechat-poster-close" type="button" aria-label="关闭微信咨询海报" data-wechat-poster-close>×</button>
     <div class="wechat-poster-card">
@@ -1933,7 +1977,7 @@ footer b{color:#f29275}
 
     <div class="quick-service-track">
       <article class="quick-service-card resume-service">
-        <div class="quick-service-top"><span>MISSION · 01</span><b>¥<strong>349</strong></b></div>
+        <div class="quick-service-top"><span>MISSION · 01</span><div class="quick-price"><b><del data-quick-price-was>349</del>¥<strong data-quick-price="resume">299</strong></b><small data-quick-price-note="resume">8 月 15 日起 349</small></div></div>
         <h3>简历代写</h3>
         <p class="quick-fit">适合：方向基本确定，但经历写不清、投递没反馈。</p>
         <div class="quick-flow" role="img" aria-label="简历代写四步流程：收材料、深挖经历、按岗代写、确认修改">
@@ -1950,7 +1994,7 @@ footer b{color:#f29275}
       </article>
 
       <article class="quick-service-card interview-service">
-        <div class="quick-service-top"><span>MISSION · 02</span><b>¥<strong>649</strong></b></div>
+        <div class="quick-service-top"><span>MISSION · 02</span><div class="quick-price"><b><del data-quick-price-was>649</del>¥<strong data-quick-price="interview">599</strong></b><small data-quick-price-note="interview">8 月 15 日起 649</small></div></div>
         <h3>面试辅导</h3>
         <p class="quick-fit">适合：已经拿到面试，但回答散、容易卡壳、不知道怎么复盘。</p>
         <div class="quick-flow" role="img" aria-label="面试辅导四步流程：看岗位简历、搭问题库、模拟面试、逐题复盘">
@@ -2017,9 +2061,9 @@ footer b{color:#f29275}
     </div>
     <div class="hero-map-metrics reveal">
       <div><b data-count="8">8 项</b><span>全路径交付</span></div>
-      <div><b data-count="60">60+</b><span>全职导师</span></div>
-      <div><b data-count="500">500+</b><span>同期可服务</span></div>
-      <div><b>上岸为止</b><span>不设期限 · 不再收费</span></div>
+      <div><b data-count="20">20+</b><span>全职导师</span></div>
+      <div><b data-count="30">30+</b><span>兼职导师</span></div>
+      <div><b data-count="100">100+</b><span>团队规模 · 含其他业务</span></div>
     </div>
   </section>
 
@@ -2130,7 +2174,7 @@ footer b{color:#f29275}
       <div class="vs-head"><div>对比项</div><div class="them">外面的高价陪跑</div><div class="us">上岸为止 · 我们</div></div>
       <div class="vs-row"><div class="k">价格</div><div class="them">上万 ~ 20w</div><div class="us" data-price-compare>当前 6999 全程</div></div>
       <div class="vs-row"><div class="k">简历</div><div class="them">AI 一键生成,不讲为什么</div><div class="us">深挖后一岗一版,教你为什么</div></div>
-      <div class="vs-row"><div class="k">带你的人</div><div class="them">兼职大学生"陪跑"</div><div class="us">60+ 全职 + 大厂系二面导师</div></div>
+      <div class="vs-row"><div class="k">带你的人</div><div class="them">兼职大学生"陪跑"</div><div class="us">20+ 全职 + 30+ 兼职业务导师</div></div>
       <div class="vs-row"><div class="k">"保 offer"</div><div class="them">塞你一个电销岗</div><div class="us">陪到你真想去的那个 offer</div></div>
       <div class="vs-row"><div class="k">方法</div><div class="them">给你织个信息茧房</div><div class="us">全摊开,教到你会</div></div>
       <div class="vs-row"><div class="k">之后</div><div class="them">一次性,过完就忘</div><div class="us">一门能吃一辈子的手艺</div></div>
@@ -2425,27 +2469,31 @@ footer b{color:#f29275}
   <!-- 08 陪你的人 -->
   <section id="team" class="pad block reveal">
     <div class="block-head"><span class="block-idx">08</span><span class="block-en">Your Coaches</span></div>
-    <h2>陪你的都是些<span class="clay">什么人</span></h2>
-    <p class="lede">背后是浙江九凌企业管理有限公司和杭州无堂网络(B 站头部代理商),一百多人团队、六十多个全职导师,同时带五百多个学生。给你配的导师分两拨——一拨管二面辅导和简历审核(不亲自动手写),一拨是干了四年以上的 HR / HRBP,管简历、投递、一面陪跑。</p>
+    <h2>导师库，只留<span class="clay">与你目标岗有关的人</span></h2>
+    <p class="lede">背后是一百多人团队（还包含其他业务），求职陪跑这边有 20+ 全职导师、30+ 兼职业务导师。页面不再把算法、金融、法务等无关方向铺满，只展示运营、品牌、市场、出海与产品九条主线；遇到其他运营岗，再按具体 JD 继续扩充。</p>
 
     <div class="mentor-grid">
-      <div class="mentor"><div class="top"><div class="ava" style="background:#c0562f">L</div><div><div class="mn">Leo</div><div class="mr">产品 · 大厂系 6 年</div></div></div><div class="story">从工具人做到平台产品负责人,增长、商业化、平台都趟过,最烦"功能堆砌"。</div><div class="quote">"先说清楚,你解决的是谁的什么问题。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#56663f">M</div><div><div class="mn">Mina</div><div class="mr">运营 · 内容平台 5 年</div></div></div><div class="story">0→1 起过号,看一眼后台数据就知道你哪一步在虚。</div><div class="quote">"数据不会说谎,但你得会讲。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#3c4a58">R</div><div><div class="mn">Ray</div><div class="mr">数据 · 7 年 SQL/BI</div></div></div><div class="story">把满嘴"我觉得"翻译成"我算过"的人,结论必带口径。</div><div class="quote">"给结论之前,先给我口径。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#b0812f">E</div><div><div class="mn">Evan</div><div class="mr">算法</div></div></div><div class="story">论文和线上都扛过,不玩虚的花活。</div><div class="quote">"能上线的,才叫模型。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#8f3d1e">A</div><div><div class="mn">Allen</div><div class="mr">四大 · 税务审计</div></div></div><div class="story">细节控,一个数对不上能查你一晚上。</div><div class="quote">"底稿,会替你说话。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#3a4628">C</div><div><div class="mn">Cathy</div><div class="mr">券商 · 投行</div></div></div><div class="story">熬过 IPO 封闭的人,抗压是肌肉记忆。</div><div class="quote">"逻辑先行,情绪靠后。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#c0562f">J</div><div><div class="mn">Jasper</div><div class="mr">管理咨询</div></div></div><div class="story">三句话把复杂问题拆成框架的人。</div><div class="quote">"So what?再往下一层。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#56663f">N</div><div><div class="mn">Nina</div><div class="mr">品牌市场</div></div></div><div class="story">会讲故事,也会算 ROI。</div><div class="quote">"品牌是慢生意,但每步要有声响。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#3c4a58">D</div><div><div class="mn">Dylan</div><div class="mr">电商运营</div></div></div><div class="story">大促里泡大的,GMV 是本能反应。</div><div class="quote">"流量、转化、复购,你先答哪个?"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#b0812f">K</div><div><div class="mn">Ken</div><div class="mr">供应链</div></div></div><div class="story">把混乱理成流程的人。</div><div class="quote">"别救火,去改流程。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#8f3d1e">I</div><div><div class="mn">Iris</div><div class="mr">采购</div></div></div><div class="story">谈判桌上的温柔一刀。</div><div class="quote">"价格是谈出来的,不是等来的。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#3a4628">S</div><div><div class="mn">Shawn</div><div class="mr">新能源车企</div></div></div><div class="story">从 0 到量产都趟过一遍。</div><div class="quote">"落地,大于 PPT。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#c0562f">Y</div><div><div class="mn">Yuki</div><div class="mr">汽车质量工艺</div></div></div><div class="story">0.01 毫米也不放过。</div><div class="quote">"标准,就是标准。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#56663f">B</div><div><div class="mn">Bella</div><div class="mr">医药临床</div></div></div><div class="story">和时间、和规范死磕的人。</div><div class="quote">"合规不是枷锁,是护身符。"</div></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#3c4a58">J</div><div><div class="mn">Jason</div><div class="mr">企业法务</div></div></div><div class="story">帮你把坑,提前看见。</div><div class="quote">"签字之前,先读小字。"</div></div>
+      <div class="mentor"><div class="top"><div class="ava" style="background:#c0562f">商</div><div><div class="mn">商家运营导师组</div><div class="mr">Merchant Operations</div></div></div><div class="story">商家分层、成长体系、活动机制与经营诊断。</div><div class="quote">"先看商家为什么来，再看怎么让他留下。"</div><button class="mentor-case-open" type="button" data-mentor-case="merchant">看 10+ 岗位案例</button></div>
+      <div class="mentor"><div class="top"><div class="ava" style="background:#b0812f">采</div><div><div class="mn">采销 / 商品运营导师组</div><div class="mr">Merchandising Operations</div></div></div><div class="story">选品定价、品类规划、供应商协同与库存经营。</div><div class="quote">"采什么、卖给谁、周转多久，都要算清楚。"</div><button class="mentor-case-open" type="button" data-mentor-case="merchandising">看 10+ 岗位案例</button></div>
+      <div class="mentor"><div class="top"><div class="ava" style="background:#56663f">增</div><div><div class="mn">用户增长导师组</div><div class="mr">User Growth</div></div></div><div class="story">拉新、促活、留存、召回与增长实验。</div><div class="quote">"增长不是一个数字，是一条能复盘的漏斗。"</div><button class="mentor-case-open" type="button" data-mentor-case="user-growth">看 10+ 岗位案例</button></div>
+      <div class="mentor"><div class="top"><div class="ava" style="background:#3c4a58">内</div><div><div class="mn">内容活动运营导师组</div><div class="mr">Content · Campaign</div></div></div><div class="story">内容策略、活动策划、渠道协同与转化复盘。</div><div class="quote">"别只讲做了活动，要讲为什么有效。"</div><button class="mentor-case-open" type="button" data-mentor-case="content">看 10+ 岗位案例</button></div>
+      <div class="mentor"><div class="top"><div class="ava" style="background:#b0812f">牌</div><div><div class="mn">品牌市场导师组</div><div class="mr">Brand · Marketing</div></div></div><div class="story">品牌策略、整合营销、投放与 ROI 评估。</div><div class="quote">"品牌要有故事，市场要能交结果。"</div><button class="mentor-case-open" type="button" data-mentor-case="brand">看 10+ 岗位案例</button></div>
+      <div class="mentor"><div class="top"><div class="ava" style="background:#8f3d1e">海</div><div><div class="mn">出海增长导师组</div><div class="mr">Global Growth</div></div></div><div class="story">海外市场、本地化、渠道增长与跨文化用户洞察。</div><div class="quote">"不把国内打法翻译一遍，就叫出海。"</div><button class="mentor-case-open" type="button" data-mentor-case="global">看 DJI / Insta360 等案例</button></div>
+      <div class="mentor"><div class="top"><div class="ava" style="background:#3a4628">策</div><div><div class="mn">策略产品导师组</div><div class="mr">Strategy Product</div></div></div><div class="story">策略机制、平台规则、供需匹配与效率优化。</div><div class="quote">"先讲清决策变量，再谈产品方案。"</div><button class="mentor-case-open" type="button" data-mentor-case="strategy-product">看 10+ 岗位案例</button></div>
+      <div class="mentor"><div class="top"><div class="ava" style="background:#c0562f">长</div><div><div class="mn">增长产品导师组</div><div class="mr">Growth Product</div></div></div><div class="story">增长漏斗、实验设计、转化与留存产品化。</div><div class="quote">"每个功能，都要对应一段用户行为。"</div><button class="mentor-case-open" type="button" data-mentor-case="growth-product">看 10+ 岗位案例</button></div>
+      <div class="mentor"><div class="top"><div class="ava" style="background:#56663f">AI</div><div><div class="mn">AI 产品导师组</div><div class="mr">AI Product</div></div></div><div class="story">AI 场景判断、产品设计、落地路径与效果评估。</div><div class="quote">"不是接上模型就算 AI 产品。"</div><button class="mentor-case-open" type="button" data-mentor-case="ai-product">看 10+ 岗位案例</button></div>
     </div>
-    <p class="mentor-note">另一拨是干了四年以上的 HR、HRBP——互联网内容电商的张老师、李老师、王老师;ToB 项目的陈老师、赵老师;金融财务审计的刘老师、孙老师;快消品牌的周老师、黄老师;制造供应链采购的郑老师、何老师;医药的马老师;法务行政的唐老师、许老师。每人专盯一个方向,把你的经历往那个方向的岗位语言上使劲改。有同学嘀咕:你们收这点钱,跟这些大佬时薪对不上啊。我说,在二面辅导这个层面真对得上——别被外面漫天要价的把脑子带偏了。</p>
+    <p class="mentor-case-hint">9 个精确方向 · 每个方向不少于 10 个岗位案例 · 感兴趣再点开，不把首页拉长</p>
+    <div class="mentor-scope" aria-label="可继续匹配的运营岗位">
+      <b>运营方向可继续扩充</b>
+      <span>用户运营</span><span>产品运营</span><span>平台运营</span><span>策略运营</span>
+      <span>电商运营</span><span>直播运营</span><span>内容运营</span><span>活动运营</span>
+      <span>社区运营</span><span>新媒体运营</span><span>渠道运营</span><span>商业化运营</span>
+      <span>类目运营</span><span>商品运营</span><span>招商运营</span><span>供应链运营</span>
+      <span>私域 / 社群运营</span><span>CRM 运营</span><span>数据运营</span><span>销售运营</span>
+      <span>本地生活运营</span><span>门店运营</span><span>投放运营</span><span>海外运营</span>
+    </div>
+    <p class="mentor-note">匹配时不按笼统的“大运营”或“大产品”分配，而是先读你的目标 JD：产品方向重点匹配策略产品、增长产品和 AI 产品；运营方向不设死，按行业、用户和业务环节继续细分。简历、面试题和作品方向沿同一条岗位线推进，避免跨行业信息干扰。</p>
 
     <h3 style="font-family:var(--serif);font-size:20px;margin-top:26px">还有三个创始人导师</h3>
     <div class="founders">
@@ -2548,7 +2596,7 @@ footer b{color:#f29275}
     <div class="block-head"><span class="block-idx">FAQ</span><span class="block-en">You Might Ask</span></div>
     <h2>你可能<span class="clay">还想问</span></h2>
     <div style="margin-top:16px">
-      <details class="faq"><summary><span class="q">Q</span>为什么你们比外面便宜这么多?<span class="plus">+</span></summary><div class="a">规模。定位、简历结构、面试题型、谈薪、甚至 AI 作品,我们都做成了标准流程、模板库、话术库,重复的活儿工具化了,成本自然压得下来。不靠"信息差"抬价,也不是小作坊——背后是浙江九凌投的项目,一百多人团队、六十多个全职导师,人力成本摊薄了。</div></details>
+      <details class="faq"><summary><span class="q">Q</span>为什么你们比外面便宜这么多?<span class="plus">+</span></summary><div class="a">规模。定位、简历结构、面试题型、谈薪、甚至 AI 作品,我们都做成了标准流程、模板库、话术库,重复的活儿工具化了,成本自然压得下来。不靠"信息差"抬价,也不是小作坊——背后是一百多人团队（还包含其他业务），求职陪跑这边有 20+ 全职导师、30+ 兼职业务导师，人力成本能被合理摊薄。</div></details>
       <details class="faq"><summary><span class="q">Q</span>便宜是不是就意味着差?<span class="plus">+</span></summary><div class="a">不。便宜是我们不赚那份"溢价",不是少给你东西。外面贵,很多贵在卖神秘、卖焦虑上。我们把方法讲透、动作写死,靠流程交付。</div></details>
       <details class="faq"><summary><span class="q">Q</span>跟"改个简历、发个清单"的有啥不一样?<span class="plus">+</span></summary><div class="a">我们给你一整条链路。光改简历你面试照样卡,光发清单你拿了照样焦虑。方向、材料、表达、复盘、谈薪,一整个闭环跑通。</div></details>
       <details class="faq"><summary><span class="q">Q</span>你们保 offer 吗?<span class="plus">+</span></summary><div class="a">不保特定 offer。那些拍胸脯"保"的最后大多塞你个电销岗。我承诺的是"上岸为止"——不设期限、不额外收钱,陪到你拿到自己真想去的那个 offer。</div></details>
@@ -2580,7 +2628,7 @@ footer b{color:#f29275}
       <span class="brand-cloud-core">职途领航<small>CAREER NAVIGATION</small></span>
       <span class="cloud-company two">杭州无堂网络<br>B 站头部代理商</span>
       <span class="cloud-term t1">作品化求职 · AI 作品</span>
-      <span class="cloud-term t2">60+ 全职导师 · 500+ 同期服务</span>
+      <span class="cloud-term t2">100+ 团队 · 20+ 全职 · 30+ 兼职导师</span>
       <span class="cloud-term t3">方向 · 简历 · 投递 · 面试</span>
       <span class="cloud-term t4">全路径陪跑 · 上岸为止</span>
     </div>
@@ -2679,9 +2727,12 @@ footer b{color:#f29275}
 })();
 </script>
 
-<button id="tocFab" type="button" aria-label="打开页面目录" aria-expanded="false" aria-controls="tocPanel">☰</button>
+<button id="tocFab" type="button" aria-label="打开页面目录" aria-expanded="false" aria-controls="tocPanel">
+ <span class="toc-fab-icon" aria-hidden="true">☰</span><span class="toc-fab-label">目录</span>
+</button>
 <nav id="tocPanel" aria-label="页面目录">
- <a href="#library">工具资料库</a><a href="#quick-services">349 / 649 单项</a><a href="#hero">陪跑方案</a>
+ <div class="toc-panel-head"><b>页面目录</b><span>点一下，直接跳转</span></div>
+ <a href="#library">工具资料库</a><a href="#quick-services" data-quick-price-nav>299 / 599 单项</a><a href="#hero">陪跑方案</a>
  <a href="#why">不是你的错</a><a href="#pits">两个坑</a><a href="#why-me">我为什么做</a>
  <a href="#flow">全路径</a><a href="#deliver">七项交付</a><a href="#ai">AI 作品集</a>
  <a href="#city">城市投递</a><a href="#offers">上岸捷报</a><a href="#team">导师</a>
@@ -2689,11 +2740,13 @@ footer b{color:#f29275}
 </nav>
 <style>
 #tocFab{position:fixed;right:16px;bottom:84px;z-index:130;width:50px;height:50px;border-radius:50%;background:#c0562f;color:#fff;border:none;box-shadow:0 8px 22px rgba(0,0,0,.32);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#tocFab .toc-fab-label{display:none}
 #tocPanel{position:fixed;right:16px;bottom:144px;z-index:130;background:#fbf9f3;border:1px solid #dcd5c5;border-radius:14px;box-shadow:0 18px 44px rgba(0,0,0,.28);padding:6px;display:none;max-height:66vh;overflow:auto}
 #tocPanel.open{display:block}
+#tocPanel .toc-panel-head{display:none}
 #tocPanel a{display:block;padding:9px 16px;color:#15140f;text-decoration:none;font-size:14px;border-radius:8px;white-space:nowrap;font-family:'Noto Serif SC',serif}
 #tocPanel a:active{background:#ece6d9}
-@media(min-width:900px){#tocFab{bottom:24px}#tocPanel{bottom:84px}}
+@media(min-width:721px){#tocFab,#tocPanel{display:none!important}}
 .mobile-route-visual,.mobile-deliver-visual,.mobile-pits-visual,.deliver-details>summary,.pits-details>summary{display:none}
 .deliver-details,.pits-details{display:block}
 
@@ -3050,9 +3103,12 @@ footer b{color:#f29275}
 .interview-service::before{background:var(--ink)}
 .quick-service-top{display:flex;justify-content:space-between;align-items:flex-start}
 .quick-service-top>span{font-family:var(--mono);font-size:8px;letter-spacing:.15em;color:var(--ink-faint)}
-.quick-service-top>b{font-family:var(--mono);font-size:15px;color:var(--clay)}
-.quick-service-top>b strong{font-size:34px;line-height:1}
-.interview-service .quick-service-top>b{color:var(--ink)}
+.quick-price{text-align:right}
+.quick-price b{display:flex;align-items:baseline;justify-content:flex-end;gap:4px;font-family:var(--mono);font-size:15px;color:var(--clay)}
+.quick-price b del{font-size:13px;font-weight:500;color:var(--ink-faint);text-decoration-thickness:1px}
+.quick-price b strong{font-size:34px;line-height:1}
+.quick-price small{display:block;margin-top:4px;font-size:8px;color:var(--clay-deep)}
+.interview-service .quick-price b{color:var(--ink)}
 .quick-service-card h3{margin-top:12px;font-size:30px;line-height:1.2}
 .quick-fit{margin-top:7px;font-size:11px;line-height:1.65;color:var(--ink-soft)}
 .quick-flow{
@@ -3463,27 +3519,46 @@ footer b{color:#f29275}
   .plan{flex:0 0 min(86vw,340px);padding:24px 19px;scroll-snap-align:start}
   .cta-final{padding:54px 18px 98px}
 
-  /* One bottom dock: menu on the left, consultation on the right. */
+  /* One bottom dock: a light glass directory on the left, consultation on the right. */
   #tocFab{
     left:14px;right:auto;bottom:max(12px,env(safe-area-inset-bottom));
-    width:52px;height:52px;border-radius:16px;background:var(--ink);
-    box-shadow:0 12px 30px rgba(23,23,19,.25);font-size:18px;
+    width:auto;min-width:76px;height:48px;padding:0 13px;gap:7px;
+    border:1px solid rgba(255,255,255,.72);border-radius:16px;
+    background:rgba(250,247,239,.68);color:var(--ink);
+    -webkit-backdrop-filter:blur(18px) saturate(1.25);backdrop-filter:blur(18px) saturate(1.25);
+    box-shadow:0 10px 28px rgba(23,23,19,.13),inset 0 1px 0 rgba(255,255,255,.55);
+    font-size:15px;
     opacity:0;pointer-events:none;transform:translateY(calc(100% + 28px));
-    transition:opacity .22s ease,transform .22s ease
+    transition:opacity .22s ease,transform .22s ease,background .18s ease,color .18s ease
   }
+  #tocFab .toc-fab-icon{font-size:15px;line-height:1}
+  #tocFab .toc-fab-label{display:inline;font-size:12px;font-weight:800;letter-spacing:.04em}
+  #tocFab.is-open{background:rgba(192,86,47,.84);color:#fff;border-color:rgba(255,255,255,.44)}
   #tocFab.is-visible{opacity:1;pointer-events:auto;transform:translateY(0)}
   .mobile-cta{
-    left:76px;right:14px;bottom:max(12px,env(safe-area-inset-bottom));
-    min-width:0;min-height:52px;border-radius:16px;padding:0 18px;
+    left:100px;right:14px;bottom:max(12px,env(safe-area-inset-bottom));
+    min-width:0;min-height:48px;border-radius:16px;padding:0 18px;
     box-shadow:0 12px 30px rgba(159,53,27,.28)
   }
   #tocPanel{
-    left:14px;right:14px;bottom:calc(76px + env(safe-area-inset-bottom));
-    max-height:min(58vh,470px);padding:10px;border-radius:18px;
-    background:rgba(251,249,243,.97);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)
+    left:14px;right:14px;bottom:calc(72px + env(safe-area-inset-bottom));
+    max-height:min(58vh,470px);padding:11px;border:1px solid rgba(255,255,255,.74);border-radius:20px;
+    background:rgba(250,247,239,.78);
+    -webkit-backdrop-filter:blur(22px) saturate(1.28);backdrop-filter:blur(22px) saturate(1.28);
+    box-shadow:0 18px 46px rgba(23,23,19,.18),inset 0 1px 0 rgba(255,255,255,.65)
   }
-  #tocPanel.open{display:grid;grid-template-columns:1fr 1fr;gap:4px}
-  #tocPanel a{padding:11px 12px;border-radius:10px;font-family:var(--sans);font-size:12.5px}
+  #tocPanel.open{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  #tocPanel .toc-panel-head{
+    grid-column:1/-1;display:flex;align-items:baseline;justify-content:space-between;
+    padding:3px 5px 8px;border-bottom:1px solid rgba(21,20,15,.1);margin-bottom:2px
+  }
+  #tocPanel .toc-panel-head b{font-family:var(--serif);font-size:14px}
+  #tocPanel .toc-panel-head span{font-size:9px;letter-spacing:.04em;color:var(--ink-faint)}
+  #tocPanel a{
+    padding:10px 11px;border:1px solid rgba(21,20,15,.08);border-radius:11px;
+    background:rgba(255,255,255,.42);font-family:var(--sans);font-size:12px;font-weight:700
+  }
+  #tocPanel a:active{background:rgba(192,86,47,.15);color:var(--clay-deep)}
 }
 
 @media(max-width:380px){
@@ -3505,9 +3580,10 @@ footer b{color:#f29275}
   else if(mobile.addListener)mobile.addListener(syncDetail);
 })();
 (function(){var f=document.getElementById('tocFab'),p=document.getElementById('tocPanel');
-function close(){p.classList.remove('open');f.textContent='\u2630';f.setAttribute('aria-expanded','false');f.setAttribute('aria-label','打开页面目录');}
-f.addEventListener('click',function(e){e.stopPropagation();var o=p.classList.toggle('open');f.textContent=o?'\u2715':'\u2630';f.setAttribute('aria-expanded',o?'true':'false');f.setAttribute('aria-label',o?'关闭页面目录':'打开页面目录');});
-p.addEventListener('click',function(e){if(e.target.tagName==='A')close();});
+var icon=f.querySelector('.toc-fab-icon'),label=f.querySelector('.toc-fab-label');
+function close(){p.classList.remove('open');f.classList.remove('is-open');icon.textContent='\u2630';label.textContent='目录';f.setAttribute('aria-expanded','false');f.setAttribute('aria-label','打开页面目录');}
+f.addEventListener('click',function(e){e.stopPropagation();var o=p.classList.toggle('open');f.classList.toggle('is-open',o);icon.textContent=o?'\u2715':'\u2630';label.textContent=o?'收起':'目录';f.setAttribute('aria-expanded',o?'true':'false');f.setAttribute('aria-label',o?'关闭页面目录':'打开页面目录');});
+p.addEventListener('click',function(e){e.stopPropagation();if(e.target.closest('a'))close();});
 document.addEventListener('click',close);})();
 (function(){
   var menu=document.getElementById('tocFab'),marker=document.getElementById('quick-services')||document.getElementById('library');
@@ -3582,6 +3658,85 @@ document.addEventListener('click',close);})();
     if(e.target.closest('[data-wechat-poster-close]'))closePoster();
   });
   dialog.addEventListener('click',function(e){if(e.target===dialog)closePoster();});
+})();
+(function(){
+  var dialog=document.getElementById('mentorCaseDialog');
+  if(!dialog)return;
+  var cases={
+    merchant:{
+      title:'商家运营 · 岗位案例池',
+      intro:'围绕商家引入、分层、成长、活跃、经营诊断和平台生态准备，不用一套“运营话术”硬套。',
+      targets:['拼多多商家运营','淘天商家成长运营','抖音电商商家策略运营','京东商家运营','美团商户运营','快手电商商家运营','小红书商业生态运营','得物商家运营','1688 平台招商运营','TikTok Shop 商家运营'],
+      steps:['拆清平台、商家和消费者三方目标，先讲供给侧为什么重要。','准备商家分层、激励机制、活动报名、经营诊断等高频业务题。','用一个真实商家案例，讲清问题、动作、指标和复盘。']
+    },
+    merchandising:{
+      title:'采销 / 商品运营 · 岗位案例池',
+      intro:'重点就是京东采销、多多买菜这类岗位：既懂商品和供应商，也要对价格、毛利、周转和销售结果负责。',
+      targets:['京东采销','多多买菜采销运营','拼多多商品运营','淘天类目运营','盒马商品运营','美团优选商品运营','抖音电商行业运营','快手电商品类运营','叮咚买菜采购 / 品类运营','零售供应链运营'],
+      steps:['先把选品、定价、采购、库存、促销和复盘串成完整经营链路。','重点准备毛利、周转、现货率、滞销、供应商协同等指标与场景题。','拿一个品类做经营分析：市场空间、货盘结构、价格带和增长动作。']
+    },
+    'user-growth':{
+      title:'用户增长 · 岗位案例池',
+      intro:'把“拉新促活留存”拆成可计算的漏斗、实验和用户策略，而不是只背几个增长黑话。',
+      targets:['拼多多用户增长','美团增长运营','小红书用户增长','B 站社区增长','抖音增长运营','快手用户增长','知乎用户运营','网易云音乐用户增长','在线教育用户增长','App 私域 / CRM 运营'],
+      steps:['先建立获客、激活、留存、召回和推荐的完整增长漏斗。','准备用户分层、渠道评估、A/B 实验、活动增长和留存分析题。','用一次增长项目讲清假设、实验、核心指标、结果和下一步迭代。']
+    },
+    content:{
+      title:'内容 / 活动运营 · 岗位案例池',
+      intro:'覆盖内容供给、作者生态、社区氛围、活动机制和传播转化，强调内容结果而不是“发了多少篇”。',
+      targets:['小红书内容运营','抖音活动运营','B 站内容运营','快手作者运营','知乎社区运营','视频号内容运营','游戏活动运营','音乐平台内容运营','品牌新媒体运营','校园市场活动运营'],
+      steps:['先分清内容平台、品牌账号和活动项目的目标与指标。','准备选题、供给、分发、互动、转化和复盘六个环节。','带一份内容或活动方案，能解释为什么做、给谁看、怎么衡量。']
+    },
+    brand:{
+      title:'品牌市场 · 岗位案例池',
+      intro:'从市场洞察、品牌定位到整合营销和效果评估，既要会讲故事，也要能把预算和结果说明白。',
+      targets:['拼多多市场管培','快消品牌管培','科技品牌市场','互联网整合营销','品牌策略运营','消费者洞察','媒介投放运营','公关传播','校园市场','新品上市营销'],
+      steps:['先拆公司、品类、目标人群和竞争格局，形成自己的市场判断。','准备品牌定位、Campaign 策划、媒介组合、预算分配和 ROI 题。','选一个品牌做完整提案：洞察、策略、创意、渠道、指标和复盘。']
+    },
+    global:{
+      title:'出海增长 / 海外市场 · 岗位案例池',
+      intro:'重点往科技硬件和全球化品牌走：大疆 DJI、Insta360 是核心参考，再延伸到海外品牌、渠道、本地化和用户增长。',
+      targets:['大疆 DJI 海外市场 / Growth','Insta360 海外增长 / 品牌','安克创新海外品牌 / 渠道','SHEIN 海外用户增长','TikTok Shop 出海运营','Temu 海外市场 / 增长','绿联科技海外电商','Baseus 倍思海外品牌','石头科技海外市场','XREAL 全球营销 / 社区'],
+      steps:['先研究目标国家的用户、渠道、内容生态、价格带和竞品，不照搬国内打法。','准备本地化、海外社媒、红人营销、独立站、电商平台和渠道增长题。','围绕 DJI 或 Insta360 做一份市场进入 / 增长方案，展示全球化判断。']
+    },
+    'strategy-product':{
+      title:'策略产品 · 岗位案例池',
+      intro:'强调规则、机制、供需匹配和平台效率，面试重点是把复杂业务抽象成可执行的策略。',
+      targets:['拼多多策略产品','淘宝平台策略产品','抖音电商策略产品','美团供需策略产品','滴滴交易策略产品','京东商家策略产品','内容推荐策略产品','搜索策略产品','风控策略产品','广告策略产品'],
+      steps:['先画清参与方、目标、约束和核心决策变量。','准备规则设计、供需匹配、补贴机制、异常治理和策略评估题。','用一张策略流程图讲清输入、决策、动作、指标和迭代。']
+    },
+    'growth-product':{
+      title:'增长产品 · 岗位案例池',
+      intro:'把增长目标做成产品能力，覆盖获客、激活、转化、留存、会员和裂变。',
+      targets:['美团增长产品','拼多多增长产品','抖音增长产品','小红书增长产品','B 站用户增长产品','电商转化产品','会员产品','私域增长产品','裂变活动产品','海外增长产品'],
+      steps:['先定位漏斗中最值得产品化解决的一段，不从功能清单开始。','准备注册转化、首单、会员、留存、召回、裂变和实验平台题。','用增长实验说明假设、产品动作、实验分组、指标和风险。']
+    },
+    'ai-product':{
+      title:'AI 产品 · 岗位案例池',
+      intro:'重点看场景价值、模型边界、交互设计和效果评估，不把“接了大模型”当成产品能力。',
+      targets:['字节豆包 AI 产品','阿里千问 AI 应用产品','腾讯元宝 AI 产品','百度文心 AI 产品','智谱 AI 应用产品','MiniMax AI 产品','科大讯飞智能产品','企业智能客服产品','AI 营销工具产品','AI Agent / 工作流产品'],
+      steps:['先判断场景是否真的需要 AI，再定义用户任务和成功标准。','准备模型选型、Prompt / RAG、幻觉、安全、成本和评估指标题。','做一个能操作的 AI 原型，展示需求、流程、效果和失败兜底。']
+    }
+  };
+  var title=document.getElementById('mentorCaseTitle');
+  var intro=document.getElementById('mentorCaseIntro');
+  var targets=document.getElementById('mentorCaseTargets');
+  var steps=document.getElementById('mentorCaseSteps');
+  function closeDialog(){if(dialog.close)dialog.close();else dialog.removeAttribute('open');}
+  document.addEventListener('click',function(e){
+    var trigger=e.target.closest('[data-mentor-case]');
+    if(trigger){
+      var item=cases[trigger.getAttribute('data-mentor-case')];
+      if(!item)return;
+      title.textContent=item.title;intro.textContent=item.intro;targets.innerHTML='';steps.innerHTML='';
+      item.targets.forEach(function(copy){var tag=document.createElement('span');tag.textContent=copy;targets.appendChild(tag);});
+      item.steps.forEach(function(copy){var step=document.createElement('li');step.textContent=copy;steps.appendChild(step);});
+      if(dialog.showModal)dialog.showModal();else dialog.setAttribute('open','');
+      return;
+    }
+    if(e.target.closest('[data-mentor-case-close]'))closeDialog();
+  });
+  dialog.addEventListener('click',function(e){if(e.target===dialog)closeDialog();});
 })();
 (function(){
   var dialog=document.getElementById('guideDialog');
@@ -3732,11 +3887,18 @@ document.addEventListener('click',close);})();
   if(Date.now()<priceRisesAt)return;
   document.querySelectorAll('[data-current-price]').forEach(function(el){el.textContent='7999';});
   document.querySelectorAll('[data-price-was]').forEach(function(el){el.hidden=true;});
+  document.querySelectorAll('[data-quick-price-was]').forEach(function(el){el.hidden=true;});
+  document.querySelectorAll('[data-quick-price]').forEach(function(el){
+    el.textContent=el.getAttribute('data-quick-price')==='resume'?'349':'649';
+  });
+  document.querySelectorAll('[data-quick-price-note]').forEach(function(el){el.textContent='8 月 15 日已调价';});
+  var quickNav=document.querySelector('[data-quick-price-nav]');
   var hero=document.querySelector('[data-price-hero]');
   var rise=document.querySelector('[data-price-rise]');
   var compare=document.querySelector('[data-price-compare]');
   var note=document.querySelector('[data-price-note]');
   var faq=document.querySelector('[data-price-faq]');
+  if(quickNav)quickNav.textContent='349 / 649 单项';
   if(hero)hero.textContent='当前 7999 元全程';
   if(rise)rise.textContent='8 月 15 日已调价';
   if(compare)compare.textContent='当前 7999 全程';
