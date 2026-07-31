@@ -365,6 +365,21 @@ details.fold .body p{margin:1em 0 0;line-height:1.8}
 .mentor-case-open{margin-top:13px;padding:0;border:0;color:var(--ink);background:none;font:800 10px/1.4 var(--sans);cursor:pointer}
 .mentor-case-open::after{content:" ↗";color:var(--clay)}
 .mentor-case-open:hover,.mentor-case-open:focus-visible{color:var(--clay-deep);text-decoration:underline}
+.mentor-cluster{margin-top:20px;padding:22px;border:1px solid var(--line-strong);background:rgba(255,255,255,.42)}
+.mentor-cluster-product{background:linear-gradient(135deg,rgba(58,70,40,.09),rgba(255,255,255,.7))}
+.mentor-cluster-ops{background:linear-gradient(135deg,rgba(192,86,47,.08),rgba(255,255,255,.7))}
+.mentor-cluster-head{display:grid;grid-template-columns:minmax(0,.8fr) minmax(260px,1.2fr);gap:24px;align-items:end;padding-bottom:15px;border-bottom:1px solid var(--line)}
+.mentor-cluster-head span{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--clay-deep)}
+.mentor-cluster-head h3{margin-top:4px;font-family:var(--serif);font-size:25px;line-height:1.15}
+.mentor-cluster-head p{font-size:12.5px;line-height:1.7;color:var(--ink-soft)}
+.mentor-cluster .mentor-grid{margin-top:16px}
+@media(max-width:720px){
+  .mentor-cluster{padding:17px 15px;border-radius:18px;overflow:hidden}
+  .mentor-cluster-head{grid-template-columns:1fr;gap:7px;padding-bottom:13px}
+  .mentor-cluster-head h3{font-size:22px}
+  .mentor-cluster-head p{font-size:11.5px}
+  .mentor-cluster .mentor-grid{margin-right:-15px;padding-right:15px}
+}
 .mentor-note{font-size:13px;color:var(--ink-soft);margin-top:14px;line-height:1.7}
 .mentor-scope{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;padding:14px;border:1px dashed var(--line-strong);background:rgba(255,255,255,.44)}
 .mentor-scope b{width:100%;margin-bottom:2px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--clay-deep);text-transform:uppercase}
@@ -1902,7 +1917,7 @@ footer b{color:#f29275}
           <p class="poll-status" id="pollStatus" aria-live="polite">每个浏览器限投 1 票 · 票数实时更新</p>
         </section>
 
-        <section class="comment-preview" aria-labelledby="commentTitle" data-twikoo-env="projecy-d7gbho4c9b0ab5614" data-twikoo-region="ap-shanghai">
+        <section class="comment-preview" id="comments" aria-labelledby="commentTitle" data-twikoo-env="projecy-d7gbho4c9b0ab5614" data-twikoo-region="ap-shanghai">
           <span class="community-label">ARSENAL WALL · 军火库留言板</span>
           <h2 id="commentTitle">匿名也能说，想找什么直接留。</h2>
           <p>不要求 GitHub 账号、昵称或邮箱，写下内容就能匿名发布，也能回复讨论。</p>
@@ -2470,32 +2485,47 @@ footer b{color:#f29275}
   <section id="team" class="pad block reveal">
     <div class="block-head"><span class="block-idx">08</span><span class="block-en">Your Coaches</span></div>
     <h2>导师库，匹配<span class="clay">真正懂你目标岗的人</span></h2>
-    <p class="lede">背后是一百多人团队（包含其他业务），求职陪跑由 20+ 全职导师、30+ 兼职业务导师共同支持。覆盖运营、品牌、市场、商业化、出海、策略产品、增长产品与 AI 产品，按目标 JD 匹配对应业务导师。</p>
+    <p class="lede">背后是一百多人团队（包含其他业务），求职陪跑由 20+ 全职导师、30+ 兼职业务导师共同支持。先按产品与运营两大导师组匹配，再根据目标 JD 细分到具体业务方向。</p>
 
-    <div class="mentor-grid">
-      <div class="mentor"><div class="top"><div class="ava" style="background:#c0562f">商</div><div><div class="mn">商家运营导师组</div><div class="mr">Merchant Operations</div></div></div><div class="story">商家分层、成长体系、活动机制与经营诊断。</div><div class="quote">"先看商家为什么来，再看怎么让他留下。"</div><button class="mentor-case-open" type="button" data-mentor-case="merchant">看 10+ 岗位案例</button></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#b0812f">采</div><div><div class="mn">采销 / 商品运营导师组</div><div class="mr">Merchandising Operations</div></div></div><div class="story">选品定价、品类规划、供应商协同与库存经营。</div><div class="quote">"采什么、卖给谁、周转多久，都要算清楚。"</div><button class="mentor-case-open" type="button" data-mentor-case="merchandising">看 10+ 岗位案例</button></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#56663f">增</div><div><div class="mn">用户增长导师组</div><div class="mr">User Growth</div></div></div><div class="story">拉新、促活、留存、召回与增长实验。</div><div class="quote">"增长不是一个数字，是一条能复盘的漏斗。"</div><button class="mentor-case-open" type="button" data-mentor-case="user-growth">看 10+ 岗位案例</button></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#3c4a58">内</div><div><div class="mn">内容活动运营导师组</div><div class="mr">Content · Campaign</div></div></div><div class="story">内容策略、活动策划、渠道协同与转化复盘。</div><div class="quote">"别只讲做了活动，要讲为什么有效。"</div><button class="mentor-case-open" type="button" data-mentor-case="content">看 10+ 岗位案例</button></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#b0812f">牌</div><div><div class="mn">品牌市场导师组</div><div class="mr">Brand · Marketing</div></div></div><div class="story">品牌策略、整合营销、投放与 ROI 评估。</div><div class="quote">"品牌要有故事，市场要能交结果。"</div><button class="mentor-case-open" type="button" data-mentor-case="brand">看 10+ 岗位案例</button></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#7d4934">商</div><div><div class="mn">商业化运营导师组</div><div class="mr">Monetization Operations</div></div></div><div class="story">广告产品、客户增长、行业运营、投放优化与商业收入。</div><div class="quote">"既要懂客户为什么付钱，也要守住用户体验。"</div><button class="mentor-case-open" type="button" data-mentor-case="commercialization">看 10+ 岗位案例</button></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#8f3d1e">海</div><div><div class="mn">出海增长导师组</div><div class="mr">Global Growth</div></div></div><div class="story">海外市场、本地化、渠道增长与跨文化用户洞察。</div><div class="quote">"不把国内打法翻译一遍，就叫出海。"</div><button class="mentor-case-open" type="button" data-mentor-case="global">看 DJI / Insta360 等案例</button></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#3a4628">策</div><div><div class="mn">策略产品导师组</div><div class="mr">Strategy Product</div></div></div><div class="story">策略机制、平台规则、供需匹配与效率优化。</div><div class="quote">"先讲清决策变量，再谈产品方案。"</div><button class="mentor-case-open" type="button" data-mentor-case="strategy-product">看 10+ 岗位案例</button></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#c0562f">长</div><div><div class="mn">增长产品导师组</div><div class="mr">Growth Product</div></div></div><div class="story">增长漏斗、实验设计、转化与留存产品化。</div><div class="quote">"每个功能，都要对应一段用户行为。"</div><button class="mentor-case-open" type="button" data-mentor-case="growth-product">看 10+ 岗位案例</button></div>
-      <div class="mentor"><div class="top"><div class="ava" style="background:#56663f">AI</div><div><div class="mn">AI 产品导师组</div><div class="mr">AI Product</div></div></div><div class="story">AI 场景判断、产品设计、落地路径与效果评估。</div><div class="quote">"不是接上模型就算 AI 产品。"</div><button class="mentor-case-open" type="button" data-mentor-case="ai-product">看 10+ 岗位案例</button></div>
-    </div>
-    <p class="mentor-case-hint">10 条核心赛道 · 每个方向 10+ 岗位拆解示例 · 点击导师卡片查看</p>
-    <div class="mentor-scope" aria-label="覆盖的更多运营岗位">
-      <b>覆盖的更多运营岗位</b>
-      <span>用户运营</span><span>产品运营</span><span>平台运营</span><span>策略运营</span>
-      <span>商家运营</span><span>采销运营</span><span>电商运营</span><span>直播运营</span>
-      <span>内容运营</span><span>活动运营</span><span>社区运营</span><span>新媒体运营</span>
-      <span>渠道运营</span><span>商业化运营</span><span>增长运营</span><span>类目运营</span>
-      <span>商品运营</span><span>招商运营</span><span>供应链运营</span><span>私域 / 社群运营</span>
-      <span>CRM 运营</span><span>数据运营</span><span>销售运营</span><span>本地生活运营</span>
-      <span>门店 / 店铺运营</span><span>投放运营</span><span>品牌运营</span><span>市场运营</span>
-      <span>海外 / 出海运营</span><span>游戏运营</span>
-    </div>
+    <section class="mentor-cluster mentor-cluster-product" aria-labelledby="productMentorTitle">
+      <div class="mentor-cluster-head">
+        <div><span>01 · Product Track</span><h3 id="productMentorTitle">产品导师组</h3></div>
+        <p>聚焦产品判断、策略机制、增长实验与 AI 场景落地，按目标岗位匹配对应产品导师。</p>
+      </div>
+      <div class="mentor-grid">
+        <div class="mentor"><div class="top"><div class="ava" style="background:#c0562f">长</div><div><div class="mn">增长产品</div><div class="mr">Growth Product</div></div></div><div class="story">增长漏斗、实验设计、转化与留存产品化。</div><div class="quote">"每个功能，都要对应一段用户行为。"</div><button class="mentor-case-open" type="button" data-mentor-case="growth-product">看 10+ 岗位案例</button></div>
+        <div class="mentor"><div class="top"><div class="ava" style="background:#56663f">AI</div><div><div class="mn">AI 产品</div><div class="mr">AI Product</div></div></div><div class="story">AI 场景判断、产品设计、落地路径与效果评估。</div><div class="quote">"不是接上模型就算 AI 产品。"</div><button class="mentor-case-open" type="button" data-mentor-case="ai-product">看 10+ 岗位案例</button></div>
+        <div class="mentor"><div class="top"><div class="ava" style="background:#3a4628">策</div><div><div class="mn">策略产品</div><div class="mr">Strategy Product</div></div></div><div class="story">策略机制、平台规则、供需匹配与效率优化。</div><div class="quote">"先讲清决策变量，再谈产品方案。"</div><button class="mentor-case-open" type="button" data-mentor-case="strategy-product">看 10+ 岗位案例</button></div>
+      </div>
+    </section>
+
+    <section class="mentor-cluster mentor-cluster-ops" aria-labelledby="opsMentorTitle">
+      <div class="mentor-cluster-head">
+        <div><span>02 · Operations Track</span><h3 id="opsMentorTitle">运营导师组</h3></div>
+        <p>再细分到商家、采销、用户、内容、品牌市场、商业化与出海等业务场景，不用一套运营方法硬套所有岗位。</p>
+      </div>
+      <div class="mentor-grid">
+        <div class="mentor"><div class="top"><div class="ava" style="background:#c0562f">商</div><div><div class="mn">商家运营</div><div class="mr">Merchant Operations</div></div></div><div class="story">商家分层、成长体系、活动机制与经营诊断。</div><div class="quote">"先看商家为什么来，再看怎么让他留下。"</div><button class="mentor-case-open" type="button" data-mentor-case="merchant">看 10+ 岗位案例</button></div>
+        <div class="mentor"><div class="top"><div class="ava" style="background:#b0812f">采</div><div><div class="mn">采销 / 商品运营</div><div class="mr">Merchandising Operations</div></div></div><div class="story">选品定价、品类规划、供应商协同与库存经营。</div><div class="quote">"采什么、卖给谁、周转多久，都要算清楚。"</div><button class="mentor-case-open" type="button" data-mentor-case="merchandising">看京东采销等案例</button></div>
+        <div class="mentor"><div class="top"><div class="ava" style="background:#56663f">增</div><div><div class="mn">用户 / 增长运营</div><div class="mr">User Growth</div></div></div><div class="story">拉新、促活、留存、召回与增长实验。</div><div class="quote">"增长不是一个数字，是一条能复盘的漏斗。"</div><button class="mentor-case-open" type="button" data-mentor-case="user-growth">看 10+ 岗位案例</button></div>
+        <div class="mentor"><div class="top"><div class="ava" style="background:#3c4a58">内</div><div><div class="mn">内容 / 活动运营</div><div class="mr">Content · Campaign</div></div></div><div class="story">内容策略、活动策划、渠道协同与转化复盘。</div><div class="quote">"别只讲做了活动，要讲为什么有效。"</div><button class="mentor-case-open" type="button" data-mentor-case="content">看 10+ 岗位案例</button></div>
+        <div class="mentor"><div class="top"><div class="ava" style="background:#b0812f">牌</div><div><div class="mn">品牌 / 市场运营</div><div class="mr">Brand · Marketing</div></div></div><div class="story">品牌策略、整合营销、投放与 ROI 评估。</div><div class="quote">"品牌要有故事，市场要能交结果。"</div><button class="mentor-case-open" type="button" data-mentor-case="brand">看 10+ 岗位案例</button></div>
+        <div class="mentor"><div class="top"><div class="ava" style="background:#7d4934">现</div><div><div class="mn">商业化运营</div><div class="mr">Monetization Operations</div></div></div><div class="story">广告产品、客户增长、行业运营、投放优化与商业收入。</div><div class="quote">"既要懂客户为什么付钱，也要守住用户体验。"</div><button class="mentor-case-open" type="button" data-mentor-case="commercialization">看 10+ 岗位案例</button></div>
+        <div class="mentor"><div class="top"><div class="ava" style="background:#8f3d1e">海</div><div><div class="mn">出海增长 / 海外市场</div><div class="mr">Global Growth</div></div></div><div class="story">海外市场、本地化、渠道增长与跨文化用户洞察。</div><div class="quote">"不把国内打法翻译一遍，就叫出海。"</div><button class="mentor-case-open" type="button" data-mentor-case="global">看 DJI / Insta360 等案例</button></div>
+      </div>
+      <div class="mentor-scope" aria-label="运营导师组覆盖的全部岗位">
+        <b>运营导师组 · 全部可匹配方向</b>
+        <span>用户运营</span><span>产品运营</span><span>平台运营</span><span>策略运营</span>
+        <span>商家运营</span><span>采销运营</span><span>电商运营</span><span>直播运营</span>
+        <span>内容运营</span><span>活动运营</span><span>社区运营</span><span>新媒体运营</span>
+        <span>渠道运营</span><span>商业化运营</span><span>增长运营</span><span>类目运营</span>
+        <span>商品运营</span><span>招商运营</span><span>供应链运营</span><span>私域 / 社群运营</span>
+        <span>CRM 运营</span><span>数据运营</span><span>销售运营</span><span>本地生活运营</span>
+        <span>门店 / 店铺运营</span><span>投放运营</span><span>品牌运营</span><span>市场运营</span>
+        <span>海外 / 出海运营</span><span>游戏运营</span>
+      </div>
+    </section>
+    <p class="mentor-case-hint">2 大导师组 · 10 条重点赛道 · 运营组完整覆盖 30 类岗位</p>
     <p class="mentor-note">导师会先看目标行业、用户与业务环节，再沿同一条岗位线推进简历、面试题和作品方向；产品岗重点匹配策略产品、增长产品与 AI 产品，运营岗继续细分到具体场景。</p>
 
     <h3 style="font-family:var(--serif);font-size:20px;margin-top:26px">三位核心负责人</h3>
@@ -3008,6 +3038,8 @@ footer b{color:#f29275}
 #twikoo .tk-comment.tk-master>.tk-main>.tk-row .tk-tag-green{
   border:0;border-radius:999px;color:#fff;background:var(--clay);font-weight:800
 }
+#twikoo .tk-comment.tk-master>.tk-main>.tk-row .tk-tag-green{font-size:0}
+#twikoo .tk-comment.tk-master>.tk-main>.tk-row .tk-tag-green::after{content:"阿涵本人";font-size:9px}
 
 .guide-dialog{
   width:min(540px,calc(100vw - 32px));max-height:min(78vh,720px);padding:30px;
