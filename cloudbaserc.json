@@ -10,6 +10,14 @@
       "runtime": "Nodejs16.13",
       "handler": "index.main",
       "description": "阿涵求职资料军火库匿名留言"
+    },
+    {
+      "name": "arsenal-vote",
+      "timeout": 10,
+      "memorySize": 128,
+      "runtime": "Nodejs20.19",
+      "handler": "index.main",
+      "description": "阿涵求职军火库未来工具投票"
     }
   ]
 }

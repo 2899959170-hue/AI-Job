@@ -1857,21 +1857,27 @@ footer b{color:#f29275}
         <section class="future-poll" aria-labelledby="futurePollTitle">
           <span class="community-label">COMMUNITY VOTE · 未来工具</span>
           <h2 id="futurePollTitle">下一件，你最想让阿涵造什么？</h2>
-          <p>先选一个最想要的方向。当前是交互预览，正式接入后才会记录真实票数。</p>
+          <p>先选一个最想要的方向。初始数字为首轮内测热度；从现在开始，每一票都会实时记录。</p>
           <div class="poll-options" role="group" aria-label="未来工具方向投票">
-            <button type="button" data-vote="岗位投递项目管理工具" aria-pressed="false"><span>01</span><b>岗位投递项目管理工具</b><i>想要</i></button>
-            <button type="button" data-vote="大厂笔试测评带刷工具" aria-pressed="false"><span>02</span><b>大厂笔试 / 测评带刷工具</b><i>想要</i></button>
-            <button type="button" data-vote="Python 自学 Skill" aria-pressed="false"><span>03</span><b>Python 自学 Skill</b><i>想要</i></button>
-            <button type="button" data-vote="大厂 AI 面试模拟工具" aria-pressed="false"><span>04</span><b>大厂 AI 面试模拟工具</b><i>想要</i></button>
-            <button type="button" data-vote="AI 筛简历自测工具" aria-pressed="false"><span>05</span><b>AI 筛简历自测工具</b><i>想要</i></button>
+            <button type="button" data-vote-id="job-tracker" data-vote="岗位投递项目管理工具" aria-pressed="false"><span>01</span><b>岗位投递项目管理工具</b><strong><u data-vote-count>37</u> 票</strong><i>投票</i></button>
+            <button type="button" data-vote-id="assessment" data-vote="大厂笔试测评带刷工具" aria-pressed="false"><span>02</span><b>大厂笔试 / 测评带刷工具</b><strong><u data-vote-count>28</u> 票</strong><i>投票</i></button>
+            <button type="button" data-vote-id="python" data-vote="Python 自学 Skill" aria-pressed="false"><span>03</span><b>Python 自学 Skill</b><strong><u data-vote-count>21</u> 票</strong><i>投票</i></button>
+            <button type="button" data-vote-id="ai-interview" data-vote="大厂 AI 面试模拟工具" aria-pressed="false"><span>04</span><b>大厂 AI 面试模拟工具</b><strong><u data-vote-count>46</u> 票</strong><i>投票</i></button>
+            <button type="button" data-vote-id="resume-check" data-vote="AI 筛简历自测工具" aria-pressed="false"><span>05</span><b>AI 筛简历自测工具</b><strong><u data-vote-count>34</u> 票</strong><i>投票</i></button>
           </div>
-          <p class="poll-status" id="pollStatus" aria-live="polite">选择后会在这里显示你的意向</p>
+          <p class="poll-status" id="pollStatus" aria-live="polite">每个浏览器限投 1 票 · 票数实时更新</p>
         </section>
 
         <section class="comment-preview" aria-labelledby="commentTitle" data-twikoo-env="projecy-d7gbho4c9b0ab5614" data-twikoo-region="ap-shanghai">
           <span class="community-label">ARSENAL WALL · 军火库留言板</span>
           <h2 id="commentTitle">匿名也能说，想找什么直接留。</h2>
           <p>不要求 GitHub 账号、昵称或邮箱，写下内容就能匿名发布，也能回复讨论。</p>
+          <div class="weekly-comment-prompt" aria-live="polite">
+            <span><b>阿涵发起</b><em>本周话题 · 每周自动轮换</em></span>
+            <p id="weeklyCommentPrompt">你现在求职最卡在哪一步？把年级、岗位和卡点一起留下。</p>
+            <button type="button" id="weeklyCommentCta">匿名说说我的情况 →</button>
+          </div>
+          <p class="comment-trust-note"><span>阿涵的回复会显示头像和“阿涵本人”</span>，其他同学继续保持匿名。</p>
           <div id="tcomment"></div>
           <div class="comment-setup" id="commentSetup">
             <b><span>●</span> 正在连接匿名留言</b>
@@ -1991,7 +1997,7 @@ footer b{color:#f29275}
           <a class="btn btn-main" href="#signup">微信加企微 · 先聊聊你的情况</a>
           <a class="btn btn-sub" href="#deliver">看真实交付</a>
         </div>
-        <div class="hero-map-assurance"><span>7999 元全程</span><span>不设期限</span><span>之后不再收费</span></div>
+        <div class="hero-map-assurance"><span data-price-hero>当前 6999 元全程</span><span data-price-rise>8 月 15 日起 7999</span><span>之后不再收费</span></div>
       </div>
 
       <div class="journey-map" role="img" aria-label="从职业方向到拿到 offer 的七步上岸路线图">
@@ -2122,7 +2128,7 @@ footer b{color:#f29275}
     <div class="vs">
       <div class="vs-cap">同样一笔钱 · 你买到的到底是什么</div>
       <div class="vs-head"><div>对比项</div><div class="them">外面的高价陪跑</div><div class="us">上岸为止 · 我们</div></div>
-      <div class="vs-row"><div class="k">价格</div><div class="them">上万 ~ 20w</div><div class="us">7999 全程</div></div>
+      <div class="vs-row"><div class="k">价格</div><div class="them">上万 ~ 20w</div><div class="us" data-price-compare>当前 6999 全程</div></div>
       <div class="vs-row"><div class="k">简历</div><div class="them">AI 一键生成,不讲为什么</div><div class="us">深挖后一岗一版,教你为什么</div></div>
       <div class="vs-row"><div class="k">带你的人</div><div class="them">兼职大学生"陪跑"</div><div class="us">60+ 全职 + 大厂系二面导师</div></div>
       <div class="vs-row"><div class="k">"保 offer"</div><div class="them">塞你一个电销岗</div><div class="us">陪到你真想去的那个 offer</div></div>
@@ -2481,7 +2487,8 @@ footer b{color:#f29275}
       <div class="plan feat">
         <span class="flag">全程 · 上岸为止</span>
         <div class="pname">全路径陪跑</div>
-        <div class="amt">7999<small> 元</small></div>
+        <div class="amt"><span class="was" data-price-was>7999</span><span data-current-price>6999</span><small> 元</small></div>
+        <p class="up-note"><span class="up-dot">●</span><span data-price-note>当前早鸟价 · 8 月 15 日起涨至 7999 元</span></p>
         <div class="sub">从简历、投递、面试到选岗谈薪,整条路全包,之后不再有任何额外收费。</div>
         <ul>
           <li>00 项目带做 + 01 背景深挖(全程)</li>
@@ -2549,7 +2556,7 @@ footer b{color:#f29275}
       <details class="faq"><summary><span class="q">Q</span>你们主要帮我解决啥?<span class="plus">+</span></summary><div class="a">三件最硬的:我到底该投什么(方向定清)、我简历怎么写才像能用(材料经得起问)、我面试怎么答才不露怯(表达扛得住追问)。</div></details>
       <details class="faq"><summary><span class="q">Q</span>我没实习、经历特普通,还能做吗?<span class="plus">+</span></summary><div class="a">能。关键不是经历多牛,是你会不会把它讲成岗位的语言。社团、项目、课程、兼职,能拆成"解决了什么、做了什么、交出了什么"就能用,我们内部也有项目带着你做。</div></details>
       <details class="faq"><summary><span class="q">Q</span>我有面试但老挂,问题在哪?<span class="plus">+</span></summary><div class="a">九成不是你不会,是你讲不清。开场没定调、项目像流水账、一被追问就崩、反问像背稿——背面经解决不了,得靠结构化训练加一句句地纠。</div></details>
-      <details class="faq"><summary><span class="q">Q</span>到底多少钱?怎么报名?<span class="plus">+</span></summary><div class="a">7999 全程、上岸为止、不设期限、之后不再额外收费;另有 3499 轻量版(不含 AI 部分),随时可补差价升级。报名:微信加企微老师,企业微信对公转账,你的钱有保障。</div></details>
+      <details class="faq"><summary><span class="q">Q</span>到底多少钱?怎么报名?<span class="plus">+</span></summary><div class="a" data-price-faq>当前 6999 全程，8 月 15 日起涨至 7999；上岸为止、不设期限、之后不再额外收费。另有 3499 轻量版(不含 AI 部分),随时可补差价升级。报名:微信加企微老师,企业微信对公转账,你的钱有保障。</div></details>
     </div>
   </section>
 
@@ -2874,14 +2881,22 @@ footer b{color:#f29275}
 .comment-preview h2+p{color:var(--ink-soft)}
 .poll-options{display:grid;gap:6px;margin-top:19px}
 .poll-options button{
-  display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:center;
+  position:relative;display:grid;grid-template-columns:30px minmax(0,1fr) auto auto;gap:10px;align-items:center;overflow:hidden;
   min-height:48px;padding:8px 11px;border:1px solid rgba(255,255,255,.12);border-radius:12px;
   color:#fff;background:rgba(255,255,255,.055);text-align:left;cursor:pointer
 }
+.poll-options button::after{
+  content:"";position:absolute;left:0;bottom:0;width:var(--poll-share,0%);height:2px;
+  background:#f49375;transition:width .35s ease
+}
 .poll-options button:hover,.poll-options button:focus-visible{border-color:rgba(244,147,117,.7)}
 .poll-options button[aria-pressed="true"]{border-color:#f49375;background:rgba(217,84,45,.2)}
+.poll-options button:disabled{cursor:default;opacity:.7}
+.poll-options button[aria-pressed="true"]:disabled{opacity:1}
 .poll-options span{font-family:var(--mono);font-size:8px;color:#f49375}
 .poll-options b{font-family:var(--sans);font-size:11px}
+.poll-options strong{white-space:nowrap;font-family:var(--mono);font-size:8px;color:#f3d3c9}
+.poll-options strong u{text-decoration:none;font-size:10px;color:#fff}
 .poll-options i{padding:5px 7px;border:1px solid rgba(255,255,255,.2);border-radius:999px;font-size:8px;font-style:normal;color:rgba(255,255,255,.62)}
 .poll-options button[aria-pressed="true"] i{border-color:#f49375;color:#f49375}
 .poll-status{margin-top:12px;font-size:9px;color:rgba(255,255,255,.42)}
@@ -2896,6 +2911,24 @@ footer b{color:#f29275}
   min-height:42px;border:0;border-radius:10px;background:var(--clay);color:#fff;
   font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer
 }
+.weekly-comment-prompt{
+  display:grid;gap:10px;margin-top:18px;padding:16px;border:1px solid rgba(192,86,47,.24);
+  border-radius:14px;background:rgba(255,255,255,.67)
+}
+.weekly-comment-prompt>span{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.weekly-comment-prompt b{
+  padding:5px 8px;border-radius:999px;color:#fff;background:var(--clay);
+  font-size:8px;letter-spacing:.08em
+}
+.weekly-comment-prompt em{font-family:var(--mono);font-size:7.5px;font-style:normal;color:var(--ink-faint)}
+.weekly-comment-prompt p{font-family:var(--serif);font-size:15px;line-height:1.55;color:var(--ink)}
+.weekly-comment-prompt button{
+  justify-self:start;padding:0;border:0;color:var(--clay-deep);background:none;
+  font:800 9px/1.4 var(--sans);cursor:pointer
+}
+.weekly-comment-prompt button:hover,.weekly-comment-prompt button:focus-visible{text-decoration:underline}
+.comment-trust-note{margin-top:12px;font-size:8.5px;line-height:1.6;color:var(--ink-faint)}
+.comment-trust-note span{font-weight:800;color:var(--ink-soft)}
 .comment-status{display:flex;align-items:center;gap:7px;margin-top:11px;font-size:8.5px;color:var(--ink-faint)}
 .comment-status span{color:var(--clay)}
 .comment-setup{
@@ -2908,6 +2941,17 @@ footer b{color:#f29275}
 .comment-preview.twikoo-ready .comment-setup{display:none}
 #tcomment:empty{display:none}
 #tcomment{margin-top:20px}
+#twikoo .tk-meta-input{display:none!important}
+#twikoo .tk-comment.tk-master>.tk-avatar{
+  border:2px solid rgba(192,86,47,.35);border-radius:50%;box-shadow:0 6px 16px rgba(97,56,36,.16)
+}
+#twikoo .tk-comment.tk-master>.tk-avatar .tk-avatar-img{
+  width:100%;height:100%;object-fit:cover;content:url("assets/img51.jpg?v=20260731-owner")
+}
+#twikoo .tk-comment.tk-master>.tk-main>.tk-row .tk-nick{color:var(--clay-deep)}
+#twikoo .tk-comment.tk-master>.tk-main>.tk-row .tk-tag-green{
+  border:0;border-radius:999px;color:#fff;background:var(--clay);font-weight:800
+}
 
 .guide-dialog{
   width:min(540px,calc(100vw - 32px));max-height:min(78vh,720px);padding:30px;
@@ -3608,13 +3652,117 @@ document.addEventListener('click',close);})();
   dialog.addEventListener('click',function(e){if(e.target===dialog)dialog.close();});
 })();
 (function(){
-  var options=[].slice.call(document.querySelectorAll('[data-vote]'));
+  var options=[].slice.call(document.querySelectorAll('[data-vote-id]'));
   var status=document.getElementById('pollStatus');
+  if(!options.length||!status)return;
+  var endpoint='https://projecy-d7gbho4c9b0ab5614.service.tcloudbase.com/api/arsenal-vote';
+  var clientKey='ahan-arsenal-poll-client-v1';
+  var votedKey='ahan-arsenal-poll-choice-v1';
+  var clientId='',votedOption='';
+
+  try{
+    clientId=localStorage.getItem(clientKey)||'';
+    if(!clientId){
+      clientId=(window.crypto&&crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2));
+      localStorage.setItem(clientKey,clientId);
+    }
+    votedOption=localStorage.getItem(votedKey)||'';
+  }catch(e){
+    clientId=Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
+  }
+
+  function renderVotes(votes,selected){
+    var highest=1;
+    options.forEach(function(option){
+      highest=Math.max(highest,Number(votes[option.getAttribute('data-vote-id')])||0);
+    });
+    options.forEach(function(option){
+      var id=option.getAttribute('data-vote-id');
+      var count=Number(votes[id])||0;
+      option.querySelector('[data-vote-count]').textContent=count;
+      option.style.setProperty('--poll-share',Math.max(5,Math.round(count/highest*100))+'%');
+      option.setAttribute('aria-pressed',id===selected?'true':'false');
+      option.disabled=!!selected;
+      option.querySelector('i').textContent=id===selected?'已投':selected?'—':'投票';
+    });
+    if(selected){
+      var chosen=options.find(function(option){return option.getAttribute('data-vote-id')===selected;});
+      status.textContent=chosen?'你已投给：'+chosen.getAttribute('data-vote')+' · 谢谢你帮我排优先级':'你的投票已经记录';
+    }
+  }
+
+  function setBusy(busy){
+    options.forEach(function(option){option.disabled=busy||!!votedOption;});
+  }
+
+  fetch(endpoint,{headers:{Accept:'application/json'},cache:'no-store'}).then(function(response){
+    if(!response.ok)throw new Error('load failed');
+    return response.json();
+  }).then(function(data){
+    if(data&&data.votes)renderVotes(data.votes,votedOption);
+  }).catch(function(){
+    status.textContent='实时票数暂时没连上，稍后刷新即可继续投票';
+  });
+
   options.forEach(function(option){
     option.addEventListener('click',function(){
-      options.forEach(function(item){item.setAttribute('aria-pressed',item===option?'true':'false');item.querySelector('i').textContent=item===option?'已选':'想要';});
-      status.textContent='已选：'+option.getAttribute('data-vote')+'（预览，不计入正式票数）';
+      if(votedOption)return;
+      var id=option.getAttribute('data-vote-id');
+      setBusy(true);
+      status.textContent='正在记录你的投票…';
+      fetch(endpoint,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({optionId:id,clientId:clientId})
+      }).then(function(response){
+        return response.json().then(function(data){if(!response.ok||!data.ok)throw new Error(data.message||'vote failed');return data;});
+      }).then(function(data){
+        votedOption=data.votedOption||id;
+        try{localStorage.setItem(votedKey,votedOption);}catch(e){}
+        renderVotes(data.votes||{},votedOption);
+      }).catch(function(error){
+        setBusy(false);
+        status.textContent=error&&error.message&&error.message!=='vote failed'?error.message:'投票没有成功，请稍后再试';
+      });
     });
+  });
+})();
+(function(){
+  var priceRisesAt=Date.parse('2026-08-14T16:00:00Z');
+  if(Date.now()<priceRisesAt)return;
+  document.querySelectorAll('[data-current-price]').forEach(function(el){el.textContent='7999';});
+  document.querySelectorAll('[data-price-was]').forEach(function(el){el.hidden=true;});
+  var hero=document.querySelector('[data-price-hero]');
+  var rise=document.querySelector('[data-price-rise]');
+  var compare=document.querySelector('[data-price-compare]');
+  var note=document.querySelector('[data-price-note]');
+  var faq=document.querySelector('[data-price-faq]');
+  if(hero)hero.textContent='当前 7999 元全程';
+  if(rise)rise.textContent='8 月 15 日已调价';
+  if(compare)compare.textContent='当前 7999 全程';
+  if(note)note.textContent='8 月 15 日已调整为 7999 元';
+  if(faq)faq.textContent='当前 7999 全程；上岸为止、不设期限、之后不再额外收费。另有 3499 轻量版(不含 AI 部分),随时可补差价升级。报名:微信加企微老师,企业微信对公转账,你的钱有保障。';
+})();
+(function(){
+  var prompt=document.getElementById('weeklyCommentPrompt');
+  var cta=document.getElementById('weeklyCommentCta');
+  var host=document.querySelector('.comment-preview');
+  if(!prompt||!cta||!host)return;
+  var topics=[
+    '你现在求职最卡在哪一步？把年级、岗位和卡点一起留下。',
+    '你最想要哪个岗位的资料包？留言“岗位＋年级”，我按需求补。',
+    '秋招信息太多时，你最需要我先做计划、投递还是面试工具？',
+    '最近一次面试，你被哪个问题问住了？匿名把原题丢进来。',
+    '如果只能新增一个求职工具，你希望它每天替你省掉什么事？',
+    '简历、笔试、面试、选 offer——你现在最想先解决哪一关？'
+  ];
+  var week=Math.floor(Date.now()/604800000);
+  prompt.textContent=topics[week%topics.length];
+  cta.addEventListener('click',function(){
+    var textarea=host.querySelector('.tk-input textarea');
+    if(!textarea)return;
+    textarea.scrollIntoView({behavior:'smooth',block:'center'});
+    textarea.focus();
   });
 })();
 (function(){
@@ -3624,7 +3772,7 @@ document.addEventListener('click',close);})();
   if(!env)return;
   var setup=document.getElementById('commentSetup');
   var script=document.createElement('script');
-  script.src='https://registry.npmmirror.com/twikoo/1.7.15/files/dist/twikoo.all.min.js';
+  script.src='assets/vendor/twikoo.all.min.js?v=1.7.15-compat';
   script.async=true;
   script.onload=function(){
     if(!window.twikoo)return;
