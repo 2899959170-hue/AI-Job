@@ -201,6 +201,19 @@ details.fold .body p{margin:1em 0 0;line-height:1.8}
 .dcard .force{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--moss-deep);border:1px solid var(--moss);padding:3px 9px;margin:2px 0 12px;font-weight:600}
 .dcard p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;margin:0 0 .7em}
 .dcard p:last-child{margin-bottom:0}
+.service-detail>span{display:block}
+.service-detail>span+span{margin-top:9px}
+.service-detail .service-lead{
+  font-family:var(--serif);font-size:17px;line-height:1.45;font-weight:800;color:var(--ink)
+}
+.service-detail .service-level{
+  margin-top:7px;padding:7px 10px;border-left:3px solid var(--clay);
+  background:var(--clay-bg);font-size:11.5px;line-height:1.55;font-weight:700;color:var(--clay-deep)
+}
+.service-detail .service-subtitle{
+  margin-top:17px;padding-top:15px;border-top:1px solid var(--line);
+  font-family:var(--serif);font-size:16px;line-height:1.5;font-weight:800;color:var(--ink)
+}
 .dcard .note{background:var(--clay-bg);border-left:3px solid var(--clay);padding:9px 13px;margin-top:10px;font-size:12.5px;color:var(--ink-soft);line-height:1.6}
 .dcard em{font-style:normal;color:var(--clay);font-weight:700}
 
@@ -308,6 +321,16 @@ details.fold .body p{margin:1em 0 0;line-height:1.8}
 .mj-feature .mf-p{font-size:14px;color:var(--ink-soft);margin:10px 0 4px;line-height:1.7;max-width:52rem}
 .mj-feature .force{margin-top:8px}
 .mj-feature .note{background:var(--clay-bg);border-left:3px solid var(--clay);padding:10px 14px;font-size:13px;color:var(--ink-soft);line-height:1.6}
+.interview-review{
+  margin-top:18px;padding:18px 20px;border-radius:15px;background:var(--ink);color:#fff
+}
+.interview-review strong{
+  display:block;font-family:var(--serif);font-size:18px;line-height:1.45
+}
+.interview-review small{
+  display:block;margin-top:5px;font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:#f49375
+}
+.interview-review p{margin:10px 0 0;font-size:13px;line-height:1.72;color:rgba(255,255,255,.74)}
 .gal-masonry{columns:3;column-gap:12px;margin-top:14px}
 @media(max-width:900px){.gal-masonry{columns:2}}
 @media(max-width:560px){.gal-masonry{columns:1}}
@@ -2424,15 +2447,34 @@ footer b{color:#f29275}
         <div class="dcard-media"><figure class="gitem"><img width="1100" height="469" loading="lazy" decoding="async" src="assets/img01.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1100" height="471" loading="lazy" decoding="async" src="assets/img02.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1100" height="932" loading="lazy" decoding="async" src="assets/img03.webp?v=20260730-2" alt=""></figure><span class="media-hint">背景深挖样张 · 点击放大</span></div>
       </div>
       <div class="dcard"><div class="dn">02</div><h3>简历润色 / 代写</h3><span class="force">一岗一版 · 改到满意不限次</span>
-        <p>别拿一份"通用简历"到处碰运气。投产品用产品版、投运营用运营版。我们把经历改写成<span class="mark">"HR 一看就想追着问下去"</span>的那种,不是润色改错字。改到你满意,不限次、不额外收钱。</p>
+        <p class="service-detail">
+          <span class="service-lead">一个岗，配一版简历</span>
+          <span class="service-level">服务力度：你投的每一类岗，都有专属的一版</span>
+          <span>别再拿一份“通用简历”到处碰运气了。</span>
+          <span>你投产品，用产品那版；投运营，用运营那版；投数据，用数据那版。而且我们做的不是给你润润色、改改错字——是把你的经历改写成<span class="mark">“HR 一看就想追着问下去”</span>的那种。一份简历的任务不是让你显得努力，是让对方觉得你能上手。</span>
+          <span class="service-subtitle">简历修改：改到你满意，不数次数</span>
+          <span class="service-level">服务力度：不限次</span>
+          <span>你不用再纠结“这是第几版了，我还好意思再找老师改吗”。改多少次都行，一直改到你自己看着顺、投出去有底气为止。不限次，不额外收钱。</span>
+        </p>
         <div class="dcard-media"><figure class="gitem"><img width="1100" height="751" loading="lazy" decoding="async" src="assets/img04.webp?v=20260730-2" alt=""></figure><span class="media-hint">简历样张 · 点击放大</span></div>
       </div>
       <div class="dcard"><div class="dn">03</div><h3>投递清单</h3><span class="force">按城市定制 · 每月推送</span>
-        <p>你说城市,我给你能<span class="mark">直接开投的岗位清单</span>——按"你的本事 → 能做的岗 → 对的行业"筛,不是盲冲大厂 title。校招社招都覆盖,动态补齐不让你有空窗。</p>
+        <p class="service-detail">
+          <span class="service-lead">按你想去的城市推给你，不会让你没得投</span>
+          <span class="service-level">服务力度：按城市定制 · 每月推送 · 动态岗位持续补齐</span>
+          <span>“我到底该投哪些”这个最耗人的决策，我们直接替你做好。</span>
+          <span>告诉我你想去哪个城市，我给你一份能<span class="mark">直接开投的岗位清单</span>——而且是按“你的本事 → 能做的岗 → 对的行业”这个正确顺序筛出来的，不是让你盲目冲某个大厂 title。岗位跟着行情动态更新，校招、社招都覆盖，不让你出现没岗位可投的空窗。</span>
+        </p>
         <div class="dcard-media"><figure class="gitem"><img width="832" height="1100" loading="lazy" decoding="async" src="assets/img05.webp?v=20260730-2" alt=""></figure><span class="media-hint">清单样张 · 点击放大</span></div>
       </div>
       <div class="dcard"><div class="dn">04</div><h3>模拟面试</h3><span class="force">真人陪练 · 不限场次</span>
-        <p>光在脑子里想一百遍,不如真开口练一次。真人一场一场陪你过,<span class="mark">面几次陪你练几次</span>,每次不少于 1 小时,连着三场能干到俩小时。</p>
+        <p class="service-detail">
+          <span class="service-lead">真人陪练，不限场次</span>
+          <span class="service-level">服务力度：不限次 · 每次不少于 1 小时</span>
+          <span>面试这东西，光在脑子里想一百遍，不如真开口练一次。</span>
+          <span>真人陪你练，一场一场地过。你面几次，我们就能陪你练几次，不设上限。让你在真正上场之前，先把该紧张的、该卡壳的，都在我们这里卡完。</span>
+          <span>每次模拟面试不少于 1 小时；有些同学一下子要准备三场面试，单次辅导可以直接练到两个小时。</span>
+        </p>
         <div class="dcard-media"><figure class="gitem"><img width="1100" height="830" loading="lazy" decoding="async" src="assets/img06.webp?v=20260730-2" alt=""></figure><span class="media-hint">Mock 现场 · 点击放大</span></div>
       </div>
       <div class="dcard" style="background:var(--clay-bg);justify-content:center;align-items:flex-start">
@@ -2444,16 +2486,25 @@ footer b{color:#f29275}
         <p>拿到 offer 不是终点,是很多同学开始慌的地方。用前面那套做选择的方法(看下限、看缺点、抓主要矛盾、代入你自己)陪你判断、陪你谈薪,把能拿到的都拿到,<span class="mark">躲开"进去才发现不对"的坑</span>。</p>
       </div>
       <div class="mj-feature">
-        <div class="mf-h"><span class="dn">05</span><h3>面经 —— 每一场面试,都对应真材料</h3></div>
+        <div class="mf-h"><span class="dn">05</span><h3>面经：每一场面试，都给你对应的那份</h3></div>
         <span class="force">一对一匹配 · 点状爆破 · 当天复盘不限次</span>
-        <p class="mf-p">不是甩你几百页合集自己捞。你明天面哪家、哪个岗,就给你那家那个岗对应的面经,<span class="mark">完全按你 Mock 表现点状爆破</span>。题型无非四类,每类都有真材料(缩略图点击放大):</p>
+        <p class="mf-p service-detail">
+          <span class="service-level">服务力度：每一场，一对一匹配</span>
+          <span>不是甩给你一个几百页的“面经合集”让你自己捞。</span>
+          <span>你明天面哪家、哪个岗，我们就给你那家、那个岗对应的面经——这家爱问什么、这个岗必考什么、往年容易栽在哪里，提前给你交底。精准，不注水，而且<span class="mark">完全按照你在模拟面试里的表现点状爆破</span>。</span>
+          <span>我们把企业面试题拆成四类，每一类都有真实材料。图片以缩略牌组呈现，点击即可放大查看：</span>
+        </p>
         <div class="mj-cats">
           <div class="mj-cat"><div class="mj-cat-h"><span class="cn">企业调研</span><span class="ce">Company Research</span></div><p class="mj-desc">这家做什么、怎么赚钱、你对它怎么看——开口就像自己人。</p><div class="gal-row"><figure class="gitem"><img width="1000" height="1200" loading="lazy" decoding="async" src="assets/img07.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1200" height="675" loading="lazy" decoding="async" src="assets/img08.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1200" height="808" loading="lazy" decoding="async" src="assets/img09.webp?v=20260730-2" alt=""></figure></div></div>
           <div class="mj-cat"><div class="mj-cat-h"><span class="cn">简历深挖题</span><span class="ce">Resume Deep-Dive</span></div><p class="mj-desc">每条经历都可能被追问到底,提前把逐字稿备好。</p><div class="gal-row"><figure class="gitem"><img width="1000" height="1200" loading="lazy" decoding="async" src="assets/img07.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1200" height="689" loading="lazy" decoding="async" src="assets/img10.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1200" height="900" loading="lazy" decoding="async" src="assets/img11.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1200" height="689" loading="lazy" decoding="async" src="assets/img12.webp?v=20260730-2" alt=""></figure></div></div>
           <div class="mj-cat"><div class="mj-cat-h"><span class="cn">业务理解 / 场景题</span><span class="ce">Business / Case</span></div><p class="mj-desc">给你个真实业务难题,看你怎么拆、怎么落地。</p><div class="gal-row"><figure class="gitem"><img width="1200" height="728" loading="lazy" decoding="async" src="assets/img13.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1200" height="398" loading="lazy" decoding="async" src="assets/img14.webp?v=20260730-2" alt=""></figure></div></div>
           <div class="mj-cat"><div class="mj-cat-h"><span class="cn">其他意向 / 抽象类</span><span class="ce">Intent / Abstract</span></div><p class="mj-desc">职业规划、优缺点、为什么选这行这种"软"问题。</p><div class="gal-row"><figure class="gitem"><img width="1200" height="675" loading="lazy" decoding="async" src="assets/img15.webp?v=20260730-2" alt=""></figure></div></div>
         </div>
-        <div class="note" style="margin-top:14px">面完当天就带你复盘:哪句说崩了、哪个追问没接住、下次该怎么说——细到句子层面。不是背标准答案,是越面越会讲。</div>
+        <div class="interview-review">
+          <strong>面试复盘：当天就复盘，细到每一句话</strong>
+          <small>服务力度：不限次 · 当天复盘</small>
+          <p>面完就过去了？不行，那一场的价值一大半在复盘里。面完当天就带你复盘：哪句话说崩了、哪个追问你没接住、下次这句该换成什么说法——细到句子层面。不是让你背标准答案，是让你越面越会讲、越面越稳。不限次。</p>
+        </div>
       </div>
       </div>
     </details>
@@ -4001,6 +4052,42 @@ footer b{color:#f29275}
 .case-burst-card::after{
   content:attr(data-no);position:absolute;right:6px;bottom:6px;padding:4px 6px;border-radius:99px;
   color:#fff;background:rgba(17,18,15,.82);font:700 7px/1 var(--mono)
+}
+
+/* 单张交付样图在电脑端也做成右上角缩略卡，避免图片区域制造大块空白。 */
+@media(min-width:721px){
+  #deliver .dcard.has-media-corner,
+  #deliver .dcard.has-media-corner:nth-child(even){
+    position:relative!important;display:grid!important;
+    grid-template-columns:1fr!important;grid-template-rows:auto auto auto 1fr!important;
+    grid-template-areas:"num" "title" "force" "copy"!important;
+    min-height:300px!important;padding:30px 300px 32px 32px!important;overflow:hidden
+  }
+  #deliver .dcard.has-media-corner>.dn,
+  #deliver .dcard.has-media-corner>h3,
+  #deliver .dcard.has-media-corner>.force,
+  #deliver .dcard.has-media-corner>p{
+    margin-left:0!important;margin-right:0!important
+  }
+  #deliver .dcard.has-media-corner>.dn{padding-top:0!important;align-self:start}
+  #deliver .dcard.has-media-corner>p{padding-bottom:0!important;margin-bottom:0!important}
+  #deliver .dcard.has-media-corner>.dcard-media{
+    position:absolute!important;right:28px;top:28px;display:grid!important;
+    grid-template-rows:1fr auto!important;width:238px!important;height:184px!important;
+    min-height:0!important;margin:0!important;padding:12px!important;gap:8px!important;
+    border:1px solid var(--line);border-radius:16px!important;background:#ece7dd!important
+  }
+  #deliver .dcard.has-media-corner .dcard-media .gitem,
+  #deliver .dcard.has-media-corner .dcard-media .gitem:only-child{
+    grid-column:auto!important;width:100%!important;height:132px!important;min-height:0!important;
+    aspect-ratio:auto!important;margin:0!important;padding:5px!important;border-radius:10px!important
+  }
+  #deliver .dcard.has-media-corner .dcard-media .gitem img{
+    width:100%!important;height:100%!important;max-height:none!important;object-fit:contain!important
+  }
+  #deliver .dcard.has-media-corner .dcard-media .media-hint{
+    margin:0!important;font-size:8px!important;line-height:1.3;text-align:center!important
+  }
 }
 
 .lightbox .lb-close{border:0;background:none}
