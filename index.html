@@ -1050,6 +1050,17 @@ footer b{color:#f29275}
 .hero-map-actions .btn{min-height:48px}.hero-map-actions .btn-main{background:var(--clay);color:#fff}
 .hero-map-actions .btn-sub{border:1px solid var(--ink);color:var(--ink);background:transparent}
 .hero-map-actions .btn-sub:hover{background:var(--ink);color:#fff}
+.hero-free-clinic{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 18px;align-items:center;
+  margin-top:14px;padding:15px 17px;border:1px solid rgba(192,86,47,.38);border-radius:16px;
+  color:var(--ink);background:linear-gradient(125deg,rgba(255,255,255,.82),rgba(245,221,210,.62));
+  box-shadow:0 13px 30px rgba(119,65,39,.08);text-decoration:none;transition:.2s ease
+}
+.hero-free-clinic:hover,.hero-free-clinic:focus-visible{transform:translateY(-2px);border-color:var(--clay);box-shadow:0 17px 34px rgba(119,65,39,.14)}
+.hero-free-clinic span{grid-column:1/-1;display:flex;align-items:center;gap:8px;font:700 9px/1.2 var(--mono);letter-spacing:.08em;color:var(--clay-deep)}
+.hero-free-clinic span i{padding:3px 7px;border-radius:999px;color:#fff;background:var(--ink);font-style:normal;letter-spacing:.04em}
+.hero-free-clinic strong{font:800 16px/1.25 var(--serif)}
+.hero-free-clinic small{max-width:190px;color:var(--ink-soft);font-size:10px;line-height:1.5;text-align:right}
 .hero-map-assurance{display:flex;flex-wrap:wrap;gap:16px;margin-top:17px;font-size:10px;color:var(--ink-faint)}
 .hero-map-assurance span::before{content:"●";margin-right:7px;color:var(--clay);font-size:6px}
 .journey-map{
@@ -1514,6 +1525,10 @@ footer b{color:#f29275}
   .hero-map-desc{margin-top:14px;font-size:13.5px;line-height:1.78}
   .hero-map-actions{gap:10px;margin-top:24px}
   .hero-map-actions .btn{min-height:50px;width:100%;padding:13px 16px}
+  .hero-free-clinic{grid-template-columns:1fr;margin-top:12px;padding:14px 15px;gap:6px;border-radius:14px}
+  .hero-free-clinic span{grid-column:auto}
+  .hero-free-clinic strong{font-size:16px}
+  .hero-free-clinic small{max-width:none;text-align:left;font-size:10.5px}
   .hero-map-assurance{gap:8px 15px;margin-top:15px;font-size:9px}
 
   .journey-map{
@@ -1741,7 +1756,7 @@ footer b{color:#f29275}
   <!-- 发报头 -->
   <div class="pad">
     <div class="masthead">
-      <div class="mh-brand"><span class="mascot"><img src="assets/img51.jpg?v=20260730-2" alt="狐狸 IP" fetchpriority="high"></span><b>阿涵求职<span>资料军火库</span></b></div>
+      <div class="mh-brand"><span class="mascot"><img width="480" height="480" src="assets/img51.jpg?v=20260730-2" alt="狐狸 IP" fetchpriority="high"></span><b>阿涵求职<span>资料军火库</span></b></div>
       <div class="mh-nav">
         <a href="#library">工具资料</a><a href="#quick-services">单项服务</a><a href="#hero">陪跑方案</a><a href="#deliver">七项交付</a><a href="#ai">AI 作品</a><a href="#faq">答疑</a>
       </div>
@@ -1953,21 +1968,31 @@ footer b{color:#f29275}
     <p id="mentorCaseIntro"></p>
     <div class="mentor-case-targets" id="mentorCaseTargets"></div>
     <ol id="mentorCaseSteps"></ol>
-    <p class="guide-tip">以下为岗位拆解示例，具体职责与招聘状态以目标公司的正式 JD 为准。</p>
+    <p class="guide-tip">岗位名已按官方招聘页面核对。点击岗位可打开官方来源；职位可能随地区与批次下线，请以公司最新 JD 为准。</p>
+  </dialog>
+
+  <dialog id="caseBurstDialog" class="case-burst-dialog" aria-labelledby="caseBurstTitle">
+    <button class="case-burst-close" type="button" aria-label="关闭辅导案例" data-case-burst-close>×</button>
+    <div class="case-burst-head">
+      <span>COACHING PROOF · 真实过程与反馈</span>
+      <h2 id="caseBurstTitle">49 张辅导案例，<em>一次炸开。</em></h2>
+      <p>深挖材料、交付过程、聊天反馈和上岸捷报都放在这里。点击任意一张看清大图。</p>
+    </div>
+    <div class="case-burst-grid" id="caseBurstGrid" aria-label="49 张辅导案例与反馈"></div>
   </dialog>
 
   <dialog id="wechatPosterDialog" class="wechat-poster-dialog" aria-labelledby="wechatPosterTitle">
     <button class="wechat-poster-close" type="button" aria-label="关闭微信咨询海报" data-wechat-poster-close>×</button>
     <div class="wechat-poster-card">
       <div class="wechat-poster-brand">
-        <img src="assets/img51.jpg?v=20260731-1" alt="">
+        <img width="480" height="480" src="assets/img51.jpg?v=20260731-1" alt="">
         <span><b>阿涵求职资料军火库</b><small>CAREER ARSENAL · 上岸为止</small></span>
       </div>
       <span class="wechat-poster-kicker">微信打不开？扫码最稳</span>
       <h2 id="wechatPosterTitle">先把你的情况，<br><em>发给我看看。</em></h2>
       <p>方向、简历、投递或面试卡住都可以先聊。不急着报名，先判断问题到底出在哪一步。</p>
       <div class="wechat-poster-qr">
-        <img src="assets/img50.jpg?v=20260731-1" alt="阿涵企业微信二维码" fetchpriority="high">
+        <img width="560" height="546" src="assets/img50.jpg?v=20260731-1" alt="阿涵企业微信二维码" fetchpriority="high">
       </div>
       <div class="wechat-poster-scan">
         <b>微信内：长按二维码 → 识别图中二维码</b>
@@ -1987,7 +2012,12 @@ footer b{color:#f29275}
         <span>SINGLE MISSION · 小额单项服务</span>
         <h2>不想自己硬弄，<br><em>先把眼前这一关解决。</em></h2>
       </div>
-      <p>已经知道自己卡在哪，不一定要直接买全程。两项服务可以单独选，不捆绑。</p>
+      <div class="quick-services-aside">
+        <p>已经知道自己卡在哪，不一定要直接买全程。两项服务可以单独选，不捆绑。</p>
+        <button class="case-burst-trigger" type="button" data-case-burst>
+          <span>查看辅导案例</span><b>49 张真实过程与反馈 ↗</b>
+        </button>
+      </div>
     </div>
 
     <div class="quick-service-track">
@@ -2056,6 +2086,11 @@ footer b{color:#f29275}
           <a class="btn btn-main" href="#signup">微信加企微 · 先聊聊你的情况</a>
           <a class="btn btn-sub" href="#deliver">看真实交付</a>
         </div>
+        <a class="hero-free-clinic" href="#signup" aria-label="预约每日免费职业规划或简历诊断">
+          <span><b>FREE · 每日 3 个名额</b><i>不营销</i></span>
+          <strong>免费做 1 次 30 分钟<br>职业规划 / 简历诊断</strong>
+          <small>有问题就来找我预约，先把卡点聊清楚&nbsp; ↗</small>
+        </a>
         <div class="hero-map-assurance"><span data-price-hero>当前 6999 元全程</span><span data-price-rise>8 月 15 日起 7999</span><span>之后不再收费</span></div>
       </div>
 
@@ -2070,7 +2105,7 @@ footer b{color:#f29275}
         <div class="route-node node-5"><span>05</span><b>面试</b><small>练表达</small></div>
         <div class="route-node node-6"><span>06</span><b>复盘</b><small>再迭代</small></div>
         <div class="route-destination"><span>07 · DESTINATION</span><b>OFFER</b><em>岸</em></div>
-        <div class="route-guide"><span class="mascot"><img src="assets/img51.jpg?v=20260730-2" alt="披着狼皮的狐狸" loading="lazy" decoding="async"></span><div><small>YOUR COACH</small><b>有人盯着路线，也盯着你</b></div></div>
+        <div class="route-guide"><span class="mascot"><img width="480" height="480" src="assets/img51.jpg?v=20260730-2" alt="披着狼皮的狐狸" loading="lazy" decoding="async"></span><div><small>YOUR COACH</small><b>有人盯着路线，也盯着你</b></div></div>
         <div class="route-legend"><span>● 当前动作</span><span>○ 复盘回流</span><span>× 不走弯路</span></div>
       </div>
     </div>
@@ -2196,7 +2231,7 @@ footer b{color:#f29275}
     </div>
     <p class="prose">陪你这一路,我是真的把东西全教给你。以后你再换工作,这套东西你信手就来。<strong>你学到的,是一门能吃一辈子的手艺。</strong></p>
     <div class="signature">
-      <span class="mascot"><img src="assets/img51.jpg?v=20260730-2" alt="狐狸 IP" loading="lazy" decoding="async"></span>
+      <span class="mascot"><img width="480" height="480" src="assets/img51.jpg?v=20260730-2" alt="狐狸 IP" loading="lazy" decoding="async"></span>
       <div><b>你的陪跑总教练</b><span>披着狼皮的狐狸 · 从专员到百人公司 VP</span></div>
     </div>
   </section>
@@ -2279,19 +2314,19 @@ footer b{color:#f29275}
       </div>
       <div class="dcard"><div class="dn">01</div><h3>背景深挖</h3><span class="force">贯穿全程 · 起点</span>
         <p>很多同学从第一步就错了——<span class="mark">压根不知道自己适合干嘛</span>。先把你干过、学过、擅长和不擅长的全捋一遍,从你真有的本事出发,把方向定死。方向对了,后面每步才不白使劲。</p>
-        <div class="dcard-media"><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img01.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img02.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img03.jpg?v=20260730-2" alt=""></figure><span class="media-hint">背景深挖样张 · 点击放大</span></div>
+        <div class="dcard-media"><figure class="gitem"><img width="1100" height="469" loading="lazy" decoding="async" src="assets/img01.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1100" height="471" loading="lazy" decoding="async" src="assets/img02.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1100" height="932" loading="lazy" decoding="async" src="assets/img03.webp?v=20260730-2" alt=""></figure><span class="media-hint">背景深挖样张 · 点击放大</span></div>
       </div>
       <div class="dcard"><div class="dn">02</div><h3>简历润色 / 代写</h3><span class="force">一岗一版 · 改到满意不限次</span>
         <p>别拿一份"通用简历"到处碰运气。投产品用产品版、投运营用运营版。我们把经历改写成<span class="mark">"HR 一看就想追着问下去"</span>的那种,不是润色改错字。改到你满意,不限次、不额外收钱。</p>
-        <div class="dcard-media"><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img04.jpg?v=20260730-2" alt=""></figure><span class="media-hint">简历样张 · 点击放大</span></div>
+        <div class="dcard-media"><figure class="gitem"><img width="1100" height="751" loading="lazy" decoding="async" src="assets/img04.webp?v=20260730-2" alt=""></figure><span class="media-hint">简历样张 · 点击放大</span></div>
       </div>
       <div class="dcard"><div class="dn">03</div><h3>投递清单</h3><span class="force">按城市定制 · 每月推送</span>
         <p>你说城市,我给你能<span class="mark">直接开投的岗位清单</span>——按"你的本事 → 能做的岗 → 对的行业"筛,不是盲冲大厂 title。校招社招都覆盖,动态补齐不让你有空窗。</p>
-        <div class="dcard-media"><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img05.jpg?v=20260730-2" alt=""></figure><span class="media-hint">清单样张 · 点击放大</span></div>
+        <div class="dcard-media"><figure class="gitem"><img width="832" height="1100" loading="lazy" decoding="async" src="assets/img05.webp?v=20260730-2" alt=""></figure><span class="media-hint">清单样张 · 点击放大</span></div>
       </div>
       <div class="dcard"><div class="dn">04</div><h3>模拟面试</h3><span class="force">真人陪练 · 不限场次</span>
         <p>光在脑子里想一百遍,不如真开口练一次。真人一场一场陪你过,<span class="mark">面几次陪你练几次</span>,每次不少于 1 小时,连着三场能干到俩小时。</p>
-        <div class="dcard-media"><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img06.jpg?v=20260730-2" alt=""></figure><span class="media-hint">Mock 现场 · 点击放大</span></div>
+        <div class="dcard-media"><figure class="gitem"><img width="1100" height="830" loading="lazy" decoding="async" src="assets/img06.webp?v=20260730-2" alt=""></figure><span class="media-hint">Mock 现场 · 点击放大</span></div>
       </div>
       <div class="dcard" style="background:var(--clay-bg);justify-content:center;align-items:flex-start">
         <div class="dn" style="color:var(--gold)">06</div><h3>AI 作品集</h3>
@@ -2306,10 +2341,10 @@ footer b{color:#f29275}
         <span class="force">一对一匹配 · 点状爆破 · 当天复盘不限次</span>
         <p class="mf-p">不是甩你几百页合集自己捞。你明天面哪家、哪个岗,就给你那家那个岗对应的面经,<span class="mark">完全按你 Mock 表现点状爆破</span>。题型无非四类,每类都有真材料(缩略图点击放大):</p>
         <div class="mj-cats">
-          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">企业调研</span><span class="ce">Company Research</span></div><p class="mj-desc">这家做什么、怎么赚钱、你对它怎么看——开口就像自己人。</p><div class="gal-row"><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img07.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img08.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img09.jpg?v=20260730-2" alt=""></figure></div></div>
-          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">简历深挖题</span><span class="ce">Resume Deep-Dive</span></div><p class="mj-desc">每条经历都可能被追问到底,提前把逐字稿备好。</p><div class="gal-row"><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img07.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img10.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img11.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img12.jpg?v=20260730-2" alt=""></figure></div></div>
-          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">业务理解 / 场景题</span><span class="ce">Business / Case</span></div><p class="mj-desc">给你个真实业务难题,看你怎么拆、怎么落地。</p><div class="gal-row"><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img13.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img14.jpg?v=20260730-2" alt=""></figure></div></div>
-          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">其他意向 / 抽象类</span><span class="ce">Intent / Abstract</span></div><p class="mj-desc">职业规划、优缺点、为什么选这行这种"软"问题。</p><div class="gal-row"><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img15.jpg?v=20260730-2" alt=""></figure></div></div>
+          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">企业调研</span><span class="ce">Company Research</span></div><p class="mj-desc">这家做什么、怎么赚钱、你对它怎么看——开口就像自己人。</p><div class="gal-row"><figure class="gitem"><img width="1000" height="1200" loading="lazy" decoding="async" src="assets/img07.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1200" height="675" loading="lazy" decoding="async" src="assets/img08.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1200" height="808" loading="lazy" decoding="async" src="assets/img09.webp?v=20260730-2" alt=""></figure></div></div>
+          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">简历深挖题</span><span class="ce">Resume Deep-Dive</span></div><p class="mj-desc">每条经历都可能被追问到底,提前把逐字稿备好。</p><div class="gal-row"><figure class="gitem"><img width="1000" height="1200" loading="lazy" decoding="async" src="assets/img07.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1200" height="689" loading="lazy" decoding="async" src="assets/img10.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1200" height="900" loading="lazy" decoding="async" src="assets/img11.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1200" height="689" loading="lazy" decoding="async" src="assets/img12.webp?v=20260730-2" alt=""></figure></div></div>
+          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">业务理解 / 场景题</span><span class="ce">Business / Case</span></div><p class="mj-desc">给你个真实业务难题,看你怎么拆、怎么落地。</p><div class="gal-row"><figure class="gitem"><img width="1200" height="728" loading="lazy" decoding="async" src="assets/img13.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="1200" height="398" loading="lazy" decoding="async" src="assets/img14.webp?v=20260730-2" alt=""></figure></div></div>
+          <div class="mj-cat"><div class="mj-cat-h"><span class="cn">其他意向 / 抽象类</span><span class="ce">Intent / Abstract</span></div><p class="mj-desc">职业规划、优缺点、为什么选这行这种"软"问题。</p><div class="gal-row"><figure class="gitem"><img width="1200" height="675" loading="lazy" decoding="async" src="assets/img15.webp?v=20260730-2" alt=""></figure></div></div>
         </div>
         <div class="note" style="margin-top:14px">面完当天就带你复盘:哪句说崩了、哪个追问没接住、下次该怎么说——细到句子层面。不是背标准答案,是越面越会讲。</div>
       </div>
@@ -2431,7 +2466,7 @@ footer b{color:#f29275}
 
     <div class="proof-case">
       <div class="proof-phone">
-        <img loading="lazy" decoding="async" src="assets/img16.jpg?v=20260730-2" alt="阿里巴巴千问 HR 主动联系学员并通话的聊天记录">
+        <img width="414" height="900" loading="lazy" decoding="async" src="assets/img16.webp?v=20260730-2" alt="阿里巴巴千问 HR 主动联系学员并通话的聊天记录">
       </div>
       <div class="proof-copy">
         <div class="proof-kicker">CASE STUDY · 0 实习 → 主动邀约</div>
@@ -2538,7 +2573,7 @@ footer b{color:#f29275}
     </div>
     <h3 style="font-family:var(--serif);font-size:20px;margin-top:26px">不只看结果，也看看<span style="color:var(--clay)">真实陪跑过程</span></h3>
     <p class="lede" style="margin-top:8px">下面是学员真实反馈与陪跑过程的一部分(隐私已打码),点开看大图。</p>
-    <div class="wall reveal" data-wall="proc"><div class="wall-row" style="--dur:77s"><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img17.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img18.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img19.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img20.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img21.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img22.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img23.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img24.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img25.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img26.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img27.jpg?v=20260730-2" alt=""></figure></div><div class="wall-row rev" style="--dur:70s"><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img28.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img29.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img30.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img31.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img32.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img33.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img34.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img35.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img36.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img37.jpg?v=20260730-2" alt=""></figure></div></div>
+    <div class="wall reveal" data-wall="proc"><div class="wall-row" style="--dur:77s"><figure class="gitem"><img width="331" height="720" loading="lazy" decoding="async" src="assets/img17.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="385" height="720" loading="lazy" decoding="async" src="assets/img18.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="387" height="720" loading="lazy" decoding="async" src="assets/img19.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="382" height="720" loading="lazy" decoding="async" src="assets/img20.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="478" height="720" loading="lazy" decoding="async" src="assets/img21.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="334" loading="lazy" decoding="async" src="assets/img22.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="258" loading="lazy" decoding="async" src="assets/img23.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="140" loading="lazy" decoding="async" src="assets/img24.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="210" loading="lazy" decoding="async" src="assets/img25.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="366" loading="lazy" decoding="async" src="assets/img26.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="463" loading="lazy" decoding="async" src="assets/img27.webp?v=20260730-2" alt=""></figure></div><div class="wall-row rev" style="--dur:70s"><figure class="gitem"><img width="720" height="653" loading="lazy" decoding="async" src="assets/img28.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="565" loading="lazy" decoding="async" src="assets/img29.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="429" height="720" loading="lazy" decoding="async" src="assets/img30.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="368" loading="lazy" decoding="async" src="assets/img31.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="289" loading="lazy" decoding="async" src="assets/img32.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="163" loading="lazy" decoding="async" src="assets/img33.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="440" loading="lazy" decoding="async" src="assets/img34.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="133" loading="lazy" decoding="async" src="assets/img35.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="405" height="720" loading="lazy" decoding="async" src="assets/img36.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="385" height="720" loading="lazy" decoding="async" src="assets/img37.webp?v=20260730-2" alt=""></figure></div></div>
   </section>
 
   <!-- 结果好评 · OFFER 捷报墙 -->
@@ -2546,7 +2581,7 @@ footer b{color:#f29275}
     <div class="block-head"><span class="block-idx">捷报</span><span class="block-en">Offers · Wall of Wins</span></div>
     <h2>结果好评 · <span class="clay">上岸捷报墙</span></h2>
     <p class="lede">一批学员真实 offer / 好评(隐私已打码)。自动滑动,悬停暂停,点开看大图。</p>
-    <div class="wall reveal" data-wall="offer"><div class="wall-row" style="--dur:42s"><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img38.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img39.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img40.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img41.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img42.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img43.jpg?v=20260730-2" alt=""></figure></div><div class="wall-row rev" style="--dur:42s"><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img44.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img45.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img46.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img47.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img48.jpg?v=20260730-2" alt=""></figure><figure class="gitem"><img loading="lazy" decoding="async" src="assets/img49.jpg?v=20260730-2" alt=""></figure></div></div>
+    <div class="wall reveal" data-wall="offer"><div class="wall-row" style="--dur:42s"><figure class="gitem"><img width="331" height="720" loading="lazy" decoding="async" src="assets/img38.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="592" loading="lazy" decoding="async" src="assets/img39.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="589" height="720" loading="lazy" decoding="async" src="assets/img40.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="541" height="720" loading="lazy" decoding="async" src="assets/img41.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="473" loading="lazy" decoding="async" src="assets/img42.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="617" height="720" loading="lazy" decoding="async" src="assets/img43.webp?v=20260730-2" alt=""></figure></div><div class="wall-row rev" style="--dur:42s"><figure class="gitem"><img width="720" height="348" loading="lazy" decoding="async" src="assets/img44.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="683" loading="lazy" decoding="async" src="assets/img45.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="565" height="720" loading="lazy" decoding="async" src="assets/img46.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="561" height="720" loading="lazy" decoding="async" src="assets/img47.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="524" height="720" loading="lazy" decoding="async" src="assets/img48.webp?v=20260730-2" alt=""></figure><figure class="gitem"><img width="720" height="671" loading="lazy" decoding="async" src="assets/img49.webp?v=20260730-2" alt=""></figure></div></div>
   </section>
 
   <!-- 上岸为止 -->
@@ -2650,7 +2685,7 @@ footer b{color:#f29275}
     <h2 style="margin-top:12px">微信找我聊聊吧</h2>
     <p>先把你的情况、你手里有什么、你现在卡在哪儿跟我说清楚,咱们再决定要不要开始。从你决定的那一刻起,你就不是一个人在找工作了。</p>
     <div class="qr">
-      <img loading="lazy" decoding="async" src="assets/img50.jpg?v=20260730-2" alt="企业微信二维码">
+      <img width="560" height="546" loading="lazy" decoding="async" src="assets/img50.jpg?v=20260730-2" alt="企业微信二维码">
       <span class="qr-note">扫码添加企微老师<br><small>先聊情况，不急着报名</small></span>
     </div>
     <a class="btn btn-clay" href="#signup" style="position:relative">加企微老师 · 对公转账,钱有保障</a>
@@ -2675,7 +2710,13 @@ footer b{color:#f29275}
   </footer>
 </div>
 
-<div class="lightbox" id="lightbox" aria-hidden="true"><span class="lb-close">✕ 关闭 · ESC</span><img decoding="async" alt="放大预览"></div>
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" type="button" aria-label="关闭图片预览">✕ 关闭 · ESC</button>
+  <button class="lb-nav lb-prev" type="button" aria-label="上一张">←</button>
+  <img decoding="async" alt="放大预览">
+  <button class="lb-nav lb-next" type="button" aria-label="下一张">→</button>
+  <span class="lb-count" aria-live="polite"></span>
+</div>
 <a class="mobile-cta" href="#signup" aria-label="微信咨询全路径求职陪跑">微信咨询 · 先聊聊你的情况 ↗</a>
 
 <script>
@@ -2730,13 +2771,39 @@ footer b{color:#f29275}
 })();
 /* 灯箱 */
 (function(){
-  var lb=document.getElementById('lightbox');if(!lb)return;var img=lb.querySelector('img');
+  var lb=document.getElementById('lightbox');if(!lb)return;
+  var img=lb.querySelector('img'),count=lb.querySelector('.lb-count'),group=[],index=0;
+  function render(){
+    if(!group.length)return;
+    img.src=group[index].getAttribute('src');
+    img.alt=group[index].getAttribute('alt')||'案例大图';
+    count.textContent=(index+1)+' / '+group.length;
+  }
+  function close(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');img.src='';group=[];}
+  function move(delta){if(!group.length)return;index=(index+delta+group.length)%group.length;render();}
   document.addEventListener('click',function(e){
     var t=e.target.closest('.gitem img');
-    if(t){img.src=t.getAttribute('src');lb.classList.add('open');return;}
-    if(e.target.closest('#lightbox')){lb.classList.remove('open');img.src='';}
+    if(t){
+      var scope=t.closest('.gal-row,.dcard-media,.wall,.case-burst-grid')||document;
+      group=[].slice.call(scope.querySelectorAll('.gitem img,.case-burst-card img'));
+      index=Math.max(0,group.indexOf(t));render();lb.classList.add('open');lb.setAttribute('aria-hidden','false');return;
+    }
+    if(e.target.closest('.lb-prev')){e.stopPropagation();move(-1);return;}
+    if(e.target.closest('.lb-next')){e.stopPropagation();move(1);return;}
+    if(e.target.closest('.lb-close')||e.target===lb)close();
   });
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('open');img.src='';}});
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')close();
+    if(e.key==='ArrowLeft')move(-1);
+    if(e.key==='ArrowRight')move(1);
+  });
+})();
+/* 面经多图叠成三张牌，点击后可继续翻完整组图 */
+(function(){
+  document.querySelectorAll('#deliver .mj-cat .gal-row').forEach(function(row){
+    row.setAttribute('data-count',row.querySelectorAll('.gitem').length);
+  });
 })();
 /* 求职卡点互动词云 */
 (function(){
@@ -3044,7 +3111,7 @@ footer b{color:#f29275}
 #twikoo .tk-comment.tk-master>.tk-main>.tk-row .tk-tag-green::after{content:"阿涵本人";font-size:9px}
 
 .guide-dialog{
-  width:min(540px,calc(100vw - 32px));max-height:min(78vh,720px);padding:30px;
+  position:fixed;inset:0;margin:auto;width:min(540px,calc(100vw - 32px));max-height:min(78vh,720px);padding:30px;
   border:1px solid var(--line-strong);border-radius:22px;color:var(--ink);background:#faf7ef;
   box-shadow:0 30px 90px rgba(21,20,15,.34);overflow:auto
 }
@@ -3068,7 +3135,7 @@ footer b{color:#f29275}
 .guide-dialog .guide-tip{padding:12px;border-radius:11px;color:var(--clay-deep);background:var(--clay-bg);font-size:11px}
 
 .wechat-poster-dialog{
-  width:min(460px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:0;
+  position:fixed;inset:0;margin:auto;width:min(460px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:0;
   border-radius:28px;color:#fff;background:#171713;box-shadow:0 34px 100px rgba(0,0,0,.5);overflow:auto
 }
 .wechat-poster-dialog::backdrop{background:rgba(10,10,8,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
@@ -3130,7 +3197,16 @@ footer b{color:#f29275}
 .quick-services-head>div>span{font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:var(--clay)}
 .quick-services-head h2{margin-top:10px;font-size:clamp(31px,4vw,48px);line-height:1.1}
 .quick-services-head h2 em{font-style:normal;color:var(--clay)}
-.quick-services-head>p{max-width:390px;font-size:12px;line-height:1.75;color:var(--ink-soft)}
+.quick-services-aside{display:grid;gap:16px;justify-items:start}
+.quick-services-aside>p{max-width:390px;font-size:12px;line-height:1.75;color:var(--ink-soft)}
+.case-burst-trigger{
+  display:grid;gap:4px;min-width:236px;padding:13px 16px;border:1px solid var(--ink);border-radius:14px;
+  color:#fff;background:var(--ink);text-align:left;cursor:pointer;box-shadow:0 12px 30px rgba(23,23,19,.14);
+  transition:transform .2s,background .2s,border-color .2s
+}
+.case-burst-trigger:hover,.case-burst-trigger:focus-visible{transform:translateY(-2px);border-color:var(--clay);background:var(--clay)}
+.case-burst-trigger span{font-family:var(--serif);font-size:15px;font-weight:800}
+.case-burst-trigger b{font-family:var(--mono);font-size:7.5px;letter-spacing:.08em;color:rgba(255,255,255,.58)}
 .quick-service-track{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
 .quick-service-card{
   position:relative;min-width:0;padding:25px;border:1px solid var(--line-strong);border-radius:22px;
@@ -3272,7 +3348,9 @@ footer b{color:#f29275}
   .quick-services{padding:40px 0 35px}
   .quick-services-head{display:block;padding:0 18px}
   .quick-services-head h2{font-size:31px}
-  .quick-services-head>p{margin-top:13px;font-size:11.5px}
+  .quick-services-aside{margin-top:16px;gap:12px}
+  .quick-services-aside>p{font-size:11.5px}
+  .case-burst-trigger{width:100%;min-width:0}
   .quick-service-track{
     display:flex;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;
     scroll-snap-type:x mandatory;margin-top:24px;padding:0 18px 12px;scrollbar-width:none
@@ -3598,6 +3676,113 @@ footer b{color:#f29275}
   #tocPanel a:active{background:rgba(192,86,47,.15);color:var(--clay-deep)}
 }
 
+/* V6 · 官方岗位跳转、三牌图库与案例爆炸墙 */
+.mentor-case-dialog .mentor-case-targets a{
+  position:relative;padding:7px 24px 7px 10px;border:1px solid var(--line-strong);border-radius:999px;
+  color:var(--ink-soft);background:#fff;font-size:10.5px;text-decoration:none;transition:.18s ease
+}
+.mentor-case-dialog .mentor-case-targets a::after{content:"↗";position:absolute;right:9px;color:var(--clay)}
+.mentor-case-dialog .mentor-case-targets a:first-child{border-color:var(--clay);color:#fff;background:var(--clay);font-weight:800}
+.mentor-case-dialog .mentor-case-targets a:first-child::after{color:#fff}
+.mentor-case-dialog .mentor-case-targets a:hover,.mentor-case-dialog .mentor-case-targets a:focus-visible{
+  border-color:var(--clay);color:#fff;background:var(--clay)
+}
+.mentor-case-dialog .mentor-case-targets a:hover::after,.mentor-case-dialog .mentor-case-targets a:focus-visible::after{color:#fff}
+
+#deliver .mj-cat .gal-row{
+  position:relative!important;display:block!important;min-height:248px;overflow:visible!important;
+  padding:12px 22px!important;isolation:isolate
+}
+#deliver .mj-cat .gal-row::after{
+  content:attr(data-count) " 张案例 · 点击翻牌";position:absolute;left:50%;bottom:2px;z-index:12;
+  transform:translateX(-50%);padding:6px 10px;border-radius:999px;color:#fff;background:rgba(23,23,19,.88);
+  font:700 8px/1 var(--mono);letter-spacing:.08em;white-space:nowrap;pointer-events:none
+}
+#deliver .mj-cat .gal-row .gitem,
+#deliver .mj-cat .gal-row .gitem:last-child:nth-child(odd){
+  --deck-transform:translate(-50%,-50%);position:absolute!important;left:50%;top:48%;
+  display:block!important;width:min(62%,255px)!important;max-width:none!important;min-width:0!important;
+  height:auto!important;aspect-ratio:4/3!important;border-radius:15px;padding:7px!important;
+  background:#f3efe7!important;box-shadow:0 22px 48px rgba(23,23,19,.22)!important;
+  transform:var(--deck-transform)!important;transition:transform .25s ease,filter .2s,box-shadow .2s!important
+}
+#deliver .mj-cat .gal-row .gitem:nth-child(1){--deck-transform:translate(-76%,-48%) rotate(-7deg);z-index:2}
+#deliver .mj-cat .gal-row .gitem:nth-child(2){--deck-transform:translate(-50%,-55%) rotate(0deg);z-index:5}
+#deliver .mj-cat .gal-row .gitem:nth-child(3){--deck-transform:translate(-24%,-48%) rotate(7deg);z-index:3}
+#deliver .mj-cat .gal-row .gitem:nth-child(n+4){display:none!important}
+#deliver .mj-cat .gal-row .gitem:only-child{--deck-transform:translate(-50%,-52%) rotate(-1deg);width:min(78%,330px)!important}
+#deliver .mj-cat .gal-row .gitem:first-child:nth-last-child(2){--deck-transform:translate(-65%,-51%) rotate(-5deg);z-index:3}
+#deliver .mj-cat .gal-row .gitem:last-child:nth-child(2){--deck-transform:translate(-35%,-51%) rotate(5deg);z-index:4}
+#deliver .mj-cat .gal-row .gitem:hover{z-index:9;filter:saturate(1.05);transform:var(--deck-transform) scale(1.035)!important}
+#deliver .mj-cat .gal-row .gitem img{width:100%;height:100%!important;object-fit:contain;object-position:center}
+
+.case-burst-dialog{
+  position:fixed;inset:0;margin:auto;width:min(96vw,1440px);height:min(92vh,940px);max-width:none;max-height:none;padding:0;border:0;border-radius:28px;
+  color:#fff;background:#11120f;box-shadow:0 40px 120px rgba(0,0,0,.6);overflow:auto
+}
+.case-burst-dialog::backdrop{background:rgba(7,7,6,.9);-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px)}
+.case-burst-head{
+  position:sticky;top:0;z-index:80;padding:26px 74px 22px 28px;border-bottom:1px solid rgba(255,255,255,.1);
+  background:rgba(17,18,15,.88);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)
+}
+.case-burst-head>span{font:700 8px/1 var(--mono);letter-spacing:.17em;color:#f49375}
+.case-burst-head h2{margin-top:8px;font-size:clamp(28px,4vw,52px);line-height:1.05}.case-burst-head h2 em{font-style:normal;color:#f06b3f}
+.case-burst-head p{max-width:660px;margin-top:9px;font-size:11px;line-height:1.7;color:rgba(255,255,255,.55)}
+.case-burst-close{
+  position:fixed;z-index:100;right:max(3.2vw,34px);top:max(5vh,32px);width:44px;height:44px;
+  border:1px solid rgba(255,255,255,.34);border-radius:50%;color:#fff;background:rgba(17,18,15,.76);
+  font-size:24px;cursor:pointer;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)
+}
+.case-burst-grid{
+  display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;padding:18px 18px 30px;
+  background:radial-gradient(circle at 50% 4%,rgba(217,84,45,.22),transparent 40rem)
+}
+.case-burst-card{
+  --from-x:0px;--from-y:0px;--rotation:0deg;position:relative;margin:0;min-width:0;aspect-ratio:4/5;
+  overflow:hidden;border:1px solid rgba(255,255,255,.24);border-radius:10px;background:#e9e1d3;cursor:zoom-in;
+  opacity:0;transform:translate(var(--from-x),var(--from-y)) scale(.05) rotate(-35deg);
+  box-shadow:0 12px 34px rgba(0,0,0,.3);will-change:transform,opacity
+}
+.case-burst-dialog.bursting .case-burst-card{
+  opacity:1;transform:rotate(var(--rotation));
+  transition:transform .82s cubic-bezier(.12,.85,.2,1.2) var(--delay),opacity .22s ease var(--delay)
+}
+.case-burst-card:hover{z-index:10;transform:rotate(0) scale(1.07)!important;border-color:#f49375}
+.case-burst-card img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.case-burst-card::after{
+  content:attr(data-no);position:absolute;right:6px;bottom:6px;padding:4px 6px;border-radius:99px;
+  color:#fff;background:rgba(17,18,15,.82);font:700 7px/1 var(--mono)
+}
+
+.lightbox .lb-close{border:0;background:none}
+.lightbox .lb-nav{
+  position:absolute;top:50%;z-index:4;display:grid;place-items:center;width:46px;height:46px;border:1px solid rgba(255,255,255,.38);
+  border-radius:50%;color:#fff;background:rgba(0,0,0,.36);font-size:22px;cursor:pointer;transform:translateY(-50%)
+}
+.lightbox .lb-prev{left:24px}.lightbox .lb-next{right:24px}
+.lightbox .lb-count{
+  position:absolute;left:50%;bottom:18px;transform:translateX(-50%);padding:7px 10px;border-radius:99px;
+  color:#fff;background:rgba(0,0,0,.46);font:700 9px/1 var(--mono);letter-spacing:.08em
+}
+
+@media(max-width:720px){
+  #deliver .mj-cat .gal-row{min-height:214px;padding:8px!important}
+  #deliver .mj-cat .gal-row .gitem,
+  #deliver .mj-cat .gal-row .gitem:last-child:nth-child(odd){width:min(66%,238px)!important}
+  #deliver .mj-cat .gal-row .gitem:only-child{width:min(82%,290px)!important}
+  .case-burst-dialog{width:100vw;height:100dvh;border-radius:0}
+  .case-burst-head{padding:22px 58px 18px 16px}.case-burst-head h2{font-size:31px}
+  .case-burst-close{right:12px;top:12px;width:40px;height:40px}
+  .case-burst-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:10px 8px 92px}
+  .case-burst-card{border-radius:7px}
+  .lightbox{padding:14px}.lightbox img{max-width:96vw;max-height:80vh;border-width:4px}
+  .lightbox .lb-nav{top:auto;bottom:20px;transform:none}.lightbox .lb-prev{left:18px}.lightbox .lb-next{right:18px}
+  .lightbox .lb-count{bottom:34px}
+}
+@media(prefers-reduced-motion:reduce){
+  .case-burst-card,.case-burst-dialog.bursting .case-burst-card{opacity:1;transform:none;transition:none}
+}
+
 @media(max-width:380px){
   .mh-brand b{max-width:178px;font-size:11.5px}
   .mh-cta{min-width:76px;padding-left:10px;padding-right:10px}
@@ -3697,79 +3882,141 @@ document.addEventListener('click',close);})();
   dialog.addEventListener('click',function(e){if(e.target===dialog)closePoster();});
 })();
 (function(){
+  var dialog=document.getElementById('caseBurstDialog'),grid=document.getElementById('caseBurstGrid');
+  if(!dialog||!grid)return;
+  function pad(value){return String(value).padStart(2,'0');}
+  function build(){
+    if(grid.children.length)return;
+    for(var i=1;i<=49;i++){
+      var card=document.createElement('figure'),image=document.createElement('img');
+      card.className='case-burst-card gitem';
+      card.setAttribute('data-no',pad(i));
+      card.style.setProperty('--rotation',(((i*17)%9)-4)+'deg');
+      image.loading=i<15?'eager':'lazy';
+      image.decoding='async';
+      image.src='assets/img'+pad(i)+'.webp?v=20260731-casewall';
+      image.alt='辅导案例与真实反馈 '+i;
+      card.appendChild(image);grid.appendChild(card);
+    }
+  }
+  function explode(){
+    build();
+    if(dialog.showModal)dialog.showModal();else dialog.setAttribute('open','');
+    dialog.classList.remove('bursting');
+    var bounds=grid.getBoundingClientRect(),cx=bounds.left+bounds.width/2,cy=Math.min(window.innerHeight*.52,bounds.top+bounds.height/2);
+    [].slice.call(grid.children).forEach(function(card,i){
+      var rect=card.getBoundingClientRect();
+      card.style.setProperty('--from-x',(cx-(rect.left+rect.width/2))+'px');
+      card.style.setProperty('--from-y',(cy-(rect.top+rect.height/2))+'px');
+      card.style.setProperty('--delay',Math.min(.34,(i%14)*.018)+'s');
+    });
+    requestAnimationFrame(function(){requestAnimationFrame(function(){dialog.classList.add('bursting');});});
+  }
+  function close(){dialog.classList.remove('bursting');if(dialog.close)dialog.close();else dialog.removeAttribute('open');}
+  document.addEventListener('click',function(e){
+    if(e.target.closest('[data-case-burst]')){e.preventDefault();explode();return;}
+    if(e.target.closest('[data-case-burst-close]')){close();return;}
+    if(dialog.open&&e.target.closest('.case-burst-card')){close();}
+  });
+  dialog.addEventListener('click',function(e){if(e.target===dialog)close();});
+})();
+(function(){
   var dialog=document.getElementById('mentorCaseDialog');
   if(!dialog)return;
   var cases={
     'operations-overview':{
       title:'综合运营 · 岗位方向总览',
       intro:'先从行业、服务对象和业务环节判断你适合哪类运营，再进入对应岗位深挖。',
+      source:'https://jobs.bytedance.com/campus/',
       targets:['用户 / 增长运营','产品 / 平台运营','电商 / 商家运营','采销 / 商品运营','内容 / 活动运营','品牌 / 市场运营','商业化运营','渠道 / 销售运营','私域 / CRM 运营','出海 / 海外运营'],
       steps:['先盘点经历中的用户、内容、商品、平台与收入线索，判断优势落在哪一环。','再看目标行业的核心指标和业务模式，排除只有名称相似、实际能力不匹配的岗位。','最后确定 1 个主方向和 1 个备选方向，分别准备简历、作品与面试案例。']
     },
     merchant:{
       title:'电商 / 商家运营 · 岗位案例池',
-      intro:'围绕平台电商与商家引入、分层、成长、活跃、经营诊断和生态建设准备，不用一套“运营话术”硬套。',
-      targets:['拼多多商家运营','淘天商家成长运营','抖音电商商家策略运营','京东商家运营','美团商户运营','快手电商商家运营','小红书商业生态运营','得物商家运营','1688 平台招商运营','TikTok Shop 商家运营'],
+      intro:'下面直接使用官方招聘中出现过的岗位名，覆盖商家引入、成长、行业、机构、治理和跨境电商。',
+      source:'https://jobs.bytedance.com/campus/',
+      targets:['商家运营-生活服务','商家策略运营实习生-国际电商','马来西亚商家运营实习生-国际电商','东南亚跨境商家运营实习生-国际电商','招商运营实习生-抖音电商','跨境电商机构运营实习生-国际电商','电商行业运营实习生-抖音电商','电商策略运营实习生（治理与体验）-国际电商','跨境电商产品运营实习生-国际电商','UK 电商关务运营实习生-Global Selling'],
+      links:['https://jobs.bytedance.com/campus/position/7221027090481039671/detail','https://jobs.bytedance.com/campus/position/7523107921732126984/detail','https://jobs.bytedance.com/campus/position/7213287336422164795/detail','https://jobs.bytedance.com/campus/position/7452235745354877202/detail','https://jobs.bytedance.com/campus/position/7473414101344618770/detail','https://jobs.bytedance.com/campus/position/7514538228235258119/detail','https://jobs.bytedance.com/campus/position/7549108932809394440/detail','https://jobs.bytedance.com/campus/position/7246717568676104503/detail','https://jobs.bytedance.com/campus/position/7475335908654729480/detail','https://jobs.bytedance.com/campus/position/7348272834169293107/detail'],
       steps:['拆清平台、商家和消费者三方目标，先讲供给侧为什么重要。','准备商家分层、激励机制、活动报名、经营诊断等高频业务题。','用一个真实商家案例，讲清问题、动作、指标和复盘。']
     },
     merchandising:{
       title:'采销 / 商品运营 · 岗位案例池',
       intro:'重点就是京东采销、多多买菜这类岗位：既懂商品和供应商，也要对价格、毛利、周转和销售结果负责。',
-      targets:['京东采销','多多买菜采销运营','拼多多商品运营','淘天类目运营','盒马商品运营','美团优选商品运营','抖音电商行业运营','快手电商品类运营','叮咚买菜采购 / 品类运营','零售供应链运营'],
+      source:'https://campus.jd.com/',
+      targets:['京东采销（官网岗位方向）','电商行业运营实习生-抖音电商','商品策略运营实习生-国际电商','男装行业运营实习生-TikTok Shop','英国行业运营实习生-国际电商','跨境行业运营实习生-国际电商','电商运营-跨境供应链运营实习生','跨境电商产品运营实习生-国际电商','生鲜采销 / 品类运营（官网筛选）','供应链 / 库存运营（官网筛选）'],
+      links:['https://campus.jd.com/','https://jobs.bytedance.com/campus/position/7549108932809394440/detail','https://jobs.bytedance.com/campus/position/7480856719901624584/detail','https://jobs.bytedance.com/campus/position/7560950546782849341/detail','https://jobs.bytedance.com/campus/position/7213290270477404471/detail','https://jobs.bytedance.com/campus/position/7250051333393467709/detail','https://jobs.bytedance.com/campus/position/6908576686557432072/detail','https://jobs.bytedance.com/campus/position/7475335908654729480/detail','https://campus.jd.com/','https://campus.jd.com/'],
       steps:['先把选品、定价、采购、库存、促销和复盘串成完整经营链路。','重点准备毛利、周转、现货率、滞销、供应商协同等指标与场景题。','拿一个品类做经营分析：市场空间、货盘结构、价格带和增长动作。']
     },
     'user-growth':{
       title:'用户增长 · 岗位案例池',
-      intro:'把“拉新促活留存”拆成可计算的漏斗、实验和用户策略，而不是只背几个增长黑话。',
-      targets:['拼多多用户增长','美团增长运营','小红书用户增长','B 站社区增长','抖音增长运营','快手用户增长','知乎用户运营','网易云音乐用户增长','在线教育用户增长','App 私域 / CRM 运营'],
+      intro:'岗位名来自官方招聘页；同叫“用户运营”，在搜索、直播、汽车、AI 和增长获客场景里做的事会明显不同。',
+      source:'https://jobs.bytedance.com/campus/',
+      targets:['用户运营-搜索','用户运营-业务中台','用户运营经理-直播','用户运营实习生-懂车帝','用户运营实习生-百科','用户运营实习生-抖音','用户运营实习生-开发者 AI','汽车用户运营-懂车帝','用户运营实习生-抖音直播','增长运营实习生（获客内容）-飞书'],
+      links:['https://jobs.bytedance.com/campus/position/6927103264824133902/detail','https://jobs.bytedance.com/campus/position/7396937106678876467/detail','https://jobs.bytedance.com/campus/position/7476425845705820423/detail','https://jobs.bytedance.com/campus/position/7251535681939409189/detail','https://jobs.bytedance.com/campus/position/7210608322243316024/detail','https://jobs.bytedance.com/campus/position/7348761786089130277/detail','https://jobs.bytedance.com/campus/position/7533140625521297672/detail','https://jobs.bytedance.com/campus/position/7340840266138552603/detail','https://jobs.bytedance.com/campus/position/7476441149780461842/detail','https://jobs.bytedance.com/campus/position/7356156612039723301/detail'],
       steps:['先建立获客、激活、留存、召回和推荐的完整增长漏斗。','准备用户分层、渠道评估、A/B 实验、活动增长和留存分析题。','用一次增长项目讲清假设、实验、核心指标、结果和下一步迭代。']
     },
     content:{
       title:'内容 / 活动运营 · 岗位案例池',
-      intro:'覆盖内容供给、作者生态、社区氛围、活动机制和传播转化，强调内容结果而不是“发了多少篇”。',
-      targets:['小红书内容运营','抖音活动运营','B 站内容运营','快手作者运营','知乎社区运营','视频号内容运营','游戏活动运营','音乐平台内容运营','品牌新媒体运营','校园市场活动运营'],
+      intro:'岗位名来自官方招聘页，覆盖内容、活动、AI 玩法、音乐、国际电商和全球社区，不再拼接虚构公司岗位。',
+      source:'https://jobs.bytedance.com/campus/',
+      targets:['内容运营专员','活动运营-懂车帝','内容运营实习生-抖音','内容运营实习生-抖音效果与创作','内容运营实习生-国际电商','内容运营实习生-AI 创新业务','内容运营实习生-剪映 CapCut','内容运营实习生-音乐','AI 内容运营实习生（玩法方向）-剪映 CapCut','游戏全球社区运营实习生-ONE Studio'],
+      links:['https://jobs.bytedance.com/campus/position/6704216970453059844/detail','https://jobs.bytedance.com/campus/position/7264546955812014392/detail','https://jobs.bytedance.com/campus/position/7495700324573825298/detail','https://jobs.bytedance.com/campus/position/7475999242810427666/detail','https://jobs.bytedance.com/campus/position/7511624298525968658/detail','https://jobs.bytedance.com/campus/position/7522699834160269575/detail','https://jobs.bytedance.com/campus/position/7495592234847652103/detail','https://jobs.bytedance.com/campus/position/7342711584240191754/detail','https://jobs.bytedance.com/campus/position/7426014197747599625/detail','https://jobs.bytedance.com/campus/position/7408781377791019314/detail'],
       steps:['先分清内容平台、品牌账号和活动项目的目标与指标。','准备选题、供给、分发、互动、转化和复盘六个环节。','带一份内容或活动方案，能解释为什么做、给谁看、怎么衡量。']
     },
     'platform-strategy':{
       title:'平台 / 策略运营 · 岗位案例池',
-      intro:'围绕平台规则、供需匹配、生态治理和业务策略，把复杂问题拆成可执行机制。',
-      targets:['拼多多平台策略运营','淘天平台运营','抖音电商策略运营','美团平台运营','京东生态运营','快手平台规则运营','小红书社区策略运营','得物平台治理运营','携程平台运营','B 站平台策略运营'],
+      intro:'岗位名来自官方招聘页，围绕内容治理、平台规则、生态策略、行业策略和搜索策略，把复杂问题拆成机制。',
+      source:'https://jobs.bytedance.com/campus/',
+      targets:['策略运营（内容治理方向）-抖音电商','内容治理策略运营-生活服务','生态策略运营-直播','酒旅行业策略运营实习生-生活服务','治理运营实习生-抖音电商','用户策略运营实习生-飞书','平台治理运营实习生（AI 方向）-国际电商','商品策略运营实习生-国际电商','搜索策略运营实习生-抖音搜索','增长策略运营实习生-可颂'],
+      links:['https://jobs.bytedance.com/campus/position/7480536422933678343/detail','https://jobs.bytedance.com/campus/position/7397374314587293990/detail','https://jobs.bytedance.com/campus/position/7478282739172935943/detail','https://jobs.bytedance.com/campus/position/7482973771675191560/detail','https://jobs.bytedance.com/campus/position/7477565306585221383/detail','https://jobs.bytedance.com/campus/position/7475629760032688392/detail','https://jobs.bytedance.com/campus/position/7486770115606956295/detail','https://jobs.bytedance.com/campus/position/7480856719901624584/detail','https://jobs.bytedance.com/campus/position/7483395199043029256/detail','https://jobs.bytedance.com/campus/position/7508658623145920776/detail'],
       steps:['先画清平台、供给方与用户三方关系，明确规则服务的目标和边界。','准备供需匹配、激励约束、异常治理、生态健康和策略复盘题。','用一个平台问题讲清现状、判断、机制、指标与可能的副作用。']
     },
     brand:{
       title:'品牌市场 · 岗位案例池',
-      intro:'从市场洞察、品牌定位到整合营销和效果评估，既要会讲故事，也要能把预算和结果说明白。',
-      targets:['拼多多市场管培','快消品牌管培','科技品牌市场','互联网整合营销','品牌策略运营','消费者洞察','媒介投放运营','公关传播','校园市场','新品上市营销'],
+      intro:'岗位名来自官方招聘页，覆盖品牌营销、市场策略、行业营销、市场推广与海外市场。',
+      source:'https://jobs.bytedance.com/campus/',
+      targets:['品牌营销实习生-飞书','品牌营销实习生-飞书商业化','市场营销运营实习生-飞书商业化','市场营销实习生（汽车行业）-飞书商业化','市场营销实习生-生活服务','市场营销策略实习生（即梦 AI）-剪映 CapCut','品牌策略实习生-抖音生活服务','市场营销实习生-抖音','市场营销策划实习生-抖音游戏','海外市场推广专员'],
+      links:['https://jobs.bytedance.com/campus/position/7434379521644284223/detail','https://jobs.bytedance.com/campus/position/7435975830989932818/detail','https://jobs.bytedance.com/campus/position/7507215625757804807/detail','https://jobs.bytedance.com/campus/position/7383929575553157385/detail','https://jobs.bytedance.com/campus/position/7339901146917603593/detail','https://jobs.bytedance.com/campus/position/7525333771567941895/detail','https://jobs.bytedance.com/campus/position/7591415217994287413/detail','https://jobs.bytedance.com/campus/position/7478586852543465735/detail','https://jobs.bytedance.com/campus/position/7477443460883171592/detail','https://jobs.bytedance.com/campus/position/6704578245255235844/detail'],
       steps:['先拆公司、品类、目标人群和竞争格局，形成自己的市场判断。','准备品牌定位、Campaign 策划、媒介组合、预算分配和 ROI 题。','选一个品牌做完整提案：洞察、策略、创意、渠道、指标和复盘。']
     },
     commercialization:{
       title:'商业化运营 · 岗位案例池',
-      intro:'围绕广告、会员、增值服务与商家营销收入，既要理解平台变现，也要能兼顾客户效果和用户体验。',
-      targets:['字节跳动商业化运营','腾讯广告行业运营','快手商业化运营','小红书商业化运营','B 站商业化运营','百度商业产品运营','美团到店商业化运营','阿里妈妈广告运营','得物商业化运营','知乎商业化运营'],
+      intro:'岗位名来自官方招聘页，覆盖商业化战略、商业产品、行业运营、广告运营和全球商业化。',
+      source:'https://jobs.bytedance.com/campus/',
+      targets:['全球商业化战略运营语言中心实习生','商业产品运营-懂车帝','产品运营实习生-商业化','行业运营实习生（美妆日化服饰）-商业化','商务运营实习生-懂车帝','体验运营-商业生态与安全','产品运营实习生-飞书商业化','商业化战略分析实习生-商业化安全','广告运营实习生-Pangle','商业化广告产品运营实习生-懂车帝'],
+      links:['https://jobs.bytedance.com/campus/position/7317968206735771954/detail','https://jobs.bytedance.com/campus/position/7264547062258370871/detail','https://jobs.bytedance.com/campus/position/7413574468712515890/detail','https://jobs.bytedance.com/campus/position/7597350617202379013/detail','https://jobs.bytedance.com/campus/position/7254095966927702333/detail','https://jobs.bytedance.com/campus/position/7340607400850475315/detail','https://jobs.bytedance.com/campus/position/7475306184188250386/detail','https://jobs.bytedance.com/campus/position/7296440558658406665/detail','https://jobs.bytedance.com/campus/position/7507472397181831442/detail','https://jobs.bytedance.com/campus/position/7283327097724176700/detail'],
       steps:['先拆清平台、客户与用户三方价值，理解广告、会员或增值服务的收入链路。','准备客户分层、行业方案、广告产品、投放优化、续费增长和 ROI 分析题。','用一个商业化方案讲清目标客户、产品组合、转化漏斗、收入指标与体验边界。']
     },
     global:{
       title:'出海增长 / 海外市场 · 岗位案例池',
-      intro:'重点往科技硬件和全球化品牌走：大疆 DJI、Insta360 是核心参考，再延伸到海外品牌、渠道、本地化和用户增长。',
-      targets:['大疆 DJI 海外市场 / Growth','Insta360 海外增长 / 品牌','安克创新海外品牌 / 渠道','SHEIN 海外用户增长','TikTok Shop 出海运营','Temu 海外市场 / 增长','绿联科技海外电商','Baseus 倍思海外品牌','石头科技海外市场','XREAL 全球营销 / 社区'],
+      intro:'大疆、影石、安克等科技硬件是重点公司方向；岗位样本再用国际化业务的真实职位拆本地化、市场、商业化和用户增长。',
+      source:'https://careers.dji.com/zh-CN/',
+      targets:['DJI 全球市场 / 品牌岗位（官网筛选）','Insta360 海外市场 / 全球营销（官网筛选）','安克创新海外品牌 / 渠道（官网筛选）','国际化电商-跨境出海运营实习生','海外商业化运营实习生-国际化音乐','产品运营实习生-国际化','马来西亚区域公会运营实习生-直播国际化','创意产品策略运营实习生-国际化','用户运营实习生-国际化短视频','用户增长产品运营实习生（平台方向）-国际化短视频'],
+      links:['https://careers.dji.com/zh-CN/','https://www.linkedin.com/company/insta360/jobs/','https://career.anker.com.cn/','https://jobs.bytedance.com/campus/position/7025553082361104671/detail','https://jobs.bytedance.com/campus/position/7322688044250237194/detail','https://jobs.bytedance.com/campus/position/7261920317743155516/detail','https://jobs.bytedance.com/campus/position/7467816367787280648/detail','https://jobs.bytedance.com/campus/position/7475704358508906770/detail','https://jobs.bytedance.com/campus/position/7221078415858960677/detail','https://jobs.bytedance.com/campus/position/7262976393897380154/detail'],
       steps:['先研究目标国家的用户、渠道、内容生态、价格带和竞品，不照搬国内打法。','准备本地化、海外社媒、红人营销、独立站、电商平台和渠道增长题。','围绕 DJI 或 Insta360 做一份市场进入 / 增长方案，展示全球化判断。']
     },
     'strategy-product':{
       title:'策略产品 · 岗位案例池',
-      intro:'强调规则、机制、供需匹配和平台效率，面试重点是把复杂业务抽象成可执行的策略。',
-      targets:['拼多多策略产品','淘宝平台策略产品','抖音电商策略产品','美团供需策略产品','滴滴交易策略产品','京东商家策略产品','内容推荐策略产品','搜索策略产品','风控策略产品','广告策略产品'],
+      intro:'下面全部是官方招聘页中真实出现过的岗位名，覆盖内容、广告、电商、平台、增长和 AI 策略。',
+      source:'https://jobs.bytedance.com/campus/',
+      targets:['策略产品经理-AI创新业务','增长策略产品经理（Agent方向）-剪映 CapCut','巨量千川广告策略产品经理-抖音电商','内容策略产品经理-今日头条','广告策略产品经理实习生-广告业务','广告策略产品经理-商业变现','算法模型策略产品经理实习生（AI方向）-生活服务','平台产品经理实习生-IT','抖音平台产品经理-抖音','B端平台产品经理-抖音生活服务'],
+      links:['https://jobs.bytedance.com/campus/position/7483426844353399047/detail','https://jobs.bytedance.com/campus/position/7563148591561509173/detail','https://jobs.bytedance.com/campus/position/7488228262234917127/detail','https://jobs.bytedance.com/campus/position/7398076767141841202/detail','https://jobs.bytedance.com/campus/position/7503765247519492359/detail','https://jobs.bytedance.com/campus/position/6994641880885741832/detail','https://jobs.bytedance.com/campus/position/7346496643381037349/detail','https://jobs.bytedance.com/campus/position/7503497469746661640/detail','https://jobs.bytedance.com/campus/position/7475609906885839112/detail','https://jobs.bytedance.com/campus/position/7538717849150867720/detail'],
       steps:['先画清参与方、目标、约束和核心决策变量。','准备规则设计、供需匹配、补贴机制、异常治理和策略评估题。','用一张策略流程图讲清输入、决策、动作、指标和迭代。']
     },
     'growth-product':{
       title:'增长产品 · 岗位案例池',
-      intro:'把增长目标做成产品能力，覆盖获客、激活、转化、留存、会员和裂变。',
-      targets:['美团增长产品','拼多多增长产品','抖音增长产品','小红书增长产品','B 站用户增长产品','电商转化产品','会员产品','私域增长产品','裂变活动产品','海外增长产品'],
+      intro:'下面全部是官方招聘页中真实出现过的岗位名，覆盖用户产品、增长策略、搜索增长、广告增长和海外增长。',
+      source:'https://jobs.bytedance.com/campus/',
+      targets:['增长策略产品经理（Agent方向）-剪映 CapCut','用户增长产品实习生-生活服务','用户产品经理实习生-TikTok Local Services','用户产品经理实习生-抖音社交与互动','用户产品经理实习生-抖音','搜索增长产品运营实习生（经验决策方向）-TikTok','用户增长产品运营实习生（平台方向）-国际化短视频','大模型产品运营实习生（海外用户增长方向）-Data','广告增长产品运营实习生-国际化','增长营销实习生-抖音用户增长'],
+      links:['https://jobs.bytedance.com/campus/position/7563148591561509173/detail','https://jobs.bytedance.com/campus/position/7529353720938711303/detail','https://jobs.bytedance.com/campus/position/7472018711591864584/detail','https://jobs.bytedance.com/campus/position/7475994362876020999/detail','https://jobs.bytedance.com/campus/position/7355351364078127411/detail','https://jobs.bytedance.com/campus/position/7496500928390220039/detail','https://jobs.bytedance.com/campus/position/7262976393897380154/detail','https://jobs.bytedance.com/campus/position/7476088850906417416/detail','https://jobs.bytedance.com/campus/position/7496000461658818824/detail','https://jobs.bytedance.com/campus/position/7480023308861491464/detail'],
       steps:['先定位漏斗中最值得产品化解决的一段，不从功能清单开始。','准备注册转化、首单、会员、留存、召回、裂变和实验平台题。','用增长实验说明假设、产品动作、实验分组、指标和风险。']
     },
     'ai-product':{
       title:'AI 产品 · 岗位案例池',
-      intro:'重点看场景价值、模型边界、交互设计和效果评估，不把“接了大模型”当成产品能力。',
-      targets:['字节豆包 AI 产品','阿里千问 AI 应用产品','腾讯元宝 AI 产品','百度文心 AI 产品','智谱 AI 应用产品','MiniMax AI 产品','科大讯飞智能产品','企业智能客服产品','AI 营销工具产品','AI Agent / 工作流产品'],
+      intro:'下面全部是官方招聘页中真实出现过的岗位名，覆盖大模型、语音、智能体、知识管理、商业产品与国际化 AI。',
+      source:'https://jobs.bytedance.com/campus/',
+      targets:['AI产品经理-中国商业产品','产品经理-AI创新业务','策略产品经理-AI创新业务','AI语音产品经理-AI创新业务','产品经理实习生（扣子）-AI创新业务','大模型产品经理-AI创新业务','产品经理实习生-AI创新业务','AI 大模型产品经理-飞书办公套件','AI产品经理实习生-国际化','AI知识管理产品经理实习生-Data AML'],
+      links:['https://jobs.bytedance.com/campus/position/7496031677139978503/detail','https://jobs.bytedance.com/campus/position/7340927610592954633/detail','https://jobs.bytedance.com/campus/position/7483426844353399047/detail','https://jobs.bytedance.com/campus/position/7483070258178263304/detail','https://jobs.bytedance.com/campus/position/7498285294517635346/detail','https://jobs.bytedance.com/campus/position/7533543586865531154/detail','https://jobs.bytedance.com/campus/position/7457051631345043720/detail','https://jobs.bytedance.com/campus/position/7413282379899701514/detail','https://jobs.bytedance.com/campus/position/7516801780115982610/detail','https://jobs.bytedance.com/campus/position/7304115646081780006/detail'],
       steps:['先判断场景是否真的需要 AI，再定义用户任务和成功标准。','准备模型选型、Prompt / RAG、幻觉、安全、成本和评估指标题。','做一个能操作的 AI 原型，展示需求、流程、效果和失败兜底。']
     }
   };
@@ -3781,12 +4028,23 @@ document.addEventListener('click',close);})();
   document.addEventListener('click',function(e){
     var trigger=e.target.closest('[data-mentor-case]');
     if(trigger){
+      e.preventDefault();
       var item=cases[trigger.getAttribute('data-mentor-case')];
       if(!item)return;
       title.textContent=item.title;intro.textContent=item.intro;targets.innerHTML='';steps.innerHTML='';
-      item.targets.forEach(function(copy){var tag=document.createElement('span');tag.textContent=copy;targets.appendChild(tag);});
+      item.targets.forEach(function(copy,index){
+        var destination=item.links&&item.links[index]?item.links[index]:item.source;
+        var tag=document.createElement(destination?'a':'span');
+        tag.textContent=copy;
+        if(destination){
+          tag.href=destination;tag.target='_blank';tag.rel='noopener';
+          tag.title=item.links&&item.links[index]?'打开该岗位的官方招聘页':'打开官方招聘入口（请在官网搜索该岗位名）';
+        }
+        targets.appendChild(tag);
+      });
       item.steps.forEach(function(copy){var step=document.createElement('li');step.textContent=copy;steps.appendChild(step);});
       if(dialog.showModal)dialog.showModal();else dialog.setAttribute('open','');
+      dialog.scrollTop=0;
       return;
     }
     if(e.target.closest('[data-mentor-case-close]'))closeDialog();
